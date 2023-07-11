@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.18722172751558322" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #9e5050;">
+         <children>
+            <GridPane alignment="BOTTOM_RIGHT" layoutX="-1.0" layoutY="158.0" prefHeight="398.0" prefWidth="166.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="194.0" text="THÔNG TIN " />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" text="THỜI KHÓA BIỂU" GridPane.rowIndex="1" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" text="LỊCH THI" GridPane.rowIndex="2" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" text="ĐIỂM THI" GridPane.rowIndex="3" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" text="ĐƠN TỪ" GridPane.rowIndex="4" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" text="THÔNG BÁO" GridPane.rowIndex="5" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <center>
+                        <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Cài đặt" BorderPane.alignment="CENTER">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </MenuButton>
+                     </center>
+                  </BorderPane>
+               </children>
+            </GridPane>
+            <ImageView fitHeight="112.0" fitWidth="80.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/logo1.png.256x256_q100_crop-smart.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="71.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+  </items>
+</SplitPane>

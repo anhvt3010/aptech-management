@@ -1,0 +1,9 @@
+.button:hover {
+    -fx-background-color: #8888;
+}
+.button{
+    -fx-background-color: white
+}
+.custom-textfield .text-input {
+    -fx-padding: 0 0 0 10px;
+}
