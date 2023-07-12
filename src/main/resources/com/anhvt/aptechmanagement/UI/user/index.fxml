@@ -19,8 +19,8 @@
             <ImageView fitHeight="86.0" fitWidth="100.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" />
             <MenuButton layoutX="495.0" layoutY="30.0" mnemonicParsing="false" text="Cài đặt">
               <items>
-                <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#changePassword" text="Đổi mật khẩu" />
-                <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" text="Đăng xuất" />
+                <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#gotoChangePassword" text="Đổi mật khẩu" />
+                <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#gotoLogout" text="Đăng xuất" />
               </items>
             </MenuButton>
          </children></AnchorPane>
@@ -39,7 +39,7 @@
                <children>
                   <AnchorPane prefHeight="113.0" prefWidth="170.0">
                      <children>
-                        <Button fx:id="btnInfor" contentDisplay="TOP" layoutY="-3.0" mnemonicParsing="false" onAction="#showInfor" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG TIN">
+                        <Button fx:id="btnUserStudent" contentDisplay="TOP" layoutY="-3.0" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG TIN">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +64,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnSchedule" contentDisplay="TOP" layoutX="5.0" layoutY="-3.0" mnemonicParsing="false" onAction="#showSchedule" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THỜI KHÓA BIỂU">
+                        <Button fx:id="btnUserSchedule" contentDisplay="TOP" layoutX="5.0" layoutY="-3.0" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THỜI KHÓA BIỂU">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -83,7 +83,7 @@
                         <Insets bottom="10.0" left="10.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnTest" contentDisplay="TOP" layoutY="-3.0" mnemonicParsing="false" onAction="#showTest" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="LỊCH THI">
+                        <Button fx:id="btnUserTest" contentDisplay="TOP" layoutY="-3.0" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="LỊCH THI">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,7 +102,7 @@
                         <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnScore" contentDisplay="TOP" mnemonicParsing="false" onAction="#showScore" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐIỂM THI">
+                        <Button fx:id="btnScore" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoScore" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐIỂM THI">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -121,7 +121,7 @@
                         <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnDocument" contentDisplay="TOP" layoutX="5.0" mnemonicParsing="false" onAction="#showDocument" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐƠN TỪ">
+                        <Button fx:id="btnUserDocument" contentDisplay="TOP" layoutX="5.0" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐƠN TỪ">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -140,7 +140,7 @@
                         <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnNoty" contentDisplay="TOP" mnemonicParsing="false" onAction="#showNoty" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG BÁO">
+                        <Button fx:id="btnUserNoti" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoUserNoti" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG BÁO">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

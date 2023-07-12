@@ -5,8 +5,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.CourseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.ClassController">
     <children>
         <Pane prefHeight="609.0" prefWidth="944.0" style="-fx-background-color: #9e5050;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -54,7 +52,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ sơ">
+                                <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoStudent" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ sơ">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -66,7 +64,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Chương trình học" textFill="WHITE" GridPane.rowIndex="1">
+                                <Button fx:id="btnCourse" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoCourse" prefHeight="39.0" prefWidth="182.0" text="Chương trình học" GridPane.rowIndex="1">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -78,7 +76,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent2" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Lớp học" GridPane.rowIndex="2">
+                                <Button fx:id="btnStudent2" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Lớp học" textFill="WHITE" GridPane.rowIndex="2">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -90,7 +88,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent3" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Lịch học" GridPane.rowIndex="3">
+                                <Button fx:id="btnSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoSchedule" prefHeight="39.0" prefWidth="182.0" text="Lịch học" GridPane.rowIndex="3">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -102,7 +100,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent4" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Lịch thi" GridPane.rowIndex="4">
+                                <Button fx:id="btnTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoTest" prefHeight="39.0" prefWidth="182.0" text="Lịch thi" GridPane.rowIndex="4">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -114,7 +112,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent5" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Đơn từ" GridPane.rowIndex="5">
+                                <Button fx:id="btnDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoDocument" prefHeight="39.0" prefWidth="182.0" text="Đơn từ" GridPane.rowIndex="5">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -126,11 +124,11 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent6" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Hồ sơ" GridPane.rowIndex="6">
+                                <Button fx:id="btnNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNoti" prefHeight="39.0" prefWidth="182.0" text="Thông báo" GridPane.rowIndex="6">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../../images/icon/cv.png" />
+                                                <Image url="@../../../images/icon/notification.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -176,21 +174,7 @@
                                     <children>
                                         <SplitPane dividerPositions="0.7478678038379533" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                    <children>
-                                                        <TableView layoutX="104.0" layoutY="47.0" prefHeight="474.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <columns>
-                                                                <TableColumn minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
-                                                                <TableColumn prefWidth="99.86659240722656" text="Họ &amp; Tên" />
-                                                                <TableColumn prefWidth="67.46664428710938" text="Lớp" />
-                                                                <TableColumn prefWidth="104.5333251953125" text="Liên hệ" />
-                                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                                <TableColumn prefWidth="104.40005493164062" text="Hành động" />
-                                                            </columns>
-                                                        </TableView>
-                                                    </children>
-                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                                             </items>
                                         </SplitPane>

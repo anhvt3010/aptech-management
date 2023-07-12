@@ -59,7 +59,27 @@ public class StudentDAO implements IDAO<Student> {
 
     @Override
     public ArrayList<Student> findAll() {
-        return null;
+        ArrayList<Student> findAll = new ArrayList<Student>();
+        Connection cnn = JDBCUtil.getConnection();
+        try {
+            String sql = "SELECT * FROM student";
+            PreparedStatement stm = cnn.prepareStatement(sql);
+
+            ResultSet resultSet = stm.executeQuery();
+            while (resultSet.next()){
+                Student student = new Student();
+                student.setId(resultSet.getInt("id"));
+                student.setFirstName(resultSet.getString("first_name"));
+                student.setLastName(resultSet.getString("last_name"));
+                student.setEmail(resultSet.getString("email"));
+                student.setPhone(resultSet.getString("phone"));
+
+                findAll.add(student);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return findAll;
     }
 
     @Override

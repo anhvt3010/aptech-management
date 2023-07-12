@@ -11,7 +11,6 @@ public class Student {
     private Date birth;
     private String phone;
     private String email;
-
     private String password;
     private String address;
     private Date yearOfAdmission;
