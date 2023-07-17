@@ -1,4 +1,4 @@
-package com.anhvt.aptechmanagement.Entity;
+package com.anhvt.aptechmanagement.Model;
 
 import java.sql.Date;
 
@@ -15,6 +15,7 @@ public class Student {
     private String address;
     private Date yearOfAdmission;
     private Date created;
+    private Byte status;
     public String getPassword() {
         return password;
     }
@@ -101,5 +102,12 @@ public class Student {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

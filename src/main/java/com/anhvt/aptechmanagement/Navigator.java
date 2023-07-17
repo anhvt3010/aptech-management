@@ -20,11 +20,10 @@ public class Navigator {
     public static final String ADMIN_HOME = "UI/admin/index.fxml";
     public static final String LOGIN_ADMIN = "UI/loginAdminUI.fxml";
     public static final String LOGIN_STUDENT= "UI/loginStudentUI.fxml";
-    public static final String STUDENT_MANAGER = "UI/admin/student/listStudentUI.fxml";
     public static final String BROWSER = "UI/user/browser.fxml";
 
  // ------- URL Side bar Admin ---------------
-    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/student/listStudentUI.fxml";
+    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/profile/listStudentUI.fxml";
     public static final String SIDE_BAR_COURSE_ADMIN = "UI/admin/course/listCourseUI.fxml";
     public static final String SIDE_BAR_CLASS_ADMIN = "UI/admin/class/listClassUI.fxml";
     public static final String SIDE_BAR_SCHEDULE_ADMIN = "UI/admin/schedule/listScheduleUI.fxml";
@@ -39,6 +38,11 @@ public class Navigator {
     public static final String SIDE_BAR_TEST_USER = "UI/user/testUI.fxml";
     public static final String SIDE_BAR_DOCUMENT_USER = "UI/user/documentUI.fxml";
     public static final String SIDE_BAR_NOTI_USER = "UI/user/notificationUI.fxml";
+
+//    ---- URL view Admin --------
+    public static final String LIST_SRO = "UI/admin/profile/listSROUI.fxml";
+    public static final String LIST_LECTURER = "UI/admin/profile/listLecturerUI.fxml";
+    public static final String LIST_STUDENT = "UI/admin/profile/listStudentUI.fxml";
 
     private Navigator(){}
 
@@ -81,8 +85,16 @@ public class Navigator {
         gotoScene("Trang chủ quản lí", ADMIN_HOME);
     }
 
-    public void gotoStudentManager() throws IOException {
-        gotoScene("Quản lí học viên", STUDENT_MANAGER);
+    public void showListStudent() throws IOException {
+        gotoScene("Quản lí học viên", LIST_STUDENT);
+    }
+
+    public void showListSRO() throws IOException {
+        gotoScene("Danh sách giáo vụ", LIST_SRO);
+    }
+
+    public void showListLecturer() throws IOException {
+        gotoScene("Danh sách giảng viên", LIST_LECTURER);
     }
 
     // ------ Go to view User ----------

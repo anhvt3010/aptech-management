@@ -1,8 +1,6 @@
-package com.anhvt.aptechmanagement.Entity;
+package com.anhvt.aptechmanagement.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Schedule {
     private int id;

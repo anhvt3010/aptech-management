@@ -80,6 +80,13 @@
       <version>20.0.1</version>
       <type>pom</type>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.swinglabs/pdf-renderer -->
+    <dependency>
+      <groupId>org.swinglabs</groupId>
+      <artifactId>pdf-renderer</artifactId>
+      <version>1.0.5</version>
+    </dependency>
+
 
   </dependencies>
 

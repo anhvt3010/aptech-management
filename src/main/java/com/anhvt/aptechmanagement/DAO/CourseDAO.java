@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.DAO;
 
-import com.anhvt.aptechmanagement.Entity.Course;
+import com.anhvt.aptechmanagement.Model.Course;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
@@ -48,6 +48,8 @@ public class CourseDAO implements IDAO<Course>{
             }
         } catch (Exception e){
             e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(cnn);
         }
         return courses;
     }

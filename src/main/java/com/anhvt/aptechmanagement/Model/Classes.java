@@ -1,4 +1,4 @@
-package com.anhvt.aptechmanagement.Entity;
+package com.anhvt.aptechmanagement.Model;
 
 public class Classes {
     private int id;
@@ -17,6 +17,10 @@ public class Classes {
         this.description = description;
         this.limit = limit;
         this.type = type;
+    }
+
+    public Classes() {
+
     }
 
     public int getId() {

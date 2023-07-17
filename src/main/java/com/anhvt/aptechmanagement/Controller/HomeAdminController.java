@@ -26,7 +26,7 @@ public class HomeAdminController implements Initializable {
 
     @FXML
     void showStudent(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoStudentManager();
+        Navigator.getInstance().showListStudent();
     }
 
     @Override

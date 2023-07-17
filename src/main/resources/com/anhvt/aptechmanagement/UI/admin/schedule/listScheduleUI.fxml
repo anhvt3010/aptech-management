@@ -5,8 +5,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -174,24 +172,19 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                                     <children>
-                                        <SplitPane dividerPositions="0.7478678038379533" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <SplitPane dividerPositions="0.2300531914893617" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                    <children>
-                                                        <TableView layoutX="104.0" layoutY="47.0" prefHeight="474.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <columns>
-                                                                <TableColumn minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
-                                                                <TableColumn prefWidth="99.86659240722656" text="Họ &amp; Tên" />
-                                                                <TableColumn prefWidth="67.46664428710938" text="Lớp" />
-                                                                <TableColumn prefWidth="104.5333251953125" text="Liên hệ" />
-                                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                                <TableColumn prefWidth="104.40005493164062" text="Hành động" />
-                                                            </columns>
-                                                        </TableView>
-                                                    </children>
+                                       <children>
+                                          <MenuButton fx:id="btnListClass" layoutX="38.0" layoutY="43.0" mnemonicParsing="false" text="Chọn Lớp" />
+                                          <Button fx:id="btnUploadTKB" layoutX="54.0" layoutY="127.0" mnemonicParsing="false" onAction="#uploadTKB" prefHeight="0.0" prefWidth="55.0" text="Tải TKB" />
+                                          <Button fx:id="btnSubmit" layoutX="51.0" layoutY="418.0" mnemonicParsing="false" onAction="#submitUpload" text="Xác nhận" />
+                                       </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView fx:id="demoSchedule" fitHeight="324.0" fitWidth="247.0" layoutX="166.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children></AnchorPane>
                                             </items>
                                         </SplitPane>
                                     </children></AnchorPane>

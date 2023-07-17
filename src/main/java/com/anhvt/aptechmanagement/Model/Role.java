@@ -1,4 +1,4 @@
-package com.anhvt.aptechmanagement.Entity;
+package com.anhvt.aptechmanagement.Model;
 
 public class Role {
     private int id;

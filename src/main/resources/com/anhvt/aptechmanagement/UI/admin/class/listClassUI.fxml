@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -142,39 +143,48 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #EEEEEE;">
                     <children>
-                        <SplitPane dividerPositions="0.13824057450628366" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.07719928186714542" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
                                 <AnchorPane maxHeight="-Infinity" minHeight="40.0" minWidth="0.0" prefHeight="76.0" prefWidth="754.0">
-                                    <children>
-                                        <GridPane layoutX="-3.0" layoutY="-8.0" prefHeight="74.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.33334350585938" minWidth="10.0" prefWidth="81.33334350585938" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.33331298828125" minWidth="10.0" prefWidth="101.99996948242188" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.66668701171875" minWidth="10.0" prefWidth="94.00003051757812" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.33331298828125" minWidth="10.0" prefWidth="238.66668701171875" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.33331298828125" minWidth="10.0" prefWidth="81.33331298828125" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Thêm học viên">
-                                                    <GridPane.margin>
-                                                        <Insets left="10.0" right="10.0" />
-                                                    </GridPane.margin>
-                                                </Button>
-                                                <TextField prefHeight="25.0" prefWidth="229.0" GridPane.columnIndex="4" />
-                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" GridPane.columnIndex="5" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
+                           <children>
+                              <GridPane prefHeight="40.0" prefWidth="731.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.33334350585938" minWidth="10.0" prefWidth="81.33334350585938" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.33331298828125" minWidth="10.0" prefWidth="101.99996948242188" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.66668701171875" minWidth="10.0" prefWidth="94.00003051757812" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.33331298828125" minWidth="10.0" prefWidth="238.66668701171875" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.33331298828125" minWidth="10.0" prefWidth="81.33331298828125" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="229.0" GridPane.columnIndex="5" />
+                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" GridPane.columnIndex="6" />
+                                 </children>
+                              </GridPane>
+                           </children>
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                                     <children>
                                         <SplitPane dividerPositions="0.7478678038379533" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <TableView fx:id="tblClass" layoutX="226.0" layoutY="47.0" prefHeight="475.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="tcID" prefWidth="31.0" text="STT" />
+                                              <TableColumn fx:id="tcName" prefWidth="87.0" text="Tên Lớp" />
+                                                <TableColumn fx:id="tcSubject" prefWidth="73.66665649414062" text="Quá Trình" />
+                                                <TableColumn fx:id="tcSRO" prefWidth="107.66668701171875" text="Phụ Trách" />
+                                                <TableColumn fx:id="tcLimit" prefWidth="74.33331298828125" text="Giới Hạn" />
+                                                <TableColumn fx:id="tcType" prefWidth="77.0" text="Kiểu Lớp" />
+                                                <TableColumn prefWidth="106.3333740234375" text="Ghi Chú" />
+                                            </columns>
+                                          </TableView>
+                                       </children></AnchorPane>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                                             </items>
                                         </SplitPane>

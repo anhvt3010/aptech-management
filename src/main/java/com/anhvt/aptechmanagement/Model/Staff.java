@@ -1,4 +1,4 @@
-package com.anhvt.aptechmanagement.Entity;
+package com.anhvt.aptechmanagement.Model;
 
 import java.time.LocalDate;
 
@@ -7,11 +7,14 @@ public class Staff {
     private Role role;
     private String first_name;
     private String last_name;
+    private String email;
+    private String phone;
     private String username;
     private String password;
     private LocalDate birth;
     private String profile;
     private Byte status;
+
 
  public int getId() {
   return id;
@@ -43,6 +46,22 @@ public class Staff {
 
  public void setLast_name(String last_name) {
   this.last_name = last_name;
+ }
+
+ public String getEmail() {
+  return email;
+ }
+
+ public void setEmail(String email) {
+  this.email = email;
+ }
+
+ public String getPhone() {
+  return phone;
+ }
+
+ public void setPhone(String phone) {
+  this.phone = phone;
  }
 
  public String getUsername() {
