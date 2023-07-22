@@ -1,6 +1,7 @@
 package com.anhvt.aptechmanagement.Controller;
 
-import com.anhvt.aptechmanagement.DAO.ProfileDAO;
+import com.anhvt.aptechmanagement.DAO.LecturerDAO;
+import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Navigator;
 import javafx.beans.property.SimpleStringProperty;
@@ -55,7 +56,7 @@ public class LecturerController extends SideBarController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listStaffs = FXCollections.observableList(ProfileDAO.getIntance().findAllLecturer());
+        listStaffs = FXCollections.observableList(LecturerDAO.getIntance().findAll());
 
         tblListLecturer.setItems(listStaffs);
 

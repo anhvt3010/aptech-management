@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="477.0" prefWidth="600.0" style="-fx-background-color: #9E5050FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.student.DetailStudentController">
+   <children>
+      <AnchorPane layoutX="9.0" layoutY="42.0" prefHeight="390.0" prefWidth="582.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="42.0">
+         <children>
+            <Text layoutX="12.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ" />
+            <TextField fx:id="txtFirstName" layoutX="33.0" layoutY="21.0" prefHeight="25.0" prefWidth="117.0" />
+            <Text layoutX="159.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên" />
+            <TextField fx:id="txtLastName" layoutX="187.0" layoutY="21.0" prefHeight="25.0" prefWidth="88.0" />
+            <Text layoutX="12.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính" />
+            <RadioButton fx:id="genderMale" layoutX="92.0" layoutY="55.0" mnemonicParsing="false" text="Nam">
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="genderFemale" layoutX="187.0" layoutY="55.0" mnemonicParsing="false" text="Nữ" toggleGroup="$gender" />
+            <Text layoutX="12.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Năm sinh" />
+            <DatePicker fx:id="txtBirth" layoutX="71.0" layoutY="82.0" prefHeight="25.0" prefWidth="204.0" />
+            <Text layoutX="12.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số ĐT" />
+            <TextField fx:id="txtPhone" layoutX="71.0" layoutY="118.0" prefHeight="25.0" prefWidth="204.0" />
+            <Text layoutX="14.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+            <TextField fx:id="txtEmail" layoutX="72.0" layoutY="154.0" prefHeight="25.0" prefWidth="204.0" />
+            <Text layoutX="13.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ" />
+            <Text layoutX="15.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mở khóa" />
+            <RadioButton fx:id="btnStatus" layoutX="78.0" layoutY="363.0" mnemonicParsing="false" />
+            <ComboBox fx:id="tinh" layoutX="73.0" layoutY="189.0" prefHeight="25.0" prefWidth="204.0" promptText="Chọn Tỉnh, Thành phố" />
+            <ComboBox layoutX="73.0" layoutY="259.0" prefHeight="25.0" prefWidth="204.0" promptText="Chọn Xã, Phường,Thị trấn" fx:id="xa" />
+            <ComboBox fx:id="huyen" layoutX="73.0" layoutY="224.0" prefHeight="25.0" prefWidth="204.0" promptText="Chọn Quận, Huyện" />
+            <Text layoutX="8.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Thêm làng, phố, ngõ" />
+            <TextField fx:id="txtlang" layoutX="11.0" layoutY="322.0" prefHeight="25.0" prefWidth="267.0" />
+            <AnchorPane layoutX="293.0" layoutY="8.0" prefHeight="376.0" prefWidth="281.0" style="-fx-background-color: #9E5050FF; -fx-background-radius: 10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+         </children>
+      </AnchorPane>
+      <Text fill="WHITE" layoutX="195.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THÔNG TIN CHI TIẾT HỌC VIÊN">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

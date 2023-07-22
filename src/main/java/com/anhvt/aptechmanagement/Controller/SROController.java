@@ -1,8 +1,8 @@
 package com.anhvt.aptechmanagement.Controller;
 
-import com.anhvt.aptechmanagement.DAO.ProfileDAO;
+import com.anhvt.aptechmanagement.DAO.SRODAO;
+import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
-import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,7 +52,7 @@ public class SROController extends SideBarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listSRO = FXCollections.observableList(ProfileDAO.getIntance().findAllSRO());
+        listSRO = FXCollections.observableList(SRODAO.getIntance().findAll());
 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(celldata -> {

@@ -1,6 +1,7 @@
 package com.anhvt.aptechmanagement.DAO;
 
 import com.anhvt.aptechmanagement.Model.Classes;
+import com.anhvt.aptechmanagement.Model.Student_Learn;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
@@ -56,8 +57,29 @@ public class ClassDAO implements IDAO<Classes>{
     }
 
     @Override
-    public Classes selectById(Classes classes) {
-        return null;
+    public Classes selectById(int id) {
+        Connection cnn = JDBCUtil.getConnection();
+        Classes classes = new Classes();
+        String sql = "SELECT * FROM class WHERE id = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                classes.setId(rs.getInt("id"));
+                classes.setName(rs.getString("name"));
+                classes.setDescription(rs.getString("description"));
+                classes.setLimit(rs.getInt("student_limits"));
+                classes.setType((byte) rs.getInt("type"));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return classes;
     }
 
     @Override

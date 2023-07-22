@@ -1,8 +1,6 @@
 package com.anhvt.aptechmanagement.Utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JDBCUtil {
     private static final String URL = "jdbc:mysql://localhost:3307/student_management";
@@ -24,6 +22,26 @@ public class JDBCUtil {
         try {
             if (!connection.isClosed()){
                 connection.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void closePreparedStatement(PreparedStatement preparedStatement){
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void closeStatement(Statement statement){
+        try {
+            if (statement != null) {
+                statement.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,14 +1,21 @@
 package com.anhvt.aptechmanagement.Controller;
 
 import com.anhvt.aptechmanagement.DAO.ClassDAO;
+import com.anhvt.aptechmanagement.DAO.CourseDAO;
+import com.anhvt.aptechmanagement.DAO.ScheduleDAO;
+import com.anhvt.aptechmanagement.DAO.SemesterDAO;
 import com.anhvt.aptechmanagement.Model.Classes;
+import com.anhvt.aptechmanagement.Model.Course;
+import com.anhvt.aptechmanagement.Model.Schedule;
+import com.anhvt.aptechmanagement.Model.Semester;
+import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -18,79 +25,107 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ScheduleController extends SideBarController implements Initializable {
+
     @FXML
     public Button btnSubmit;
     @FXML
-    private MenuButton btnListClass;
+    public TextField txtLink;
+
     @FXML
-    public Button btnUploadTKB;
+    private ChoiceBox<String> btnListClass;
+
     @FXML
-    private ImageView demoSchedule;
+    private ChoiceBox<String> btnListCourse;
+
+    @FXML
+    private ChoiceBox<String> btnListSem;
+
+
+    Classes classSelected = null;
+    Course courseSelected = null;
+    Semester semesterSelected = null;
+
+    ArrayList<Semester> semesters = new ArrayList<>();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ArrayList<Classes> classList = ClassDAO.getIntance().findAll();
-        for (Classes className : classList) {
-            MenuItem menuItem = new MenuItem(className.getName());
-            menuItem.setOnAction(event -> {
 
-            });
-            btnListClass.getItems().add(menuItem);
+//        hiển thị danh sách lớp
+
+        ArrayList<Classes> classes = ClassDAO.getIntance().findAll();
+        ArrayList<String> listClass = new ArrayList<>();
+
+        for (Classes cls : classes) {
+            listClass.add(cls.getName());
         }
+
+        btnListClass.setOnAction(event -> {
+            int selectedIndex = btnListClass.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < classes.size()) {
+                classSelected = classes.get(selectedIndex);
+                System.out.println("Chọn class name: " + classSelected.getName());
+            }
+        });
+
+        btnListClass.getItems().addAll(listClass);
+
+//        hiển thị danh sách khóa học
+
+        ArrayList<Course> courses = CourseDAO.getIntance().findAllCourse();
+        ArrayList<String> listCourse = new ArrayList<>();
+
+        for (Course course : courses) {
+            listCourse.add(course.getName());
+        }
+
+        btnListCourse.setOnAction(event -> {
+            int selectedIndex = btnListCourse.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < courses.size()) {
+                courseSelected = courses.get(selectedIndex);
+                semesters = SemesterDAO.getInstance().selectByCourseId(courses.get(selectedIndex).getId());
+                System.out.println("Chọn class name: " + courses.get(selectedIndex).getName());
+                this.callbtnListSem();
+            }
+        });
+        System.out.println(semesters.size());
+        btnListCourse.getItems().addAll(listCourse);
     }
 
-    public void uploadTKB(ActionEvent actionEvent) {
-        // Tạo hộp thoại chọn tệp tin
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Chọn tệp tin ảnh để tải lên");
-
-        // Mở hộp thoại chọn tệp tin và lấy tệp tin được chọn
-        File selectedFile = fileChooser.showOpenDialog(btnUploadTKB.getScene().getWindow());
-
-        // lấy đuôi file
-        String fileName = selectedFile.getName();
-        String format = null;
-        int dotIndex = fileName.lastIndexOf(".");
-        if (dotIndex != -1 && dotIndex < fileName.length() - 1) {
-            format =  fileName.substring(dotIndex + 1);
-            System.out.println(format);
-        }
-
-
-        if (selectedFile != null) {
-
-            // Thư mục đích để lưu tệp tin
-            String destinationDirectory = "src/main/resources/com/anhvt/aptechmanagement/images/schedule";
-
-            // Tạo thư mục đích
-            File destinationFolder = new File(destinationDirectory);
-            if (!destinationFolder.exists()) {
-                destinationFolder.mkdirs();
+    public void callbtnListSem(){
+        btnListSem.setOnAction(event -> {
+            int selectedIndex = btnListSem.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < semesters.size()) {
+                semesterSelected = semesters.get(selectedIndex); // Cập nhật semesterSelected với đối tượng tương ứng
+                System.out.println("Chọn semester name: " + semesterSelected.getName());
             }
+        });
 
-            try {
-                // Đường dẫn đến tệp tin đích
-                String destinationPath = destinationDirectory + "/" + selectedFile.getName();
-
-                // Copy tệp tin vào thư mục đích
-                Files.copy(selectedFile.toPath(), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
-
-                System.out.println("Lưu tệp tin thành công vào thư mục đích.");
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Lưu tệp tin thất bại.");
-            }
-        } else {
-            System.out.println("Không có tệp tin ảnh được chọn.");
+        // Tạo danh sách tên các semester để thêm vào nút btnListSemester (nếu bạn muốn)
+        ArrayList<String> listSemesterNames = new ArrayList<>();
+        for (Semester semester : semesters) {
+            listSemesterNames.add(semester.getName());
         }
-
+        btnListSem.getItems().clear();
+        btnListSem.getItems().addAll(listSemesterNames);
     }
+
+
     @FXML
     public void submitUpload(ActionEvent actionEvent) {
+        Schedule schedule = new Schedule();
+        schedule.setClasses(classSelected);
+        schedule.setSemester(semesterSelected);
+        schedule.setLink(txtLink.getText());
 
+        ScheduleDAO.getInstance().insert(schedule);
+
+        AlertUtil.showInforEAlert("Thông báo", "Thêm mới thành công","");
+
+        txtLink.clear();
     }
 }

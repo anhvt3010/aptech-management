@@ -21,7 +21,7 @@
                 </Label>
                 <Button fx:id="btnLogin" layoutX="174.0" layoutY="243.0" mnemonicParsing="false" onAction="#login" text="Đăng nhập" />
                 <Button fx:id="btnBack" layoutX="14.0" layoutY="243.0" mnemonicParsing="false" onAction="#goback" text="Quay lại" />
-                <Hyperlink layoutX="13.0" layoutY="205.0" text="Quên mật khẩu ?" />
+                <Hyperlink fx:id="btnForgotPassword" layoutX="13.0" layoutY="205.0" onAction="#gotoForgotPAssword" text="Quên mật khẩu ?" />
             </children>
         </AnchorPane>
         <Label layoutX="373.0" layoutY="164.0" text="Email đăng nhập" />

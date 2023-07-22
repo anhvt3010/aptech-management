@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller;
 
-import com.anhvt.aptechmanagement.DAO.ProfileDAO;
+import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
@@ -35,7 +35,7 @@ public class LoginAdminController {
                                 "Email hoặc mật khẩu trống !",
                                 "Vui lòng điền đầy đủ");
         } else {
-            Student st = ProfileDAO.getIntance().getAccountByEmail(email);
+            Student st = StudentDAO.getIntance().getAccountByEmail(email);
             if(st != null){
                 if(st.getPassword().equals(pass)){
                     Navigator.getInstance().gotoAdminHome();

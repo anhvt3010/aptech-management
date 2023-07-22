@@ -11,7 +11,12 @@ public class Navigator {
 
     private static Navigator navigator;
     private Stage stage;
-    private Stage previousStage;
+
+
+    public void TESTVIEW() throws IOException {
+        gotoScene("Test", "hello-view.fxml");
+    }
+
 
     // ----------view USER---------
     public static final String STUDENT_HOME = "UI/user/index.fxml";
@@ -22,8 +27,10 @@ public class Navigator {
     public static final String LOGIN_STUDENT= "UI/loginStudentUI.fxml";
     public static final String BROWSER = "UI/user/browser.fxml";
 
+
+
  // ------- URL Side bar Admin ---------------
-    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/profile/listStudentUI.fxml";
+    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/profile/student/listStudentUI.fxml";
     public static final String SIDE_BAR_COURSE_ADMIN = "UI/admin/course/listCourseUI.fxml";
     public static final String SIDE_BAR_CLASS_ADMIN = "UI/admin/class/listClassUI.fxml";
     public static final String SIDE_BAR_SCHEDULE_ADMIN = "UI/admin/schedule/listScheduleUI.fxml";
@@ -33,16 +40,27 @@ public class Navigator {
 
 // ------- URL Side bar User ---------------
     public static final String SIDE_BAR_INFORMATION_USER = "UI/user/informationUI.fxml";
-    public static final String SIDE_BAR_SCRORE_USER = "UI/user/scoreUI.fxml";
-    public static final String SIDE_BAR_SCHEDULE_USER = "UI/user/scheduleUI.fxml";
-    public static final String SIDE_BAR_TEST_USER = "UI/user/testUI.fxml";
+    public static final String SIDE_BAR_SCORE_USER = "UI/user/scoreUI/scoreSem1UI.fxml";
+    public static final String SIDE_BAR_SCHEDULE_USER = "UI/user/scheduleUI/scheduleUISem1.fxml";
+    public static final String SIDE_BAR_TEST_USER = "UI/user/examUI.fxml";
     public static final String SIDE_BAR_DOCUMENT_USER = "UI/user/documentUI.fxml";
     public static final String SIDE_BAR_NOTI_USER = "UI/user/notificationUI.fxml";
 
 //    ---- URL view Admin --------
     public static final String LIST_SRO = "UI/admin/profile/listSROUI.fxml";
     public static final String LIST_LECTURER = "UI/admin/profile/listLecturerUI.fxml";
-    public static final String LIST_STUDENT = "UI/admin/profile/listStudentUI.fxml";
+    public static final String LIST_STUDENT = "UI/admin/profile/student/listStudentUI.fxml";
+
+//    ------ user/scoreUI------
+    public static final String USER_SCOREUI_SEM1 = "UI/user/scoreUI/scoreSem1UI.fxml";
+    public static final String USER_SCOREUI_SEM2 = "UI/user/scoreUI/scoreSem2UI.fxml";
+    public static final String USER_SCOREUI_SEM3 = "UI/user/scoreUI/scoreSem3UI.fxml";
+    public static final String USER_SCOREUI_SEM4 = "UI/user/scoreUI/scoreSem4UI.fxml";
+//    ------ user/scheduleUI------
+    public static final String USER_SCHEDULE_SEM1 = "UI/user/scheduleUI/scheduleUISem1.fxml";
+    public static final String USER_SCHEDULE_SEM2 = "UI/user/scheduleUI/scheduleUISem2.fxml";
+    public static final String USER_SCHEDULE_SEM3 = "UI/user/scheduleUI/scheduleUISem3.fxml";
+    public static final String USER_SCHEDULE_SEM4 = "UI/user/scheduleUI/scheduleUISem4.fxml";
 
     private Navigator(){}
 
@@ -56,6 +74,7 @@ public class Navigator {
     public void setStage(Stage stage){
         navigator.stage = stage;
     }
+
 
     public void gotoScene(String title, String URL) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(URL));
@@ -138,7 +157,7 @@ public class Navigator {
         gotoScene("Hồ sơ cá nhân", SIDE_BAR_INFORMATION_USER);
     }
     public void gotoScore() throws IOException {
-        gotoScene("Điểm thi", SIDE_BAR_SCRORE_USER);
+        gotoScene("Điểm thi", SIDE_BAR_SCORE_USER);
     }
     public void gotoScheduleUser() throws IOException {
         gotoScene("Thời khóa biểu", SIDE_BAR_SCHEDULE_USER);
@@ -152,4 +171,35 @@ public class Navigator {
     public void gotoNotification() throws IOException {
         gotoScene("Bảng thông báo", SIDE_BAR_NOTI_USER);
     }
+
+//    ------ user/scoreUI ------
+    public void gotoScoreSem1() throws IOException {
+        gotoScene("Bảng điểm kì 1", USER_SCOREUI_SEM1);
+    }
+    public void gotoScoreSem2() throws IOException {
+        gotoScene("Bảng điểm kì 2", USER_SCOREUI_SEM2);
+    }
+    public void gotoScoreSem3() throws IOException {
+        gotoScene("Bảng điểm kì 3", USER_SCOREUI_SEM3);
+    }
+    public void gotoScoreSem4() throws IOException {
+        gotoScene("Bảng điểm kì 4", USER_SCOREUI_SEM4);
+    }
+
+//    ------ user/scheduleUI ------
+
+    public void gotoScheduleSem1() throws IOException {
+        gotoScene("Thời khóa biểu học kì 1", USER_SCHEDULE_SEM1);
+    }
+    public void gotoScheduleSem2() throws IOException {
+        gotoScene("Thời khóa biểu học kì 2", USER_SCHEDULE_SEM2);
+    }
+    public void gotoScheduleSem3() throws IOException {
+        gotoScene("Thời khóa biểu học kì 3", USER_SCHEDULE_SEM3);
+    }
+    public void gotoScheduleSem4() throws IOException {
+        gotoScene("Thời khóa biểu học kì 4", USER_SCHEDULE_SEM4);
+    }
+
+
 }

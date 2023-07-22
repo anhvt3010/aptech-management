@@ -5,8 +5,8 @@ public class Score {
     private Student student;
     private Subject subject;
     private int score;
-    private int percent;
     private int score_max;
+    private Byte type;
 
     public int getId() {
         return id;
@@ -40,12 +40,12 @@ public class Score {
         this.score = score;
     }
 
-    public int getPercent() {
-        return percent;
+    public Byte getType() {
+        return type;
     }
 
-    public void setPercent(int percent) {
-        this.percent = percent;
+    public void setType(Byte type) {
+        this.type = type;
     }
 
     public int getScore_max() {

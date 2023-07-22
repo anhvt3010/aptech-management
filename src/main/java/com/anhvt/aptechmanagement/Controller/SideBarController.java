@@ -1,13 +1,18 @@
 package com.anhvt.aptechmanagement.Controller;
 
 import com.anhvt.aptechmanagement.Navigator;
+import com.anhvt.aptechmanagement.Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SideBarController {
 
@@ -15,6 +20,9 @@ public class SideBarController {
     private MenuItem btnChangePassword;
     @FXML
     private MenuItem btnLogout;
+
+    @FXML
+    private Text txtHelloAdmin;
 
 
     //  ------------ Button Admin -----------------
@@ -29,7 +37,7 @@ public class SideBarController {
     @FXML
     private Button btnStudent;
     @FXML
-    private Button btnStudent6;
+    private Button btnNoti;
     @FXML
     private Button btnTest;
 
@@ -47,12 +55,16 @@ public class SideBarController {
     private Button btnUserStudent;
     @FXML
     private Button btnUserTest;
-    @FXML
-    private TextField txtName;
+
 
     @FXML
-    void gotoLogout(ActionEvent event) {
+    public Text txtHelloStudent;
 
+
+    @FXML
+    void gotoLogout(ActionEvent event) throws IOException {
+        Session.removeAttribute();
+        Navigator.getInstance().gotoLoginStudent();
     }
     @FXML
     void gotoChangePassword(ActionEvent event) {
@@ -126,4 +138,5 @@ public class SideBarController {
     void gotoUserTest(ActionEvent event) throws IOException {
         Navigator.getInstance().gotoTestUser();
     }
+
 }

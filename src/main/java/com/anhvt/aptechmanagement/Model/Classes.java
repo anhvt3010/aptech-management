@@ -3,16 +3,14 @@ package com.anhvt.aptechmanagement.Model;
 public class Classes {
     private int id;
     private Subject subject;
-    private Staff staff;
     private String name;
     private String description;
     private int limit;
     private Byte type;
 
-    public Classes(int id, Subject subject, Staff staff, String name, String description, int limit, Byte type) {
+    public Classes(int id, Subject subject , String name, String description, int limit, Byte type) {
         this.id = id;
         this.subject = subject;
-        this.staff = staff;
         this.name = name;
         this.description = description;
         this.limit = limit;
@@ -37,14 +35,6 @@ public class Classes {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
     }
 
     public String getName() {

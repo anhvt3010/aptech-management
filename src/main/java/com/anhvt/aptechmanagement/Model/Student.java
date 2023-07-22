@@ -1,6 +1,7 @@
 package com.anhvt.aptechmanagement.Model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class Student {
@@ -8,14 +9,47 @@ public class Student {
     private String firstName;
     private String lastName;
     private Boolean gender;
-    private Date birth;
+    private LocalDate birth;
     private String phone;
     private String email;
     private String password;
     private String address;
-    private Date yearOfAdmission;
-    private Date created;
+    private LocalDate yearOfAdmission;
+    private LocalDate created;
     private Byte status;
+
+    public Student(String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate yearOfAdmission, LocalDate created, Byte status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birth = birth;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.yearOfAdmission = yearOfAdmission;
+        this.created = created;
+        this.status = status;
+    }
+
+    public Student(int id, String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate yearOfAdmission, LocalDate created, Byte status) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birth = birth;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.yearOfAdmission = yearOfAdmission;
+        this.created = created;
+        this.status = status;
+    }
+
+    public Student() {
+    }
+
     public String getPassword() {
         return password;
     }
@@ -56,11 +90,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public Date getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
@@ -88,19 +122,19 @@ public class Student {
         this.address = address;
     }
 
-    public Date getYearOfAdmission() {
+    public LocalDate getYearOfAdmission() {
         return yearOfAdmission;
     }
 
-    public void setYearOfAdmission(Date yearOfAdmission) {
+    public void setYearOfAdmission(LocalDate yearOfAdmission) {
         this.yearOfAdmission = yearOfAdmission;
     }
 
-    public Date getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
     public Byte getStatus() {
@@ -109,5 +143,23 @@ public class Student {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender=" + gender +
+                ", birth=" + birth +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", yearOfAdmission=" + yearOfAdmission +
+                ", created=" + created +
+                ", status=" + status +
+                '}';
     }
 }

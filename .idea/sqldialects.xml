@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/ExamDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/NotificationDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/ScheduleDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/SemesterDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/Semester_SubjectDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/anhvt/aptechmanagement/DAO/SubjectDAO.java" dialect="GenericSQL" />
+  </component>
+</project>

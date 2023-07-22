@@ -50,17 +50,17 @@ public class ClassController extends SideBarController implements Initializable 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcLimit.setCellValueFactory(new PropertyValueFactory<>("limit"));
-        tcType.setCellValueFactory(cellData -> {
-            Byte type = cellData.getValue().getType();
-            String typeValue;
-            if (type == 1) {
-                typeValue = "SÁNG";
-            } else if (type == 2) {
-                typeValue = "CHIỀU";
-            } else {
-                typeValue = "TỐI";
-            }
-            return new SimpleStringProperty(typeValue);
-        });
+//        tcType.setCellValueFactory(cellData -> {
+//            Byte type = cellData.getValue().getType();
+//            String typeValue;
+//            if (type == 1) {
+//                typeValue = "SÁNG";
+//            } else if (type == 2) {
+//                typeValue = "CHIỀU";
+//            } else {
+//                typeValue = "TỐI";
+//            }
+//            return new SimpleStringProperty(typeValue);
+//        });
     }
 }

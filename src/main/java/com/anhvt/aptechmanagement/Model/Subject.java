@@ -4,19 +4,23 @@ public class Subject {
     private int id;
     private String Code;
     private String name;
-    private String number_of_sessions;
-    private String objectives_achieved;
+    private int number_of_sessions;
+    private String description;
     private Byte exam_format;
     private Byte type;
 
-    public Subject(int id, String code, String name, String number_of_sessions, String objectives_achieved, Byte exam_format, Byte type) {
+    public Subject(int id, String code, String name, int number_of_sessions, String description, Byte exam_format, Byte type) {
         this.id = id;
         Code = code;
         this.name = name;
         this.number_of_sessions = number_of_sessions;
-        this.objectives_achieved = objectives_achieved;
+        this.description = description;
         this.exam_format = exam_format;
         this.type = type;
+    }
+
+    public Subject() {
+
     }
 
     public int getId() {
@@ -43,20 +47,20 @@ public class Subject {
         this.name = name;
     }
 
-    public String getNumber_of_sessions() {
+    public int getNumber_of_sessions() {
         return number_of_sessions;
     }
 
-    public void setNumber_of_sessions(String number_of_sessions) {
+    public void setNumber_of_sessions(int number_of_sessions) {
         this.number_of_sessions = number_of_sessions;
     }
 
-    public String getObjectives_achieved() {
-        return objectives_achieved;
+    public String getDescription() {
+        return description;
     }
 
-    public void setObjectives_achieved(String objectives_achieved) {
-        this.objectives_achieved = objectives_achieved;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Byte getExam_format() {
@@ -73,5 +77,18 @@ public class Subject {
 
     public void setType(Byte type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", Code='" + Code + '\'' +
+                ", name='" + name + '\'' +
+                ", number_of_sessions=" + number_of_sessions +
+                ", description='" + description + '\'' +
+                ", exam_format=" + exam_format +
+                ", type=" + type +
+                '}';
     }
 }

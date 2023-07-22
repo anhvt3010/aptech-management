@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
@@ -32,7 +33,7 @@
             <items>
             <AnchorPane maxWidth="180.0" minHeight="0.0" minWidth="180.0" prefHeight="561.0" prefWidth="180.0" style="-fx-background-color: #143760;">
                <children>
-                  <Text fill="WHITE" layoutX="53.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello Admin">
+                  <Text fx:id="txtHelloAdmin" fill="WHITE" layoutX="53.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello Admin">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -124,11 +125,11 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnStudent6" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" text="Hồ sơ" GridPane.rowIndex="6">
+                        <Button fx:id="btnNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNoti" prefHeight="39.0" prefWidth="182.0" text="Thông báo" GridPane.rowIndex="6">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/icon/cv.png" />
+                                    <Image url="@../../../images/icon/notification.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -142,7 +143,7 @@
             </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #EEEEEE;">
                     <children>
-                        <SplitPane dividerPositions="0.13824057450628366" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.07719928186714542" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
                                 <AnchorPane maxHeight="-Infinity" minHeight="40.0" minWidth="0.0" prefHeight="76.0" prefWidth="754.0">
                                     <children>
@@ -159,11 +160,6 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Thêm học viên">
-                                                    <GridPane.margin>
-                                                        <Insets left="10.0" right="10.0" />
-                                                    </GridPane.margin>
-                                                </Button>
                                                 <TextField prefHeight="25.0" prefWidth="229.0" GridPane.columnIndex="4" />
                                                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" GridPane.columnIndex="5" />
                                             </children>
@@ -172,21 +168,62 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                                     <children>
-                                        <SplitPane dividerPositions="0.2300531914893617" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <SplitPane dividerPositions="0.586436170212766" layoutX="160.0" layoutY="39.0" prefHeight="438.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
                                             <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <MenuButton fx:id="btnListClass" layoutX="38.0" layoutY="43.0" mnemonicParsing="false" text="Chọn Lớp" />
-                                          <Button fx:id="btnUploadTKB" layoutX="54.0" layoutY="127.0" mnemonicParsing="false" onAction="#uploadTKB" prefHeight="0.0" prefWidth="55.0" text="Tải TKB" />
-                                          <Button fx:id="btnSubmit" layoutX="51.0" layoutY="418.0" mnemonicParsing="false" onAction="#submitUpload" text="Xác nhận" />
-                                       </children>
-                                                </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                       <children>
-                                          <ImageView fx:id="demoSchedule" fitHeight="324.0" fitWidth="247.0" layoutX="166.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+                                          <GridPane layoutX="39.0" layoutY="102.0" prefHeight="257.0" prefWidth="308.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.33331298828125" minWidth="10.0" prefWidth="85.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.66668701171875" minWidth="10.0" prefWidth="171.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Lớp" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <ChoiceBox fx:id="btnListClass" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <ChoiceBox fx:id="btnListCourse" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <ChoiceBox fx:id="btnListSem" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Kì Học" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Khóa học" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liên kết thời khóa biểu" GridPane.rowIndex="4">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </GridPane>
+                                          <TextField fx:id="txtLink" layoutX="20.0" layoutY="252.0" prefHeight="25.0" prefWidth="257.0" />
+                                          <Button fx:id="btnSubmit" layoutX="29.0" layoutY="350.0" mnemonicParsing="false" onAction="#submitUpload" text="Tải lên" />
                                        </children></AnchorPane>
                                             </items>
                                         </SplitPane>
+                              <Text layoutX="287.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THÊM THỜI KHÓA BIỂU">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
                                     </children></AnchorPane>
                             </items>
                         </SplitPane>

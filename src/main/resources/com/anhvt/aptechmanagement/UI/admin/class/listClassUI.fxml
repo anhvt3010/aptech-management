@@ -169,19 +169,17 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                                     <children>
-                                        <SplitPane dividerPositions="0.7478678038379533" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <SplitPane dividerPositions="0.4787234042553192" layoutX="160.0" layoutY="1.0" prefHeight="510.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TableView fx:id="tblClass" layoutX="226.0" layoutY="47.0" prefHeight="475.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <TableView fx:id="tblClass" layoutX="226.0" layoutY="47.0" prefHeight="508.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
                                               <TableColumn fx:id="tcID" prefWidth="31.0" text="STT" />
-                                              <TableColumn fx:id="tcName" prefWidth="87.0" text="Tên Lớp" />
-                                                <TableColumn fx:id="tcSubject" prefWidth="73.66665649414062" text="Quá Trình" />
-                                                <TableColumn fx:id="tcSRO" prefWidth="107.66668701171875" text="Phụ Trách" />
-                                                <TableColumn fx:id="tcLimit" prefWidth="74.33331298828125" text="Giới Hạn" />
-                                                <TableColumn fx:id="tcType" prefWidth="77.0" text="Kiểu Lớp" />
-                                                <TableColumn prefWidth="106.3333740234375" text="Ghi Chú" />
+                                              <TableColumn fx:id="tcName" prefWidth="67.0" text="Tên Lớp" />
+                                                <TableColumn fx:id="tcSRO" prefWidth="91.33334350585938" text="Phụ Trách" />
+                                                <TableColumn fx:id="tcLimit" prefWidth="44.0" text="Sĩ Số" />
+                                                <TableColumn prefWidth="121.0" text="Ghi Chú" />
                                             </columns>
                                           </TableView>
                                        </children></AnchorPane>

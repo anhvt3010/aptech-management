@@ -1,12 +1,14 @@
 package com.anhvt.aptechmanagement.Controller;
 
-import com.anhvt.aptechmanagement.DAO.ProfileDAO;
+import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
+import com.anhvt.aptechmanagement.Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -18,6 +20,9 @@ public class LoginStudentController {
 
     @FXML
     private Button btnLogin;
+
+    @FXML
+    private Hyperlink btnForgotPassword;
 
     @FXML
     private PasswordField txtPassword;
@@ -35,9 +40,12 @@ public class LoginStudentController {
                     "Email hoặc mật khẩu trống !",
                     "Vui lòng điền đầy đủ");
         } else {
-            Student st = ProfileDAO.getIntance().getAccountByEmail(email);
+            Student st = StudentDAO.getIntance().getAccountByEmail(email);
             if(st != null){
                 if(st.getPassword().equals(pass)){
+
+                    Session.setAttribute(st);
+
                     Navigator.getInstance().gotoStudentHome();
                 } else {
                     AlertUtil.showErrorAlert("Đăng nhập thất bại",
@@ -56,5 +64,10 @@ public class LoginStudentController {
     @FXML
     void goback(ActionEvent event) throws IOException {
         Navigator.getInstance().gotoSelect();
+    }
+
+    @FXML
+    void gotoForgotPAssword(ActionEvent event) {
+        AlertUtil.showErrorAlert("Quên mật khẩu", "Quên mật khẩu", "Bạn hãy liên hệ với giáo vụ để lấy lại mật khẩu mới");
     }
 }
