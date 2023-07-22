@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.user.DocumentStudentController">
+    <children>
+        <SplitPane dividerPositions="0.24086452762923352" layoutX="326.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="180.0" prefHeight="549.0" prefWidth="206.0" style="-fx-background-color: #143760;">
+                    <children>
+                        <SplitPane dividerPositions="0.0944220430107527" layoutX="32.0" layoutY="73.0" orientation="VERTICAL" prefHeight="597.6" prefWidth="206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane maxHeight="50.0" minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #9e5050;">
+                           <children>
+                              <Text fx:id="txtHelloStudent" layoutX="8.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Xin chào ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="100.0" minWidth="160.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #6E8199;">
+                                    <children>
+                                        <ImageView fitHeight="83.0" fitWidth="79.0" layoutX="63.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../images/icon-student.png" />
+                                            </image>
+                                        </ImageView>
+                                        <GridPane layoutX="1.0" layoutY="128.0" prefHeight="337.0" prefWidth="204.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="128.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ sơ cá nhân">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../images/icon/cv.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" text="Thời khóa biểu" GridPane.rowIndex="2">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../images/icon/calendar.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch thi" GridPane.rowIndex="3">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../images/icon/test.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Đơn từ" textFill="WHITE" GridPane.rowIndex="4">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../images/icon/google-docs.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNoti" prefHeight="40.0" prefWidth="202.0" text="Thông báo" GridPane.rowIndex="5">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../images/icon/notification.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                    <Button fx:id="btnScrore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoScore" prefHeight="40.0" prefWidth="202.0" text="Điểm thi" GridPane.rowIndex="1">
+                                       <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/icon/student-grades.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <SplitPane dividerPositions="0.21370967741935487" layoutX="135.0" layoutY="75.0" orientation="VERTICAL" prefHeight="597.6" prefWidth="685.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane maxHeight="50.0" minHeight="50.0" minWidth="0.0" prefHeight="50.0" prefWidth="683.0" style="-fx-background-color: #9e5050;">
+                                    <children>
+                                        <MenuButton layoutX="595.0" layoutY="10.0" maxWidth="79.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Cài Đặt" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="12.0">
+                                            <items>
+                                                <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#gotoChangePassword" text="Đổi mật khẩu" />
+                                                <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#gotoLogout" text="Đăng xuất" />
+                                            </items>
+                                        </MenuButton>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #9e5050;">
+                           <children>
+                              <TextArea editable="false" layoutX="7.0" layoutY="33.0" prefHeight="388.0" prefWidth="668.0" promptText="4ETE4TE" style="-fx-background-radius: 10;" text="A. Kênh liên lạc&#10;- Email của Phòng Đào tạo: phongdaotao@aptechlearning.edu.vn&#10;- Hangouts Chat:  hangouts.google.com sử dụng tài khoản theo Email của Phòng Đào tạo.&#10;- Hotline : 1800 1141 (Ấn phím 1 sau đó ấn nhánh lẻ 709) &#10;&#10;B. Thời gian liên lạc: &#10;Phòng Đào tạo luôn bố trí nhân sự để trao đổi kịp thời cho Học Sinh/Quý Phụ huynh từ thứ Hai đến thứ Bảy &#10;theo khung giờ sau : &#10;- Sáng : 8h00 – 12h00&#10;- Chiều : 13h30 – 17h30&#10;- Tối : 19h30 – 20h30   &#10;&#10;Ngoài ra, Phòng đào tạo sẽ triển khai đơn từ, biểu mẫu bằng hình thức Online kể từ tháng 12/2020. &#10;Cụ thể với các nội dung sau:&#10;&#10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="33.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </TextArea>
+                              <Text fill="WHITE" layoutX="183.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KÊNH LIÊN LẠC, ĐƠN TỪ VÀ BIỂU MẪU ONLINE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <GridPane layoutX="31.0" layoutY="304.0" prefHeight="204.0" prefWidth="515.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.066650390625" minWidth="10.0" prefWidth="181.53330078125" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="349.4000244140625" minWidth="10.0" prefWidth="332.86669921875" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Hyperlink fx:id="linkThiLai" text="https://forms.gle/oyRL8NPMvC1hSESU6" GridPane.columnIndex="1" />
+                                     <Hyperlink fx:id="linkHocLai" text="https://forms.gle/eYenchwaCeqEqnxN9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin chuyển lớp:" GridPane.rowIndex="5" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin bảo lưu:" GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin học dự thính:" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin hoãn thi:" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đăng ký học lại:" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin học song song Module:" GridPane.rowIndex="8" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin nghỉ buổi học:" GridPane.rowIndex="7" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đơn xin phúc khảo điểm:" GridPane.rowIndex="6" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Đăng ký thi lại:" />
+                                    <Hyperlink fx:id="linkHoanThi" text="https://forms.gle/SCYCjFqhgq9iYDsX7" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Hyperlink fx:id="linkHocSongSong" text="https://forms.gle/EMHcegzuCuBDe5216" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Hyperlink fx:id="linkNghiHoc" text="https://forms.gle/rYRjPa7Un9p7gZqU6" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Hyperlink fx:id="linkPhucKhao" text="https://forms.gle/beG25JQDfCKkyjCG6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Hyperlink fx:id="linkChuyenLop" text="https://forms.gle/8v5RxCqe8Qvh1Eqh7" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Hyperlink fx:id="linkBaoLuu" text="https://forms.gle/Y5ZwKh6LZNnd7mb5A" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Hyperlink fx:id="linkHocDuThinh" text="https://forms.gle/h78P6o4VYAnNXMw67" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children></AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
