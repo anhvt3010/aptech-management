@@ -51,11 +51,14 @@ public class Navigator {
     public static final String LIST_LECTURER = "UI/admin/profile/listLecturerUI.fxml";
     public static final String LIST_STUDENT = "UI/admin/profile/student/listStudentUI.fxml";
 
+    public static final String LIST_SUBJECT = "UI/admin/subject/listSubjectUI.fxml";
+
 //    ------ user/scoreUI------
     public static final String USER_SCOREUI_SEM1 = "UI/user/scoreUI/scoreSem1UI.fxml";
     public static final String USER_SCOREUI_SEM2 = "UI/user/scoreUI/scoreSem2UI.fxml";
     public static final String USER_SCOREUI_SEM3 = "UI/user/scoreUI/scoreSem3UI.fxml";
     public static final String USER_SCOREUI_SEM4 = "UI/user/scoreUI/scoreSem4UI.fxml";
+
 //    ------ user/scheduleUI------
     public static final String USER_SCHEDULE_SEM1 = "UI/user/scheduleUI/scheduleUISem1.fxml";
     public static final String USER_SCHEDULE_SEM2 = "UI/user/scheduleUI/scheduleUISem2.fxml";
@@ -201,5 +204,10 @@ public class Navigator {
         gotoScene("Thời khóa biểu học kì 4", USER_SCHEDULE_SEM4);
     }
 
+
+// go to view Admin
+    public void gotoListSubject() throws IOException {
+        gotoScene("Danh sách môn học", LIST_SUBJECT);
+    }
 
 }

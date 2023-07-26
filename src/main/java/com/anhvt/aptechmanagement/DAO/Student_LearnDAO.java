@@ -3,14 +3,15 @@ package com.anhvt.aptechmanagement.DAO;
 import com.anhvt.aptechmanagement.Model.Student_Learn;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Student_LearnDAO implements IDAO<Student_Learn>{
+    static Connection cnn = null;
+    PreparedStatement stm = null;
 
     public static Student_LearnDAO getInstance(){
+        cnn = JDBCUtil.getConnection();
         return new Student_LearnDAO();
     }
 
@@ -21,6 +22,26 @@ public class Student_LearnDAO implements IDAO<Student_Learn>{
 
     @Override
     public int update(Student_Learn studentLearn) {
+        Connection cnn = JDBCUtil.getConnection();
+        String query = "UPDATE student_learn " +
+                "SET class_id=?, course_id=? " +
+                "WHERE student_id=? AND id=?";
+
+        try {
+            stm = cnn.prepareStatement(query);
+
+            stm.setInt(1, studentLearn.getClasses().getId());
+            stm.setInt(2, studentLearn.getCourse().getId());
+            stm.setInt(3, studentLearn.getStudent().getId());
+            stm.setInt(4, studentLearn.getId());
+
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
     }
 
@@ -45,15 +66,14 @@ public class Student_LearnDAO implements IDAO<Student_Learn>{
     }
 
     public Student_Learn selectByStudentID(int id) {
-        Connection cnn = JDBCUtil.getConnection();
-        Student_Learn studentLearn = new Student_Learn();
+        Student_Learn studentLearn = null;
         String sql = "SELECT * FROM student_learn WHERE student_id = ?";
-        PreparedStatement stm = null;
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
+                studentLearn = new Student_Learn();
                 studentLearn.setId(rs.getInt("id"));
                 studentLearn.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
                 studentLearn.setClasses(ClassDAO.getIntance().selectById(rs.getInt("class_id")));
@@ -67,4 +87,5 @@ public class Student_LearnDAO implements IDAO<Student_Learn>{
         }
         return studentLearn;
     }
+
 }

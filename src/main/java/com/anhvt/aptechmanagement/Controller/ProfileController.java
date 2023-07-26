@@ -95,18 +95,22 @@ public class ProfileController extends SideBarController implements Initializabl
 
         tblListStudent.setItems(listStudent);
 
+        btnDetailStudent.setDisable(true);
+
         tblListStudent.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
                     SelectedIDStorage.setSelectedIDStorage(row.getItem().getId());
-
                     System.out.println(SelectedIDStorage.getSelectedIDStorage());
+                    btnDetailStudent.setDisable(false);
                 }
             });
 
             return row;
         });
+
+
     }
 
     @FXML

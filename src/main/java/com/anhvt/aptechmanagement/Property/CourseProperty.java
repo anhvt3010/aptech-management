@@ -70,9 +70,9 @@ public class CourseProperty {
     private String convertStatusToString(Byte status) {
         switch (status){
             case 0:
-                return "LOCK";
+                return "Khóa";
             case 1:
-                return "UNLOCK";
+                return "Mở Khóa";
         }
         return "...";
     }

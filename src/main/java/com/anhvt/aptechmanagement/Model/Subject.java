@@ -2,7 +2,7 @@ package com.anhvt.aptechmanagement.Model;
 
 public class Subject {
     private int id;
-    private String Code;
+    private String code;
     private String name;
     private int number_of_sessions;
     private String description;
@@ -11,7 +11,7 @@ public class Subject {
 
     public Subject(int id, String code, String name, int number_of_sessions, String description, Byte exam_format, Byte type) {
         this.id = id;
-        Code = code;
+        this.code = code;
         this.name = name;
         this.number_of_sessions = number_of_sessions;
         this.description = description;
@@ -32,11 +32,11 @@ public class Subject {
     }
 
     public String getCode() {
-        return Code;
+        return code;
     }
 
     public void setCode(String code) {
-        Code = code;
+        this.code = code;
     }
 
     public String getName() {
@@ -83,7 +83,7 @@ public class Subject {
     public String toString() {
         return "Subject{" +
                 "id=" + id +
-                ", Code='" + Code + '\'' +
+                ", Code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", number_of_sessions=" + number_of_sessions +
                 ", description='" + description + '\'' +

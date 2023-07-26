@@ -9,7 +9,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Navigator.getInstance().setStage(stage);
-        Navigator.getInstance().gotoSelect();
+        Navigator.getInstance().gotoListSubject();
     }
 
     public static void main(String[] args) {

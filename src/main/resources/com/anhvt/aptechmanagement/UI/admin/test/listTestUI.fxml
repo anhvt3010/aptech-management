@@ -2,11 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -144,7 +148,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #EEEEEE;">
                <children>
-                  <SplitPane dividerPositions="0.13824057450628366" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.07793764988009594" layoutX="39.0" layoutY="91.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane maxHeight="-Infinity" minHeight="40.0" minWidth="0.0" prefHeight="76.0" prefWidth="754.0">
                            <children>
@@ -161,11 +165,6 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Thêm học viên">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin>
-                                    </Button>
                                     <TextField prefHeight="25.0" prefWidth="229.0" GridPane.columnIndex="4" />
                                     <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" GridPane.columnIndex="5" />
                                  </children>
@@ -174,26 +173,68 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                            <children>
-                              <SplitPane dividerPositions="0.7478678038379533" layoutX="160.0" layoutY="85.0" prefHeight="476.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane dividerPositions="0.6490213523131673" layoutX="160.0" layoutY="30.0" prefHeight="479.0" prefWidth="752.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TableView layoutX="104.0" layoutY="47.0" prefHeight="474.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <TableView fx:id="tblExam" layoutX="104.0" layoutY="47.0" prefHeight="476.6666666666667" prefWidth="489.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                              <TableColumn minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
-                                              <TableColumn prefWidth="99.86659240722656" text="Họ &amp; Tên" />
-                                                <TableColumn prefWidth="67.46664428710938" text="Lớp" />
-                                                <TableColumn prefWidth="104.5333251953125" text="Liên hệ" />
-                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                <TableColumn prefWidth="75.0" text="Trạng thái" />
-                                                <TableColumn prefWidth="104.40005493164062" text="Hành động" />
+                                              <TableColumn fx:id="tcID" minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
+                                              <TableColumn fx:id="tcClass" prefWidth="71.55553817749023" text="Lớp" />
+                                                <TableColumn fx:id="tcSubject" prefWidth="75.33332824707031" text="Môn" />
+                                                <TableColumn fx:id="tcName" prefWidth="81.5555419921875" text="Chi Tiết" />
+                                                <TableColumn fx:id="tcDate" prefWidth="75.11102294921875" text="Ngày" />
+                                                <TableColumn fx:id="tcFormat" prefWidth="73.111083984375" text="Hình Thức" />
+                                                <TableColumn fx:id="tcStatus" prefWidth="73.111083984375" text="Trạng Thái" />
                                             </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <Text layoutX="87.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm Lịch Thi">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <GridPane layoutX="30.0" layoutY="47.0" prefHeight="307.0" prefWidth="260.0" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.88892364501953" minWidth="10.0" prefWidth="64.00004069010417" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666259765625" minWidth="10.0" prefWidth="180.6666259765625" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chi tiết" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày" GridPane.rowIndex="2" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Môn Học" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lớp" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hình thức" GridPane.rowIndex="4" />
+                                                <TextField fx:id="txtClass" GridPane.columnIndex="1" />
+                                                <TextArea fx:id="txtName" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <DatePicker fx:id="txtDate" prefHeight="25.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <ChoiceBox fx:id="txtSubject" prefHeight="25.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <ChoiceBox fx:id="txtFormat" prefHeight="25.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <CheckBox fx:id="txtStatus" mnemonicParsing="false" text="Trạng Thái" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="15.0" right="10.0" />
+                                             </padding>
+                                          </GridPane>
+                                       </children></AnchorPane>
                                 </items>
                               </SplitPane>
+                              <Text layoutX="314.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DANH SÁCH LỊCH THI">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                     </items>
                   </SplitPane>

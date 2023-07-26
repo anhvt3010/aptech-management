@@ -1,8 +1,5 @@
 package com.anhvt.aptechmanagement.DAO;
 
-
-
-
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
@@ -64,10 +61,8 @@ public class StudentDAO implements IDAO<Student> {
             statement.setDate(9, Date.valueOf(student.getCreated()));
             statement.setInt(10, student.getStatus());
 
-            // Thực thi câu lệnh SQL INSERT
-            int rowsInserted = statement.executeUpdate();
+            statement.executeUpdate();
 
-            return rowsInserted;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -78,6 +73,31 @@ public class StudentDAO implements IDAO<Student> {
 
     @Override
     public int update(Student student) {
+        Connection cnn = JDBCUtil.getConnection();
+        String query = "UPDATE student " +
+                "SET first_name=?, last_name=?, gender=?, birth=?, phone=?, email=?, address=?, status =? " +
+                "WHERE id = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = cnn.prepareStatement(query);
+
+            stm.setString(1, student.getFirstName());
+            stm.setString(2, student.getLastName());
+            stm.setBoolean(3, student.getGender());
+            stm.setDate(4, Date.valueOf(student.getBirth()));
+            stm.setString(5, student.getPhone());
+            stm.setString(6, student.getEmail());
+            stm.setString(7, student.getAddress());
+            stm.setInt(8, student.getStatus());
+            stm.setInt(9, student.getId());
+
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
     }
 
@@ -116,33 +136,35 @@ public class StudentDAO implements IDAO<Student> {
 
     @Override
     public Student selectById(int id_selected) {
-        Student student = null;
-        Connection connection = JDBCUtil.getConnection();
-        String query = "SELECT * FROM student WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id_selected);
-            ResultSet resultSet = statement.executeQuery();
+        Student student = new Student();
+
+        Connection cnn = JDBCUtil.getConnection();
+        String sql = "SELECT * FROM student WHERE id = ?";
+        PreparedStatement stm = null;
+
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, id_selected);
+            ResultSet resultSet = stm.executeQuery();
 
             while (resultSet.next()){
-                int id = resultSet.getInt("id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                Boolean gender = resultSet.getBoolean("gender");
-                LocalDate birth = resultSet.getDate("birth").toLocalDate();
-                String phone = resultSet.getString("phone");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String address = resultSet.getString("address");
-                LocalDate created = resultSet.getDate("created").toLocalDate();
-                LocalDate yearOfAdmission = created.plusYears(2).plusMonths(6);;
-                Byte status = resultSet.getByte("status");
-
-                student = new Student(id, firstName, lastName, gender, birth, phone, email, password,
-                        address, yearOfAdmission, created, status);
+                student.setId(resultSet.getInt("id"));
+                student.setFirstName(resultSet.getString("first_name"));
+                student.setLastName(resultSet.getString("last_name"));
+                student.setGender(resultSet.getBoolean("gender"));
+                student.setBirth(resultSet.getDate("birth").toLocalDate());
+                student.setPhone(resultSet.getString("phone"));
+                student.setEmail(resultSet.getString("email"));
+                student.setPassword(resultSet.getString("password"));
+                student.setAddress(resultSet.getString("address"));
+                student.setCreated(resultSet.getDate("created").toLocalDate());
+                student.setStatus(resultSet.getByte("status"));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
         }
         return student;
     }

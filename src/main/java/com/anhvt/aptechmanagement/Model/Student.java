@@ -14,11 +14,10 @@ public class Student {
     private String email;
     private String password;
     private String address;
-    private LocalDate yearOfAdmission;
     private LocalDate created;
     private Byte status;
 
-    public Student(String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate yearOfAdmission, LocalDate created, Byte status) {
+    public Student(String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate created, Byte status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -27,12 +26,11 @@ public class Student {
         this.email = email;
         this.password = password;
         this.address = address;
-        this.yearOfAdmission = yearOfAdmission;
         this.created = created;
         this.status = status;
     }
 
-    public Student(int id, String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate yearOfAdmission, LocalDate created, Byte status) {
+    public Student(int id, String firstName, String lastName, Boolean gender, LocalDate birth, String phone, String email, String password, String address, LocalDate created, Byte status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,7 +40,6 @@ public class Student {
         this.email = email;
         this.password = password;
         this.address = address;
-        this.yearOfAdmission = yearOfAdmission;
         this.created = created;
         this.status = status;
     }
@@ -122,14 +119,6 @@ public class Student {
         this.address = address;
     }
 
-    public LocalDate getYearOfAdmission() {
-        return yearOfAdmission;
-    }
-
-    public void setYearOfAdmission(LocalDate yearOfAdmission) {
-        this.yearOfAdmission = yearOfAdmission;
-    }
-
     public LocalDate getCreated() {
         return created;
     }
@@ -157,7 +146,6 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
-                ", yearOfAdmission=" + yearOfAdmission +
                 ", created=" + created +
                 ", status=" + status +
                 '}';

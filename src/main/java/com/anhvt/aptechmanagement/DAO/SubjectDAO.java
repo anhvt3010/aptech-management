@@ -10,13 +10,36 @@ import java.util.ArrayList;
 
 public class SubjectDAO implements IDAO<Subject>{
 
+    static Connection cnn = null;
+    PreparedStatement stm = null;
+
     public static SubjectDAO getIntance(){
+        cnn = JDBCUtil.getConnection();
         return new SubjectDAO();
     }
 
 
     @Override
     public int insert(Subject subject) {
+        String sql = "INSERT INTO subject(name, code, number_of_sessions, description, exam_format, type)" +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+
+            stm.setString(1, subject.getName());
+            stm.setString(2, subject.getCode());
+            stm.setInt(3, subject.getNumber_of_sessions());
+            stm.setString(4, subject.getDescription());
+            stm.setInt(5, subject.getExam_format());
+            stm.setInt(6, subject.getType());
+
+            stm.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
     }
 
@@ -27,14 +50,23 @@ public class SubjectDAO implements IDAO<Subject>{
 
     @Override
     public int remove(Subject subject) {
-        return 0;
+        String sql = "DELETE FROM subject WHERE id = ? ";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, subject.getId());
+            stm.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return 1;
     }
 
     @Override
     public ArrayList<Subject> findAll() {
-        Connection cnn = JDBCUtil.getConnection();
         ArrayList<Subject> subjects = new ArrayList<>();
-        PreparedStatement stm = null;
         try {
             String sql = "SELECT * FROM subject";
             stm = cnn.prepareStatement(sql);
@@ -63,10 +95,8 @@ public class SubjectDAO implements IDAO<Subject>{
 
     @Override
     public Subject selectById(int id) {
-        Connection cnn = JDBCUtil.getConnection();
         Subject subject = new Subject();
         String sql = "SELECT * FROM subject WHERE id = ?";
-        PreparedStatement stm = null;
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id);
@@ -87,7 +117,6 @@ public class SubjectDAO implements IDAO<Subject>{
             JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
-
         return subject;
     }
 

@@ -56,44 +56,11 @@ public class ScheduleController extends SideBarController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 //        hiển thị danh sách lớp
-
-        ArrayList<Classes> classes = ClassDAO.getIntance().findAll();
-        ArrayList<String> listClass = new ArrayList<>();
-
-        for (Classes cls : classes) {
-            listClass.add(cls.getName());
-        }
-
-        btnListClass.setOnAction(event -> {
-            int selectedIndex = btnListClass.getSelectionModel().getSelectedIndex();
-            if (selectedIndex >= 0 && selectedIndex < classes.size()) {
-                classSelected = classes.get(selectedIndex);
-                System.out.println("Chọn class name: " + classSelected.getName());
-            }
-        });
-
-        btnListClass.getItems().addAll(listClass);
+        this.showListClasses();
 
 //        hiển thị danh sách khóa học
+        this.showListCourses();
 
-        ArrayList<Course> courses = CourseDAO.getIntance().findAllCourse();
-        ArrayList<String> listCourse = new ArrayList<>();
-
-        for (Course course : courses) {
-            listCourse.add(course.getName());
-        }
-
-        btnListCourse.setOnAction(event -> {
-            int selectedIndex = btnListCourse.getSelectionModel().getSelectedIndex();
-            if (selectedIndex >= 0 && selectedIndex < courses.size()) {
-                courseSelected = courses.get(selectedIndex);
-                semesters = SemesterDAO.getInstance().selectByCourseId(courses.get(selectedIndex).getId());
-                System.out.println("Chọn class name: " + courses.get(selectedIndex).getName());
-                this.callbtnListSem();
-            }
-        });
-        System.out.println(semesters.size());
-        btnListCourse.getItems().addAll(listCourse);
     }
 
     public void callbtnListSem(){
@@ -105,7 +72,7 @@ public class ScheduleController extends SideBarController implements Initializab
             }
         });
 
-        // Tạo danh sách tên các semester để thêm vào nút btnListSemester (nếu bạn muốn)
+        // Tạo danh sách tên các semester để thêm vào nút btnListSemester
         ArrayList<String> listSemesterNames = new ArrayList<>();
         for (Semester semester : semesters) {
             listSemesterNames.add(semester.getName());
@@ -128,4 +95,45 @@ public class ScheduleController extends SideBarController implements Initializab
 
         txtLink.clear();
     }
+
+    void showListClasses(){
+        ArrayList<Classes> classes = ClassDAO.getIntance().findAll();
+        ArrayList<String> listClass = new ArrayList<>();
+
+        for (Classes cls : classes) {
+            listClass.add(cls.getName());
+        }
+
+        btnListClass.setOnAction(event -> {
+            int selectedIndex = btnListClass.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < classes.size()) {
+                classSelected = classes.get(selectedIndex);
+                System.out.println("Chọn class name: " + classSelected.getName());
+            }
+        });
+
+        btnListClass.getItems().addAll(listClass);
+    }
+
+    void showListCourses(){
+        ArrayList<Course> courses = CourseDAO.getIntance().findAllCourse();
+        ArrayList<String> listCourse = new ArrayList<>();
+
+        for (Course course : courses) {
+            listCourse.add(course.getName());
+        }
+
+        btnListCourse.setOnAction(event -> {
+            int selectedIndex = btnListCourse.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < courses.size()) {
+                courseSelected = courses.get(selectedIndex);
+                semesters = SemesterDAO.getInstance().selectByCourseId(courses.get(selectedIndex).getId());
+                System.out.println("Chọn class name: " + courses.get(selectedIndex).getName());
+                this.callbtnListSem();
+            }
+        });
+        System.out.println(semesters.size());
+        btnListCourse.getItems().addAll(listCourse);
+    }
+
 }

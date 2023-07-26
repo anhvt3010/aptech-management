@@ -12,14 +12,16 @@ import java.util.ArrayList;
 
 public class SemesterDAO implements IDAO<Semester>{
 
+    static Connection cnn = null;
+    private PreparedStatement stm = null;
+
     public static SemesterDAO getInstance(){
+        cnn = JDBCUtil.getConnection();
         return new SemesterDAO();
     }
 
     @Override
     public int insert(Semester semester) {
-        Connection cnn = JDBCUtil.getConnection();
-        PreparedStatement stm = null;
         String sql = "INSERT INTO semester(course_id, name) VALUES (?, ?)";
         try {
             stm = cnn.prepareStatement(sql);
@@ -49,8 +51,6 @@ public class SemesterDAO implements IDAO<Semester>{
     @Override
     public ArrayList<Semester> findAll() {
         ArrayList<Semester> semesters = new ArrayList<>();
-        Connection cnn = JDBCUtil.getConnection();
-        PreparedStatement stm = null;
         String sql = "SELECT * FROM semester";
         try {
             stm = cnn.prepareStatement(sql);
@@ -75,10 +75,8 @@ public class SemesterDAO implements IDAO<Semester>{
 
     @Override
     public Semester selectById(int id) {
-        Connection cnn = JDBCUtil.getConnection();
         Semester semester = new Semester();
         String sql = "SELECT * FROM semester WHERE id = ?";
-        PreparedStatement stm = null;
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id);
@@ -104,10 +102,7 @@ public class SemesterDAO implements IDAO<Semester>{
 
     public ArrayList<Semester>  selectByCourseId(int course_id) {
         ArrayList<Semester> semesters = new ArrayList<>();
-
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM semester WHERE course_id = ?";
-        PreparedStatement stm = null;
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, course_id);
@@ -129,4 +124,5 @@ public class SemesterDAO implements IDAO<Semester>{
         }
         return semesters;
     }
+
 }

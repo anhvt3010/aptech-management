@@ -121,7 +121,7 @@ public class AddStudentController implements Initializable {
                     "Vui lòng điền đầy đủ thông tin");
         } else {
             Student student = new Student(firstName, lastName, gender,birth,phone,email,
-                    Passwordefault.getInstance().getPassworDefault(),address,yearOfAdmission, created, status);
+                    Passwordefault.getInstance().getPassworDefault(),address, created, status);
             StudentDAO.getIntance().insert(student);
         }
 
@@ -136,7 +136,7 @@ public class AddStudentController implements Initializable {
 
     int code_province_selected;
     int code_district_selected;
-    int code_comune_selected;
+    int code_commune_selected;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -184,8 +184,8 @@ public class AddStudentController implements Initializable {
             String selectedCommune = xa.getValue();
             for (Map.Entry<Integer, String> entry : communes.entrySet()) {
                 if (entry.getValue().equals(selectedCommune)) {
-                    code_comune_selected = entry.getKey();
-                    System.out.println("code_commune_selected: "+ code_comune_selected);
+                    code_commune_selected = entry.getKey();
+                    System.out.println("code_commune_selected: "+ code_commune_selected);
                     break;
                 }
             }
