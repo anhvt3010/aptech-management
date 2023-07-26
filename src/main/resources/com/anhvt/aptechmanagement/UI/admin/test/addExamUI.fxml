@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="300.0" style="-fx-background-color: #9e5050;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.AddExamController">
+    <children>
+        <Text fill="WHITE" layoutX="98.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THÊM LỊCH THI">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <AnchorPane layoutX="6.0" layoutY="33.0" prefHeight="413.0" prefWidth="288.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="38.0">
+            <children>
+                <Text layoutX="10.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lớp" />
+                <Text layoutX="144.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Môn" />
+                <Text layoutX="10.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày thi" />
+                <DatePicker fx:id="txtDate" layoutX="71.0" layoutY="56.0" prefHeight="25.0" prefWidth="204.0" />
+                <Text layoutX="11.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi Tiết" />
+                <Text layoutX="10.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hình thức " />
+            <ChoiceBox fx:id="txtAddClass" layoutX="47.0" layoutY="18.0" prefHeight="25.0" prefWidth="89.0" />
+            <ChoiceBox fx:id="txtAddSubject" layoutX="178.0" layoutY="18.0" prefHeight="25.0" prefWidth="96.0" />
+            <TextArea fx:id="txtAddName" layoutX="71.0" layoutY="93.0" prefHeight="120.0" prefWidth="204.0" />
+            <ChoiceBox fx:id="txtAddFormat" layoutX="71.0" layoutY="223.0" prefHeight="25.0" prefWidth="204.0" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="btnAdd" layoutX="6.0" layoutY="311.0" mnemonicParsing="false" onAction="#addNewExam" text="Thêm Mới" />
+        <Button fx:id="btnQuit" layoutX="247.0" layoutY="311.0" mnemonicParsing="false" onAction="#quit" text="Thoát" />
+    </children>
+</AnchorPane>

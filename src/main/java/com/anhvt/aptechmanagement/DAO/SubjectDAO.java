@@ -67,8 +67,8 @@ public class SubjectDAO implements IDAO<Subject>{
     @Override
     public ArrayList<Subject> findAll() {
         ArrayList<Subject> subjects = new ArrayList<>();
+        String sql = "SELECT * FROM subject";
         try {
-            String sql = "SELECT * FROM subject";
             stm = cnn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
 

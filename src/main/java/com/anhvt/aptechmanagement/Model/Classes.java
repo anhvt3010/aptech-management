@@ -2,15 +2,15 @@ package com.anhvt.aptechmanagement.Model;
 
 public class Classes {
     private int id;
-    private Subject subject;
+    private Course course;
     private String name;
     private String description;
     private int limit;
     private Byte type;
 
-    public Classes(int id, Subject subject , String name, String description, int limit, Byte type) {
+    public Classes(int id, Course course, String name, String description, int limit, Byte type) {
         this.id = id;
-        this.subject = subject;
+        this.course = course;
         this.name = name;
         this.description = description;
         this.limit = limit;
@@ -27,14 +27,6 @@ public class Classes {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 
     public String getName() {
@@ -67,5 +59,25 @@ public class Classes {
 
     public void setType(Byte type) {
         this.type = type;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    @Override
+    public String toString() {
+        return "Classes{" +
+                "id=" + id +
+                ", course=" + course +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", limit=" + limit +
+                ", type=" + type +
+                '}';
     }
 }

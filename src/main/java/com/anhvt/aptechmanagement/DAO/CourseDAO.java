@@ -11,7 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CourseDAO implements IDAO<CourseProperty>{
+    static Connection cnn = null;
+    PreparedStatement stm = null;
     public static CourseDAO getIntance(){
+        cnn = JDBCUtil.getConnection();
         return new CourseDAO();
     }
     @Override
@@ -21,17 +24,19 @@ public class CourseDAO implements IDAO<CourseProperty>{
 
     @Override
     public int update(CourseProperty course) {
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "UPDATE courses SET name = ?, semester = ?, status = ? WHERE id = ?";
         try {
-            PreparedStatement statement = cnn.prepareStatement(sql);
-            statement.setString(1, course.getName());
-            statement.setInt(2, course.getSemester());
-            statement.setByte(3, (byte) (course.getStatus().equals("LOCK")?0:1));
-            statement.setInt(4, course.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, course.getName());
+            stm.setInt(2, course.getSemester());
+            stm.setByte(3, (byte) (course.getStatus().equals("LOCK")?0:1));
+            stm.setInt(4, course.getId());
+            stm.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
         }
         return 0;
     }
@@ -43,12 +48,11 @@ public class CourseDAO implements IDAO<CourseProperty>{
 
     @Override
     public ArrayList<CourseProperty> findAll() {
-        Connection cnn = JDBCUtil.getConnection();
         ArrayList<CourseProperty> courses = new ArrayList<>();
 
         try {
             String sql = "SELECT * FROM courses";
-            PreparedStatement stm = cnn.prepareStatement(sql);
+            stm = cnn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
 
             while(rs.next()){
@@ -64,6 +68,7 @@ public class CourseDAO implements IDAO<CourseProperty>{
         } catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return courses;
@@ -72,10 +77,9 @@ public class CourseDAO implements IDAO<CourseProperty>{
     @Override
     public CourseProperty selectById(int id) {
         CourseProperty course = new CourseProperty(new Course());
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM courses WHERE id = ?";
         try {
-//            PreparedStatement stm = cnn.prepareStatement(sql);
+//            stm = cnn.prepareStatement(sql);
 //            stm.setInt(1, id);
 //            ResultSet rs = stm.executeQuery();
 //            while (rs.next()){
@@ -85,9 +89,10 @@ public class CourseDAO implements IDAO<CourseProperty>{
 //                course.setStatus((byte) rs.getInt("status"));
 //            }
 
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return course;
@@ -98,8 +103,6 @@ public class CourseDAO implements IDAO<CourseProperty>{
         return null;
     }
     public Course selectByIdCourse(int id) {
-        Connection cnn = JDBCUtil.getConnection();
-        PreparedStatement stm = null;
         String sql = "SELECT * FROM courses WHERE id = ?";
         Course course = new Course();
         try {
@@ -112,9 +115,10 @@ public class CourseDAO implements IDAO<CourseProperty>{
                 course.setSemester(rs.getInt("semester"));
                 course.setStatus((byte) rs.getInt("status"));
             }
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return course;
@@ -122,12 +126,10 @@ public class CourseDAO implements IDAO<CourseProperty>{
 
 
     public ArrayList<Course> findAllCourse() {
-        Connection cnn = JDBCUtil.getConnection();
         ArrayList<Course> courses = new ArrayList<>();
-
         try {
             String sql = "SELECT * FROM courses";
-            PreparedStatement stm = cnn.prepareStatement(sql);
+            stm = cnn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
 
             while(rs.next()){
@@ -139,9 +141,10 @@ public class CourseDAO implements IDAO<CourseProperty>{
 
                 courses.add(course);
             }
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return courses;

@@ -22,12 +22,12 @@ public class ExamProperty {
 
     public ExamProperty(Exam exam) {
         this.id = new SimpleIntegerProperty(exam.getId());
-        this.subject = new SimpleObjectProperty<>(exam.getSubject());
-        this.classes = new SimpleObjectProperty<>(exam.getClasses());
+        this.subject = new SimpleObjectProperty<Subject>(exam.getSubject());
+        this.classes = new SimpleObjectProperty<Classes>(exam.getClasses());
         this.name = new SimpleStringProperty(exam.getName());
         this.exam_day = new SimpleObjectProperty<>(exam.getExam_day());
         this.format = new SimpleStringProperty(convertToStringExamFormat(exam.getFormat()));
-        this.status = new SimpleStringProperty(convertToStringStatus(exam.getFormat()));
+        this.status = new SimpleStringProperty(convertToStringStatus(exam.getStatus()));
     }
 
     public ExamProperty() {
@@ -129,5 +129,18 @@ public class ExamProperty {
             case 1 -> "Đã Thi";
             default -> "N/A";
         };
+    }
+
+    @Override
+    public String toString() {
+        return "ExamProperty{" +
+                "id=" + id +
+                ", subject=" + subject +
+                ", classes=" + classes +
+                ", name=" + name +
+                ", exam_day=" + exam_day +
+                ", format=" + format +
+                ", status=" + status +
+                '}';
     }
 }

@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ClassDAO implements IDAO<Classes>{
-
+    static Connection cnn = null;
+    PreparedStatement stm = null;
     public static ClassDAO getIntance(){
+        cnn =JDBCUtil.getConnection();
         return new ClassDAO();
     }
     @Override
@@ -32,16 +34,16 @@ public class ClassDAO implements IDAO<Classes>{
     @Override
     public ArrayList<Classes> findAll() {
         ArrayList<Classes> listClasses = new ArrayList<>();
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM class";
         try {
-            PreparedStatement stm = cnn.prepareStatement(sql);
+            stm = cnn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 Classes cl = new Classes();
 
                 cl.setId(rs.getInt("id"));
                 cl.setName(rs.getString("name"));
+                cl.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
                 cl.setDescription(rs.getString("description"));
                 cl.setLimit(rs.getInt("student_limits"));
                 cl.setType((byte) rs.getInt("type"));
@@ -51,6 +53,7 @@ public class ClassDAO implements IDAO<Classes>{
         } catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return listClasses;
@@ -58,10 +61,8 @@ public class ClassDAO implements IDAO<Classes>{
 
     @Override
     public Classes selectById(int id) {
-        Connection cnn = JDBCUtil.getConnection();
         Classes classes = new Classes();
         String sql = "SELECT * FROM class WHERE id = ?";
-        PreparedStatement stm = null;
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id);
