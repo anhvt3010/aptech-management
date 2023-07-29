@@ -2,6 +2,7 @@ package com.anhvt.aptechmanagement.Controller;
 
 
 import com.anhvt.aptechmanagement.DAO.StudentDAO;
+import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
@@ -16,10 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -29,23 +27,23 @@ import java.util.ResourceBundle;
 
 public class ProfileController extends SideBarController implements Initializable {
     @FXML
+    public MenuItem btnListSRO;
+    @FXML
+    public MenuItem btnListLecturer;
+
+    @FXML
     private Button btnAddStudent;
     @FXML
     private Button btnDetailStudent;
-//    @FXML
-//    private TableColumn<Student, String> classStudent;
-
-    @FXML
-    private TableColumn<Student, String> contact;
-
-//    @FXML
-//    private TableColumn<Student, String> course;
 
     @FXML
     private TableColumn<Student, Integer> tcID;
 
     @FXML
     private TableColumn<Student, String> tcName;
+
+    @FXML
+    private TableColumn<Student, String> tcCodeStudent;
 
     @FXML
     private TableColumn<Student, String> tcEmail;
@@ -58,15 +56,11 @@ public class ProfileController extends SideBarController implements Initializabl
 
     @FXML
     private TableView<Student> tblListStudent;
-    @FXML
-    private TableView<Staff> tblListSRO;
-    @FXML
-    private TableView<Staff> tblListLecturer;
 
     private boolean isAddStudentWindowOpen = false;
     private Stage studentStage;
 
-    private ObservableList<Student> listStudent;
+    ObservableList<Student> listStudent;
 
 
     @Override
@@ -76,7 +70,18 @@ public class ProfileController extends SideBarController implements Initializabl
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(celldata -> {
             String name = celldata.getValue().getFirstName() + " " + celldata.getValue(). getLastName();
+
             return new SimpleStringProperty(name);
+        });
+        tcCodeStudent.setCellValueFactory(cellData -> {
+            int id =  cellData.getValue().getId();
+            String code = "";
+            try {
+                code = Student_LearnDAO.getInstance().selectByStudentID(id).getStudent_code();
+            } catch (Exception e) {
+                code = "N/A";
+            }
+            return new SimpleStringProperty(code);
         });
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tcPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
@@ -84,11 +89,9 @@ public class ProfileController extends SideBarController implements Initializabl
             Byte statusValue = cellData.getValue().getStatus();
             String statusText;
             if (statusValue == 1) {
-                statusText = "ACTIVE";
-            } else if (statusValue == 2) {
-                statusText = "UNACTIVE";
+                statusText = "Hoạt Động";
             } else {
-                statusText = "";
+                statusText = "Đã Nghỉ";
             }
             return new SimpleStringProperty(statusText);
         });

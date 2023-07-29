@@ -6,64 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Navigator {
 
     private static Navigator navigator;
     private Stage stage;
-
-
-    public void TESTVIEW() throws IOException {
-        gotoScene("Test", "hello-view.fxml");
-    }
-
-
-    // ----------view USER---------
-    public static final String STUDENT_HOME = "UI/user/index.fxml";
-
-    public static final String SELECT = "UI/select.fxml";
-    public static final String ADMIN_HOME = "UI/admin/index.fxml";
-    public static final String LOGIN_ADMIN = "UI/loginAdminUI.fxml";
-    public static final String LOGIN_STUDENT= "UI/loginStudentUI.fxml";
-    public static final String BROWSER = "UI/user/browser.fxml";
-
-
-
- // ------- URL Side bar Admin ---------------
-    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/profile/student/listStudentUI.fxml";
-    public static final String SIDE_BAR_COURSE_ADMIN = "UI/admin/course/listCourseUI.fxml";
-    public static final String SIDE_BAR_CLASS_ADMIN = "UI/admin/class/listClassUI.fxml";
-    public static final String SIDE_BAR_SCHEDULE_ADMIN = "UI/admin/schedule/listScheduleUI.fxml";
-    public static final String SIDE_BAR_TEST_ADMIN = "UI/admin/test/listTestUI.fxml";
-    public static final String SIDE_BAR_DOCUMENT_ADMIN = "UI/admin/document/listDocumentUI.fxml";
-
-
-// ------- URL Side bar User ---------------
-    public static final String SIDE_BAR_INFORMATION_USER = "UI/user/informationUI.fxml";
-    public static final String SIDE_BAR_SCORE_USER = "UI/user/scoreUI/scoreSem1UI.fxml";
-    public static final String SIDE_BAR_SCHEDULE_USER = "UI/user/scheduleUI/scheduleUISem1.fxml";
-    public static final String SIDE_BAR_TEST_USER = "UI/user/examUI.fxml";
-    public static final String SIDE_BAR_DOCUMENT_USER = "UI/user/documentUI.fxml";
-    public static final String SIDE_BAR_NOTI_USER = "UI/user/notificationUI.fxml";
-
-//    ---- URL view Admin --------
-    public static final String LIST_SRO = "UI/admin/profile/listSROUI.fxml";
-    public static final String LIST_LECTURER = "UI/admin/profile/listLecturerUI.fxml";
-    public static final String LIST_STUDENT = "UI/admin/profile/student/listStudentUI.fxml";
-
-    public static final String LIST_SUBJECT = "UI/admin/subject/listSubjectUI.fxml";
-
-//    ------ user/scoreUI------
-    public static final String USER_SCOREUI_SEM1 = "UI/user/scoreUI/scoreSem1UI.fxml";
-    public static final String USER_SCOREUI_SEM2 = "UI/user/scoreUI/scoreSem2UI.fxml";
-    public static final String USER_SCOREUI_SEM3 = "UI/user/scoreUI/scoreSem3UI.fxml";
-    public static final String USER_SCOREUI_SEM4 = "UI/user/scoreUI/scoreSem4UI.fxml";
-
-//    ------ user/scheduleUI------
-    public static final String USER_SCHEDULE_SEM1 = "UI/user/scheduleUI/scheduleUISem1.fxml";
-    public static final String USER_SCHEDULE_SEM2 = "UI/user/scheduleUI/scheduleUISem2.fxml";
-    public static final String USER_SCHEDULE_SEM3 = "UI/user/scheduleUI/scheduleUISem3.fxml";
-    public static final String USER_SCHEDULE_SEM4 = "UI/user/scheduleUI/scheduleUISem4.fxml";
 
     private Navigator(){}
 
@@ -78,9 +26,64 @@ public class Navigator {
         navigator.stage = stage;
     }
 
+    public void TESTVIEW() throws IOException {
+        gotoScene("Test", "hello-view.fxml");
+    }
+
+ // ------- URL Side bar Admin ---------------
+    public static final String SIDE_BAR_STUDENT_ADMIN = "UI/admin/profile/student/listStudentUI.fxml";
+    public static final String SIDE_BAR_COURSE_ADMIN = "UI/admin/course/listCourseUI.fxml";
+    public static final String SIDE_BAR_CLASS_ADMIN = "UI/admin/class/listClassUI.fxml";
+    public static final String SIDE_BAR_SCHEDULE_ADMIN = "UI/admin/schedule/listScheduleUI.fxml";
+    public static final String SIDE_BAR_TEST_ADMIN = "UI/admin/test/listTestUI.fxml";
+    public static final String SIDE_BAR_DOCUMENT_ADMIN = "UI/admin/document/listDocumentUI.fxml";
+    public static final String SIDE_BAR_NOTIFICATION_ADMIN = "UI/admin/notification/listNotificationUI.fxml";
+
+    //    ---- URL view Admin --------
+    public static final String LIST_SRO = "UI/admin/profile/listSROUI.fxml";
+    public static final String LIST_LECTURER = "UI/admin/profile/listLecturerUI.fxml";
+    public static final String LIST_STUDENT = "UI/admin/profile/student/listStudentUI.fxml";
+    public static final String LIST_SUBJECT = "UI/admin/subject/listSubjectUI.fxml";
+
+
+
+// ----------view USER---------
+    public static final String STUDENT_HOME = "UI/user/index.fxml";
+
+    public static final String SELECT = "UI/select.fxml";
+    public static final String ADMIN_HOME = "UI/admin/index.fxml";
+    public static final String LOGIN_ADMIN = "UI/loginAdminUI.fxml";
+    public static final String LOGIN_STUDENT= "UI/loginStudentUI.fxml";
+    public static final String BROWSER = "UI/user/browser.fxml";
+
+
+// ------- URL Side bar User ---------------
+    public static final String SIDE_BAR_INFORMATION_USER = "UI/user/informationUI.fxml";
+    public static final String SIDE_BAR_SCORE_USER = "UI/user/scoreUI/scoreSem1UI.fxml";
+    public static final String SIDE_BAR_SCHEDULE_USER = "UI/user/scheduleUI/scheduleUISem1.fxml";
+    public static final String SIDE_BAR_TEST_USER = "UI/user/examUI.fxml";
+    public static final String SIDE_BAR_DOCUMENT_USER = "UI/user/documentUI.fxml";
+    public static final String SIDE_BAR_NOTI_USER = "UI/user/notificationUI.fxml";
+
+
+
+//    ------ user/scoreUI------
+    public static final String USER_SCORE_SEM1 = "UI/user/scoreUI/scoreSem1UI.fxml";
+    public static final String USER_SCORE_SEM2 = "UI/user/scoreUI/scoreSem2UI.fxml";
+    public static final String USER_SCORE_SEM3 = "UI/user/scoreUI/scoreSem3UI.fxml";
+    public static final String USER_SCORE_SEM4 = "UI/user/scoreUI/scoreSem4UI.fxml";
+
+//    ------ user/scheduleUI------
+    public static final String USER_SCHEDULE_SEM1 = "UI/user/scheduleUI/scheduleUISem1.fxml";
+    public static final String USER_SCHEDULE_SEM2 = "UI/user/scheduleUI/scheduleUISem2.fxml";
+    public static final String USER_SCHEDULE_SEM3 = "UI/user/scheduleUI/scheduleUISem3.fxml";
+    public static final String USER_SCHEDULE_SEM4 = "UI/user/scheduleUI/scheduleUISem4.fxml";
+
+
+
 
     public void gotoScene(String title, String URL) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(URL));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(URL)));
         Scene scene = new Scene(root);
         stage.setTitle(title);
         stage.setScene(scene);
@@ -118,6 +121,11 @@ public class Navigator {
     public void showListLecturer() throws IOException {
         gotoScene("Danh sách giảng viên", LIST_LECTURER);
     }
+    public void gotoNotificationAdmin() throws IOException {
+        gotoScene("Danh sách thông báo", SIDE_BAR_NOTIFICATION_ADMIN);
+    }
+
+
 
     // ------ Go to view User ----------
 
@@ -177,16 +185,16 @@ public class Navigator {
 
 //    ------ user/scoreUI ------
     public void gotoScoreSem1() throws IOException {
-        gotoScene("Bảng điểm kì 1", USER_SCOREUI_SEM1);
+        gotoScene("Bảng điểm kì 1", USER_SCORE_SEM1);
     }
     public void gotoScoreSem2() throws IOException {
-        gotoScene("Bảng điểm kì 2", USER_SCOREUI_SEM2);
+        gotoScene("Bảng điểm kì 2", USER_SCORE_SEM2);
     }
     public void gotoScoreSem3() throws IOException {
-        gotoScene("Bảng điểm kì 3", USER_SCOREUI_SEM3);
+        gotoScene("Bảng điểm kì 3", USER_SCORE_SEM3);
     }
     public void gotoScoreSem4() throws IOException {
-        gotoScene("Bảng điểm kì 4", USER_SCOREUI_SEM4);
+        gotoScene("Bảng điểm kì 4", USER_SCORE_SEM4);
     }
 
 //    ------ user/scheduleUI ------

@@ -53,7 +53,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoStudent" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ sơ">
+                        <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoStudent" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ Sơ">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -65,7 +65,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCourse" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoCourse" prefHeight="39.0" prefWidth="182.0" text="Chương trình học" GridPane.rowIndex="1">
+                        <Button fx:id="btnCourse" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoCourse" prefHeight="39.0" prefWidth="182.0" text="Chương Trình Học" GridPane.rowIndex="1">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -77,7 +77,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnClass" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoClass" prefHeight="39.0" prefWidth="182.0" text="Lớp học" GridPane.rowIndex="2">
+                        <Button fx:id="btnClass" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoClass" prefHeight="39.0" prefWidth="182.0" text="Lớp Học" GridPane.rowIndex="2">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -89,7 +89,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoSchedule" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Lịch học" textFill="WHITE" GridPane.rowIndex="3">
+                        <Button fx:id="btnSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoSchedule" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Lịch Học" textFill="WHITE" GridPane.rowIndex="3">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -101,7 +101,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoTest" prefHeight="39.0" prefWidth="182.0" text="Lịch thi" GridPane.rowIndex="4">
+                        <Button fx:id="btnTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoTest" prefHeight="39.0" prefWidth="182.0" text="Lịch Thi" GridPane.rowIndex="4">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -113,7 +113,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoDocument" prefHeight="39.0" prefWidth="182.0" text="Đơn từ" GridPane.rowIndex="5">
+                        <Button fx:id="btnDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoDocument" prefHeight="39.0" prefWidth="182.0" text="Đơn Từ" GridPane.rowIndex="5">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -125,7 +125,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNoti" prefHeight="39.0" prefWidth="182.0" text="Thông báo" GridPane.rowIndex="6">
+                        <Button fx:id="btnNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNotification" prefHeight="39.0" prefWidth="182.0" text="Thông Báo" GridPane.rowIndex="6">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

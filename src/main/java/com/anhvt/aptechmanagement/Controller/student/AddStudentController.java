@@ -25,7 +25,12 @@ import java.util.*;
 
 
 public class AddStudentController implements Initializable {
-
+    @FXML
+    public ChoiceBox<String> txtAddCourse;
+    @FXML
+    public ChoiceBox<String> txtAddClass;
+    @FXML
+    public TextField txtAddCode;
     @FXML
     private DatePicker txtBirth;
 
@@ -112,9 +117,7 @@ public class AddStudentController implements Initializable {
             status = 0;
         }
 
-        if (firstName == null || lastName == null || gender == null || phone == null || txtBirth.getValue() == null ||
-            email == null || txtlang.getText() == null || xa.getValue() == null || huyen.getValue() == null ||
-            tinh.getValue() == null || status == null) {
+        if (firstName == null || lastName == null || gender == null || phone == null || txtBirth.getValue() == null || email == null || txtlang.getText() == null || xa.getValue() == null || huyen.getValue() == null || tinh.getValue() == null) {
 
             AlertUtil.showErrorAlert("Lưu Thất Bại",
                     "Lưu Thất Bại !",

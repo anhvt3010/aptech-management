@@ -1,7 +1,6 @@
 package com.anhvt.aptechmanagement.Controller;
 
-import com.anhvt.aptechmanagement.DAO.SRODAO;
-import com.anhvt.aptechmanagement.DAO.StudentDAO;
+import com.anhvt.aptechmanagement.DAO.SroDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Navigator;
 import javafx.beans.property.SimpleStringProperty;
@@ -52,7 +51,7 @@ public class SROController extends SideBarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listSRO = FXCollections.observableList(SRODAO.getIntance().findAll());
+        listSRO = FXCollections.observableList(SroDAO.getIntance().findAll());
 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(celldata -> {

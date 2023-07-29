@@ -74,7 +74,6 @@ public class AddSubjectController implements Initializable {
             return;
         }
 
-        // Chuyển đổi dữ liệu và tạo đối tượng Subject
         int numSessions = Integer.parseInt(numSessionsText);
         byte examFormat = (byte) (format.equals("LT") ? 0 : format.equals("LT/TH") ? 1 : 2);
         byte type = typeSelected ? (byte) 1 : (byte) 0;
@@ -87,13 +86,10 @@ public class AddSubjectController implements Initializable {
         subject.setExam_format(examFormat);
         subject.setType(type);
 
-        // Lưu đối tượng Subject
         SubjectDAO.getIntance().insert(subject);
 
-        // Hiển thị thông báo thành công
         AlertUtil.showInforEAlert("Thông Báo", "Thêm môn học thành công", "");
 
-        // Đóng cửa sổ sau khi hiển thị thông báo
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
     }

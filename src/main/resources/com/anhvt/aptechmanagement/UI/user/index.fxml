@@ -104,7 +104,7 @@
                         <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnScore" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoScore" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐIỂM THI">
+                        <Button fx:id="btnUserScore" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoUserScore" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="ĐIỂM THI">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -142,7 +142,7 @@
                         <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btnUserNoti" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoUserNoti" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG BÁO">
+                        <Button fx:id="btnUserNotification" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotoUserNotification" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);;" text="THÔNG BÁO">
                            <graphic>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

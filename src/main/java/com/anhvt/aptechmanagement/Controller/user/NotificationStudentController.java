@@ -25,7 +25,7 @@ public class NotificationStudentController extends SideBarController implements 
     private Hyperlink linkThiLai;
 
     @FXML
-    private TableView<Notification> tblNoification;
+    private TableView<Notification> tblNotification;
 
     @FXML
     private TableColumn<Notification, String> tcContent;
@@ -44,7 +44,7 @@ public class NotificationStudentController extends SideBarController implements 
 
         notifications = FXCollections.observableList(NotificationDAO.getInstance().selectByStudentId(Session.getAttribute().getId()));
 
-        tblNoification.setItems(notifications);
+        tblNotification.setItems(notifications);
         tcSTT.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         tcContent.setCellValueFactory(new PropertyValueFactory<>("content"));

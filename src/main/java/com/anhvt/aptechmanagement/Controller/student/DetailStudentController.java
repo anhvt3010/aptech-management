@@ -22,7 +22,11 @@ import java.util.*;
 
 public class DetailStudentController implements Initializable {
     @FXML
-    public AnchorPane formAddInfor;
+    public AnchorPane formAddInformation;
+    @FXML
+    public TextField txtStudentCode;
+    @FXML
+    public TextField txtAddStudentCode;
 
     @FXML
     private ChoiceBox<String> btnListClass;
@@ -116,6 +120,7 @@ public class DetailStudentController implements Initializable {
         txtPhone.setText(student.getPhone());
         txtBirth.setValue(student.getBirth());
         txtEmail.setText(student.getEmail());
+        txtStudentCode.setText(Optional.ofNullable(studentLearn.getStudent_code()).orElseGet(() -> "Chưa có mã HV"));
 
 //        Xử lí Địa Chi
 
@@ -142,14 +147,15 @@ public class DetailStudentController implements Initializable {
         }
 
 //--------------- AnchorPane formAddInfor And UPDATE infor ------------------------------
-        formAddInfor.setVisible(false);
+        formAddInformation.setVisible(false);
         btnUpdate.setOnAction(event -> {
-            formAddInfor.setVisible(true);
+            formAddInformation.setVisible(true);
 
             this.turn_text_field_ON();
 
             this.showListClasses();
             this.showListCourses();
+            txtAddStudentCode.setText(txtStudentCode.getText());
 
         });
     }
@@ -216,30 +222,129 @@ public class DetailStudentController implements Initializable {
         btnListCourse.setValue(studentLearn.getCourse().getName());
     }
 
-    public ArrayList<String> splitAddress(String address){
 
-        ArrayList<String> addresses = new ArrayList<>();
-        String[] result = splitString(student.getAddress(), ", ");
 
-        if (result.length >= 4) {
-            StringBuilder combinedAddress = new StringBuilder();
-            for (int i = 0; i < result.length - 3; i++) {
-                if (i > 0) {
-                    combinedAddress.append(", ");
-                }
-                combinedAddress.append(result[i]);
-            }
-            addresses.add(combinedAddress.toString());
-            // Thêm giá trị xa
-            addresses.add(result[result.length - 3]);
-            // Thêm giá trị huyen
-            addresses.add(result[result.length - 2]);
-            // Thêm giá trị tinh
-            addresses.add(result[result.length - 1]);
-        } else {
-            System.out.println("Không đúng định dạng");
+
+
+    public Student getObjectStudent(){
+        Student studentUpdate = new Student();
+
+        studentUpdate.setId(student.getId());
+        studentUpdate.setFirstName(txtFirstName.getText());
+        studentUpdate.setLastName(txtLastName.getText());
+        studentUpdate.setGender(genderMale.isSelected());
+        studentUpdate.setBirth(txtBirth.getValue());
+        studentUpdate.setPhone(txtPhone.getText());
+        studentUpdate.setEmail(txtEmail.getText());
+        studentUpdate.setAddress(MergeAddress
+                .getInstance()
+                .mergeAddress(txtlang.getText(), xa.getValue(), huyen.getValue(), tinh.getValue()));
+        studentUpdate.setStatus((byte) (btnStatus.isSelected()?1:0));
+
+        return studentUpdate;
+    }
+
+    public Student_Learn getObjectStudent_Learn(){
+        Student_Learn studentLearn = Student_LearnDAO.getInstance().selectByStudentID(student.getId());
+
+        studentLearn.setClasses(classSelected);
+        studentLearn.setCourse(courseSelected);
+        studentLearn.setStudent_code(txtAddStudentCode.getText());
+
+        return studentLearn;
+    }
+
+
+    void turn_text_field_OFF(){
+        btnSave.setDisable(true);
+
+        txtFirstName.setEditable(false);
+        txtLastName.setEditable(false);
+        genderFemale.setDisable(true);
+        genderMale.setDisable(true);
+        txtBirth.setDisable(true);
+        txtPhone.setEditable(false);
+        txtEmail.setEditable(false);
+        tinh.setDisable(true);
+        huyen.setDisable(true);
+        xa.setDisable(true);
+        txtlang.setEditable(false);
+        btnStatus.setDisable(true);
+        txtCourse.setEditable(false);
+        txtClass.setEditable(false);
+
+        txtStudentCode.setEditable(false);
+
+    }
+
+    void turn_text_field_ON(){
+        btnSave.setDisable(false);
+
+        txtFirstName.setEditable(true);
+        txtLastName.setEditable(true);
+        genderFemale.setDisable(false);
+        genderMale.setDisable(false);
+        txtBirth.setDisable(false);
+        txtPhone.setEditable(true);
+        txtEmail.setEditable(true);
+        tinh.setDisable(false);
+        huyen.setDisable(false);
+        xa.setDisable(false);
+        txtlang.setEditable(true);
+
+        btnStatus.setDisable(true);
+
+        txtCourse.setDisable(true);
+        txtClass.setDisable(true);
+        txtStudentCode.setDisable(true);
+    }
+
+    void setPlaceholderStudent(){
+        if (txtFirstName.getText().isEmpty()) {
+            txtFirstName.setPromptText("Nhập họ...");
         }
-        return addresses;
+        if (txtLastName.getText().isEmpty()) {
+            txtLastName.setPromptText("Nhập tên...");
+        }
+        if (!genderMale.isSelected()) {
+            genderMale.setSelected(true);
+            genderFemale.setSelected(false);
+        }
+        if (txtBirth.getValue() == null) {
+            txtBirth.setPromptText("Nhập ngày sinh...");
+        }
+        if (txtPhone.getText().isEmpty()) {
+            txtPhone.setPromptText("Nhập số ĐT...");
+        }
+        if (txtEmail.getText().isEmpty()) {
+            txtEmail.setPromptText("Nhập email...");
+        }
+        if (txtAddStudentCode.getText().isEmpty()) {
+            txtAddStudentCode.setPromptText("Nhập Mã HV...");
+        }
+
+    }
+
+    Boolean checkEmpty(){
+        if (txtFirstName.getText().isEmpty()) {
+            return false;
+        }
+        if (txtLastName.getText().isEmpty()) {
+            return false;
+        }
+        if (txtBirth.getValue() == null) {
+            return false;
+        }
+        if (txtPhone.getText().isEmpty()) {
+            return false;
+        }
+        if (txtEmail.getText().isEmpty()) {
+            return false;
+        }
+        if (txtAddStudentCode.getText().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public static String[] splitString(String input, String delimiter) {
@@ -298,121 +403,37 @@ public class DetailStudentController implements Initializable {
             for (Map.Entry<Integer, String> entry : communes.entrySet()) {
                 if (entry.getValue().equals(selectedCommune)) {
                     code_comune_selected = entry.getKey();
-                    System.out.println("code_commune_selected: "+ code_comune_selected);
+                    System.out.println("code_commune_selected: " + code_comune_selected);
                     break;
                 }
             }
         });
     }
 
-    public Student getObjectStudent(){
-        Student studentUpdate = new Student();
+    public ArrayList<String> splitAddress(String address){
 
-        studentUpdate.setId(student.getId());
-        studentUpdate.setFirstName(txtFirstName.getText());
-        studentUpdate.setLastName(txtLastName.getText());
-        studentUpdate.setGender(genderMale.isSelected());
-        studentUpdate.setBirth(txtBirth.getValue());
-        studentUpdate.setPhone(txtPhone.getText());
-        studentUpdate.setEmail(txtEmail.getText());
-        studentUpdate.setAddress(MergeAddress
-                .getInstance()
-                .mergeAddress(txtlang.getText(), xa.getValue(), huyen.getValue(), tinh.getValue()));
-        studentUpdate.setStatus((byte) (btnStatus.isSelected()?1:0));
+        ArrayList<String> addresses = new ArrayList<>();
+        String[] result = splitString(student.getAddress(), ", ");
 
-        return studentUpdate;
-    }
-
-    public Student_Learn getObjectStudent_Learn(){
-        Student_Learn studentLearn = Student_LearnDAO.getInstance().selectByStudentID(student.getId());
-
-        studentLearn.setStudent(student);
-        studentLearn.setClasses(classSelected);
-        studentLearn.setCourse(courseSelected);
-
-        return studentLearn;
-    }
-
-
-    void turn_text_field_OFF(){
-
-        btnSave.setDisable(true);
-
-        txtFirstName.setDisable(true);
-        txtLastName.setDisable(true);
-        genderFemale.setDisable(true);
-        genderMale.setDisable(true);
-        txtBirth.setDisable(true);
-        txtPhone.setDisable(true);
-        txtEmail.setDisable(true);
-        tinh.setDisable(true);
-        huyen.setDisable(true);
-        xa.setDisable(true);
-        txtlang.setDisable(true);
-        btnStatus.setDisable(true);
-        txtCourse.setDisable(true);
-        txtClass.setDisable(true);
-    }
-
-    void turn_text_field_ON(){
-        btnSave.setDisable(false);
-
-        txtFirstName.setDisable(false);
-        txtLastName.setDisable(false);
-        genderFemale.setDisable(false);
-        genderMale.setDisable(false);
-        txtBirth.setDisable(false);
-        txtPhone.setDisable(false);
-        txtEmail.setDisable(false);
-        tinh.setDisable(false);
-        huyen.setDisable(false);
-        xa.setDisable(false);
-        txtlang.setDisable(false);
-        btnStatus.setDisable(false);
-        txtCourse.setDisable(true);
-        txtClass.setDisable(true);
-    }
-
-    void setPlaceholderStudent(){
-        if (txtFirstName.getText().isEmpty()) {
-            txtFirstName.setPromptText("Nhập họ...");
+        if (result.length >= 4) {
+            StringBuilder combinedAddress = new StringBuilder();
+            for (int i = 0; i < result.length - 3; i++) {
+                if (i > 0) {
+                    combinedAddress.append(", ");
+                }
+                combinedAddress.append(result[i]);
+            }
+            addresses.add(combinedAddress.toString());
+            // Thêm giá trị xa
+            addresses.add(result[result.length - 3]);
+            // Thêm giá trị huyen
+            addresses.add(result[result.length - 2]);
+            // Thêm giá trị tinh
+            addresses.add(result[result.length - 1]);
+        } else {
+            System.out.println("Không đúng định dạng");
         }
-        if (txtLastName.getText().isEmpty()) {
-            txtLastName.setPromptText("Nhập tên...");
-        }
-        if (!genderMale.isSelected()) {
-            genderMale.setSelected(true);
-            genderFemale.setSelected(false);
-        }
-        if (txtBirth.getValue() == null) {
-            txtBirth.setPromptText("Nhập ngày sinh...");
-        }
-        if (txtPhone.getText().isEmpty()) {
-            txtPhone.setPromptText("Nhập số ĐT...");
-        }
-        if (txtEmail.getText().isEmpty()) {
-            txtEmail.setPromptText("Nhập email...");
-        }
-
-    }
-
-    Boolean checkEmpty(){
-        if (txtFirstName.getText().isEmpty()) {
-            return false;
-        }
-        if (txtLastName.getText().isEmpty()) {
-            return false;
-        }
-        if (txtBirth.getValue() == null) {
-            return false;
-        }
-        if (txtPhone.getText().isEmpty()) {
-            return false;
-        }
-        if (txtEmail.getText().isEmpty()) {
-            return false;
-        }
-        return true;
+        return addresses;
     }
 
 }

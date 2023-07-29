@@ -81,4 +81,17 @@ public class Exam {
     public void setExam_day(LocalDate exam_day) {
         this.exam_day = exam_day;
     }
+
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "id=" + id +
+                ", subject=" + subject +
+                ", classes=" + classes +
+                ", name='" + name + '\'' +
+                ", exam_day=" + exam_day +
+                ", format=" + format +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -53,7 +53,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoStudent" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ sơ">
+                                <Button fx:id="btnStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoStudent" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: white;" text="Hồ Sơ">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -65,7 +65,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnCourse" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoCourse" prefHeight="39.0" prefWidth="182.0" text="Chương trình học" GridPane.rowIndex="1">
+                                <Button fx:id="btnCourse" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoCourse" prefHeight="39.0" prefWidth="182.0" text="Chương Trình Học" GridPane.rowIndex="1">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -77,7 +77,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnStudent2" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Lớp học" textFill="WHITE" GridPane.rowIndex="2">
+                                <Button alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #6E8199;" text="Lớp Học" textFill="WHITE" GridPane.rowIndex="2">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -89,7 +89,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoSchedule" prefHeight="39.0" prefWidth="182.0" text="Lịch học" GridPane.rowIndex="3">
+                                <Button fx:id="btnSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoSchedule" prefHeight="39.0" prefWidth="182.0" text="Lịch Học" GridPane.rowIndex="3">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -101,7 +101,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoTest" prefHeight="39.0" prefWidth="182.0" text="Lịch thi" GridPane.rowIndex="4">
+                                <Button fx:id="btnTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoTest" prefHeight="39.0" prefWidth="182.0" text="Lịch Thi" GridPane.rowIndex="4">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -113,7 +113,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoDocument" prefHeight="39.0" prefWidth="182.0" text="Đơn từ" GridPane.rowIndex="5">
+                                <Button fx:id="btnDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoDocument" prefHeight="39.0" prefWidth="182.0" text="Đơn Từ" GridPane.rowIndex="5">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -125,7 +125,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNoti" prefHeight="39.0" prefWidth="182.0" text="Thông báo" GridPane.rowIndex="6">
+                                <Button fx:id="btnNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNotification" prefHeight="39.0" prefWidth="182.0" text="Thông Báo" GridPane.rowIndex="6">
                                     <graphic>
                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -169,21 +169,53 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">
                                     <children>
-                                        <SplitPane dividerPositions="0.4787234042553192" layoutX="160.0" layoutY="1.0" prefHeight="510.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                        <SplitPane dividerPositions="0.43683274021352314" layoutX="160.0" layoutY="1.0" prefHeight="510.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TableView fx:id="tblClass" layoutX="226.0" layoutY="47.0" prefHeight="508.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="tcID" prefWidth="31.0" text="STT" />
-                                              <TableColumn fx:id="tcName" prefWidth="67.0" text="Tên Lớp" />
-                                                <TableColumn fx:id="tcSRO" prefWidth="91.33334350585938" text="Phụ Trách" />
-                                                <TableColumn fx:id="tcLimit" prefWidth="44.0" text="Sĩ Số" />
-                                                <TableColumn prefWidth="121.0" text="Ghi Chú" />
-                                            </columns>
-                                          </TableView>
+                                          <SplitPane dividerPositions="0.5403439153439152" layoutX="65.0" layoutY="111.0" orientation="VERTICAL" prefHeight="506.6666666666667" prefWidth="355.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TableView fx:id="tblClass" layoutX="-5.0" layoutY="2.0" prefHeight="249.33333333333334" prefWidth="352.6666666666667" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="tcID" prefWidth="31.0" text="STT" />
+                                                            <TableColumn fx:id="tcName" prefWidth="67.0" text="Tên Lớp" />
+                                                            <TableColumn fx:id="tcSRO" prefWidth="99.11107635498047" text="Phụ Trách" />
+                                                            <TableColumn prefWidth="121.55543518066406" text="Ghi Chú" />
+                                                         </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                            </items>
+                                          </SplitPane>
                                        </children></AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.6514550264550264" layoutX="83.0" layoutY="153.0" orientation="VERTICAL" prefHeight="506.6666666666667" prefWidth="388.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TableView fx:id="tblListStudent" layoutX="-95.0" layoutY="62.0" prefHeight="312.0" prefWidth="385.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="tcIDStudent" minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
+                                                            <TableColumn fx:id="tcStudentName" prefWidth="85.11108207702637" text="Họ &amp; Tên" />
+                                                            <TableColumn maxWidth="249.1112289428711" prefWidth="233.55562591552734" text="Liên hệ">
+                                                               <columns>
+                                                                  <TableColumn fx:id="tcEmail" prefWidth="150.0" text="Email" />
+                                                                  <TableColumn fx:id="tcPhone" text="SĐT" />
+                                                               </columns>
+                                                            </TableColumn>
+                                                            <TableColumn fx:id="tcStatus" prefWidth="70.0" text="Trạng thái" />
+                                                         </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                            </items>
+                                          </SplitPane>
+                                       </children></AnchorPane>
                                             </items>
                                         </SplitPane>
                                     </children></AnchorPane>

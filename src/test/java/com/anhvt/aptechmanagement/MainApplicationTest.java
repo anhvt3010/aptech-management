@@ -15,6 +15,7 @@ class MainApplicationTest {
     @Test
      void testDAO(){
 
+        System.out.println(Student_LearnDAO.getInstance().selectByStudentID(6));
     }
 
 }

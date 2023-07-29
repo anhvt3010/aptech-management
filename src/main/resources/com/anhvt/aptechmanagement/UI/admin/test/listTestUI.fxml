@@ -128,7 +128,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNoti" prefHeight="39.0" prefWidth="182.0" text="Thông Báo" GridPane.rowIndex="6">
+                        <Button fx:id="btnNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoNotification" prefHeight="39.0" prefWidth="182.0" text="Thông Báo" GridPane.rowIndex="6">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

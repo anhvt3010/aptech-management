@@ -37,18 +37,18 @@ public class SideBarController {
     @FXML
     private Button btnStudent;
     @FXML
-    private Button btnNoti;
+    private Button btnNotification;
     @FXML
     private Button btnTest;
 
 
     //  ------------ Button User -----------------
     @FXML
-    private Button btnScore;
+    private Button btnUserScore;
     @FXML
     private Button btnUserDocument;
     @FXML
-    private Button btnUserNoti;
+    private Button btnUserNotification;
     @FXML
     private Button btnUserSchedule;
     @FXML
@@ -103,14 +103,14 @@ public class SideBarController {
         Navigator.getInstance().gotoTest();
     }
     @FXML
-    void gotoNoti(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoNotification();
+    void gotoNotification(ActionEvent event) throws IOException {
+        Navigator.getInstance().gotoNotificationAdmin();
     }
 
     //  ------------ Action User -----------------
 
     @FXML
-    void gotoScore(ActionEvent event) throws IOException {
+    void gotoUserScore(ActionEvent event) throws IOException {
         Navigator.getInstance().gotoScore();
     }
 
@@ -120,7 +120,7 @@ public class SideBarController {
     }
 
     @FXML
-    void gotoUserNoti(ActionEvent event) throws IOException {
+    void gotoUserNotification(ActionEvent event) throws IOException {
         Navigator.getInstance().gotoNotification();
     }
 

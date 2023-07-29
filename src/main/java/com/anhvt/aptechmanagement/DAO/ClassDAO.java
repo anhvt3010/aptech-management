@@ -44,6 +44,7 @@ public class ClassDAO implements IDAO<Classes>{
                 cl.setId(rs.getInt("id"));
                 cl.setName(rs.getString("name"));
                 cl.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
+                cl.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
                 cl.setDescription(rs.getString("description"));
                 cl.setLimit(rs.getInt("student_limits"));
                 cl.setType((byte) rs.getInt("type"));

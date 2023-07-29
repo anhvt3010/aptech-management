@@ -9,6 +9,8 @@ import com.anhvt.aptechmanagement.Model.Exam;
 import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Property.ExamProperty;
+import com.anhvt.aptechmanagement.Utils.AlertUtil;
+import com.anhvt.aptechmanagement.Validation.Validation;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +26,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -128,6 +131,8 @@ public class ExamController extends SideBarController implements Initializable {
 
             return row;
         });
+
+        this.showListClasses();
     }
 
     private void handle_selectedExam(ExamProperty examProperty) {
@@ -135,8 +140,8 @@ public class ExamController extends SideBarController implements Initializable {
         txtDetailSubject.setValue(examProperty.subjectProperty().getValue().getCode());
         txtDetailDate.setValue(examProperty.exam_dayProperty().getValue());
         txtDetailName.setText(examProperty.nameProperty().getValue());
+        this.showTxtFormat();
         txtDetailFormat.setValue(examProperty.formatProperty().getValue());
-        this.showTxtStatus();
     }
     @FXML
     public void getFormAddExam(ActionEvent actionEvent) {
@@ -168,26 +173,27 @@ public class ExamController extends SideBarController implements Initializable {
     }
     @FXML
     public void update(ActionEvent actionEvent) {
-        if(examProperty != null){
+        if(examProperty != null) {
             this.turn_on_field();
-            this.showListClasses();
-        }
-// lấy lại đối tượng khi ko cần chỉnh sửa
-        String selectedSubjectCode = txtDetailSubject.getValue();
-        selectedSubject = null;
-        for (Subject subject : subjects) {
-            if (subject.getCode().equals(selectedSubjectCode)) {
-                selectedSubject = subject;
-                break;
+
+
+        // lấy lại đối tượng khi ko cần chỉnh sửa
+            String selectedSubjectCode = txtDetailSubject.getValue();
+            selectedSubject = null;
+            for (Subject subject : subjects) {
+                if (subject.getCode().equals(selectedSubjectCode)) {
+                    selectedSubject = subject;
+                    break;
+                }
             }
-        }
-// lấy lại đối tượng khi ko cần chỉnh sửa
-        String selectedClassName = txtDetailClass.getValue();
-        selectedClass = null;
-        for (Classes cls : classes) {
-            if (cls.getName().equals(selectedClassName)) {
-                selectedClass = cls;
-                break;
+        // lấy lại đối tượng khi ko cần chỉnh sửa
+            String selectedClassName = txtDetailClass.getValue();
+            selectedClass = null;
+            for (Classes cls : classes) {
+                if (cls.getName().equals(selectedClassName)) {
+                    selectedClass = cls;
+                    break;
+                }
             }
         }
     }
@@ -195,6 +201,16 @@ public class ExamController extends SideBarController implements Initializable {
     public void save(ActionEvent actionEvent) {
         Exam exam = new Exam();
 
+        String name = txtDetailName.getText().trim();
+        LocalDate date = txtDetailDate.getValue();
+
+        // Kiểm tra dữ liệu nhập vào
+        if (Validation.isNullOrEmpty(name) || date == null) {
+            AlertUtil.showErrorAlert("Lỗi", "Dữ liệu không hợp lệ", "Vui lòng điền đầy đủ thông tin môn học.");
+            return;
+        }
+
+        exam.setId(examProperty.getId());
         exam.setClasses(selectedClass);
         exam.setSubject(selectedSubject);
         exam.setExam_day(txtDetailDate.getValue());
@@ -205,6 +221,8 @@ public class ExamController extends SideBarController implements Initializable {
         ExamDAO.getInstance().update(exam);
 
         exams.setAll(ExamDAO.getInstance().findAllProperty());
+        AlertUtil.showInforEAlert("Thông Báo", "Sửa lịch thi thành công", "");
+        btnSave.setDisable(true);
     }
 
     public void showListClasses(){
@@ -231,7 +249,6 @@ public class ExamController extends SideBarController implements Initializable {
         for(Semester s : listSemesterByCourse){
             subjects.addAll(Semester_SubjectDAO.getInstance().getListSubjectBySemesterID(s.getId()));
         }
-
         ArrayList<String> listSubject = new ArrayList<>();
 
         for (Subject sub : subjects) {
@@ -248,12 +265,12 @@ public class ExamController extends SideBarController implements Initializable {
         txtDetailSubject.getItems().clear();
         txtDetailSubject.getItems().addAll(listSubject);
     }
-    public void showTxtStatus(){
+    public void showTxtFormat(){
         Map<Integer, String> map = new HashMap<>();
         map.put(0, "Lý Thuyết");
         map.put(1, "Thực Hành");
-        map.put(2, "N/A");
 
+        txtDetailFormat.getItems().clear();
         txtDetailFormat.getItems().addAll(map.values());
 
         txtDetailFormat.setOnAction(event -> {

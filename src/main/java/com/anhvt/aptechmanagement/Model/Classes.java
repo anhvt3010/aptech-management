@@ -3,6 +3,7 @@ package com.anhvt.aptechmanagement.Model;
 public class Classes {
     private int id;
     private Course course;
+    private Staff staff;
     private String name;
     private String description;
     private int limit;
@@ -11,6 +12,16 @@ public class Classes {
     public Classes(int id, Course course, String name, String description, int limit, Byte type) {
         this.id = id;
         this.course = course;
+        this.name = name;
+        this.description = description;
+        this.limit = limit;
+        this.type = type;
+    }
+
+    public Classes(int id, Course course, Staff staff, String name, String description, int limit, Byte type) {
+        this.id = id;
+        this.course = course;
+        this.staff = staff;
         this.name = name;
         this.description = description;
         this.limit = limit;
@@ -67,6 +78,14 @@ public class Classes {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     @Override

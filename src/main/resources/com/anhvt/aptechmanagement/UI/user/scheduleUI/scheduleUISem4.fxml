@@ -51,7 +51,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ sơ cá nhân">
+                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ Sơ Cá Nhân">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -63,7 +63,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Thời khóa biểu" textFill="WHITE" GridPane.rowIndex="2">
+                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Thời Khóa Biểu" textFill="WHITE" GridPane.rowIndex="2">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -75,7 +75,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch thi" GridPane.rowIndex="3">
+                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch Thi" GridPane.rowIndex="3">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -87,7 +87,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" text="Đơn từ" GridPane.rowIndex="4">
+                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" text="Đơn Từ" GridPane.rowIndex="4">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -99,7 +99,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNoti" prefHeight="40.0" prefWidth="202.0" text="Thông báo" GridPane.rowIndex="5">
+                                                <Button fx:id="btnUserNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNotification" prefHeight="40.0" prefWidth="202.0" text="Thông Báo" GridPane.rowIndex="5">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -111,7 +111,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnScore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoScore" prefHeight="40.0" prefWidth="202.0" text="Điểm thi" GridPane.rowIndex="1">
+                                                <Button fx:id="btnUserScore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserScore" prefHeight="40.0" prefWidth="202.0" text="Điểm Thi" GridPane.rowIndex="1">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>

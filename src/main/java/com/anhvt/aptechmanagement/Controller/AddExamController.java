@@ -5,6 +5,7 @@ import com.anhvt.aptechmanagement.Model.Classes;
 import com.anhvt.aptechmanagement.Model.Exam;
 import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Model.Subject;
+import com.anhvt.aptechmanagement.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +56,7 @@ public class AddExamController implements Initializable {
     }
 
     @FXML
-    void addNewExam(ActionEvent event) {
+    void addNewExam(ActionEvent event) throws IOException {
          Exam exam = new Exam();
          exam.setClasses(selectedClass);
          exam.setSubject(selectedSubject);
@@ -64,8 +66,9 @@ public class AddExamController implements Initializable {
          exam.setStatus((byte) 0);
 
          ExamDAO.getInstance().insert(exam);
-        System.out.println("Thêm thành công");
-
+         System.out.println("Thêm thành công");
+         Navigator.getInstance().gotoTest();
+         examStage.close();
     }
 
     public void showListClasses(){

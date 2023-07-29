@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.MenuButton?>
@@ -54,7 +55,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ sơ cá nhân">
+                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ Sơ Cá Nhân">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -66,7 +67,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" text="Thời khóa biểu" GridPane.rowIndex="2">
+                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" text="Thời Khóa Biểu" GridPane.rowIndex="2">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -78,7 +79,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch thi" GridPane.rowIndex="3">
+                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch Thi" GridPane.rowIndex="3">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -90,7 +91,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" text="Đơn từ" GridPane.rowIndex="4">
+                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" text="Đơn Từ" GridPane.rowIndex="4">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -102,7 +103,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                                <Button fx:id="btnUserNoti" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNoti" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Thông báo" textFill="WHITE" GridPane.rowIndex="5">
+                                                <Button fx:id="btnUserNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNotification" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Thông Báo" textFill="WHITE" GridPane.rowIndex="5">
                                                     <graphic>
                                                         <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
@@ -114,7 +115,7 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Button>
-                                    <Button fx:id="btnScrore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoScore" prefHeight="40.0" prefWidth="202.0" text="Điểm thi" GridPane.rowIndex="1">
+                                    <Button fx:id="btnUserScore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserScore" prefHeight="40.0" prefWidth="202.0" text="Điểm Thi" GridPane.rowIndex="1">
                                        <graphic>
                                           <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -159,7 +160,7 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TableView fx:id="tblNoification" layoutX="152.0" layoutY="-220.0" prefHeight="489.0" prefWidth="474.0" style="-fx-background-color: #888;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <TableView fx:id="tblNotification" layoutX="152.0" layoutY="-220.0" prefHeight="489.0" prefWidth="474.0" style="-fx-background-color: #888;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <columns>
                                                 <TableColumn fx:id="tcSTT" prefWidth="75.0" text="STT" />
                                                 <TableColumn fx:id="tcTitle" prefWidth="105.66665649414062" text="Tiêu Đề" />
@@ -170,7 +171,7 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <GridPane layoutX="1.0" layoutY="66.0" prefHeight="489.0" prefWidth="202.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <GridPane layoutX="1.0" layoutY="215.0" prefHeight="269.0" prefWidth="201.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="215.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
@@ -200,6 +201,9 @@
                                                    </children>
                                                 </TextFlow>
                                              </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
                                           </GridPane>
                                        </children>
                                     </AnchorPane>
