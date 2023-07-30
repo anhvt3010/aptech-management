@@ -56,7 +56,7 @@ public class ScoreDAO implements IDAO<Score>{
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 Score score = new Score();
-                score.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
+                score.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 score.setSubject(SubjectDAO.getIntance().selectById(rs.getInt("subject_id")));
                 score.setScore(rs.getInt("score"));
                 score.setScore_max(rs.getInt("score_max"));
@@ -84,7 +84,7 @@ public class ScoreDAO implements IDAO<Score>{
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 Score score = new Score();
-                score.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
+                score.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 score.setSubject(SubjectDAO.getIntance().selectById(rs.getInt("subject_id")));
                 score.setScore(rs.getInt("score"));
                 score.setScore_max(rs.getInt("score_max"));

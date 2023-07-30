@@ -1,6 +1,7 @@
 package com.anhvt.aptechmanagement.DAO;
 
 import com.anhvt.aptechmanagement.Model.Student;
+import com.anhvt.aptechmanagement.Model.Student_Learn;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.*;
@@ -8,17 +9,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StudentDAO implements IDAO<Student> {
-
-    public static StudentDAO getIntance(){
+    static Connection cnn;
+    PreparedStatement stm = null;
+    public static StudentDAO getInstance(){
+        cnn = JDBCUtil.getConnection();
         return new StudentDAO();
     }
 
     public Student getAccountByEmail(String email){
         Student student = null;
-        Connection connection = JDBCUtil.getConnection();
+        String sql = "SELECT * FROM student WHERE email = ?";
         try {
-            String sql = "SELECT * FROM student WHERE email = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            stm = cnn.prepareStatement(sql);
             stm.setString(1, email);
             ResultSet resultSet = stm.executeQuery();
             if(resultSet.next()){
@@ -37,49 +39,93 @@ public class StudentDAO implements IDAO<Student> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            JDBCUtil.closeConnection(connection);
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
         }
         return student;
     }
     @Override
     public int insert(Student student) {
-        Connection connection = JDBCUtil.getConnection();
-        PreparedStatement statement = null;
+        String sql = "INSERT INTO student (first_name, last_name, gender, birth, phone, email, password, address, created, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            String query = "INSERT INTO student (first_name, last_name, gender, birth, phone, email, password, address, created, status) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            statement = connection.prepareStatement(query);
+            stm = cnn.prepareStatement(sql);
 
-            statement.setString(1, student.getFirstName());
-            statement.setString(2, student.getLastName());
-            statement.setBoolean(3, student.getGender());
-            statement.setDate(4, Date.valueOf(student.getBirth()));
-            statement.setString(5, student.getPhone());
-            statement.setString(6, student.getEmail());
-            statement.setString(7, student.getPassword());
-            statement.setString(8, student.getAddress());
-            statement.setDate(9, Date.valueOf(student.getCreated()));
-            statement.setInt(10, student.getStatus());
+            stm.setString(1, student.getFirstName());
+            stm.setString(2, student.getLastName());
+            stm.setBoolean(3, student.getGender());
+            stm.setDate(4, Date.valueOf(student.getBirth()));
+            stm.setString(5, student.getPhone());
+            stm.setString(6, student.getEmail());
+            stm.setString(7, student.getPassword());
+            stm.setString(8, student.getAddress());
+            stm.setDate(9, Date.valueOf(student.getCreated()));
+            stm.setInt(10, student.getStatus());
 
-            statement.executeUpdate();
-
+            stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtil.closeConnection(connection);
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
         }
+        return 0;
+    }
+
+    public int insertStudent_StudentLearn(Student student, Student_Learn studentLearn) {
+        String sql = "INSERT INTO student (first_name, last_name, gender, birth, phone, email, password, address, created, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            Connection cnn = JDBCUtil.getConnection();
+            PreparedStatement stm = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            stm.setString(1, student.getFirstName());
+            stm.setString(2, student.getLastName());
+            stm.setBoolean(3, student.getGender());
+            stm.setDate(4, Date.valueOf(student.getBirth()));
+            stm.setString(5, student.getPhone());
+            stm.setString(6, student.getEmail());
+            stm.setString(7, student.getPassword());
+            stm.setString(8, student.getAddress());
+            stm.setDate(9, Date.valueOf(student.getCreated()));
+            stm.setInt(10, student.getStatus());
+
+            stm.executeUpdate();
+
+            try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int studentId = generatedKeys.getInt(1);
+                    // Tiếp tục thêm bản ghi vào bảng student_learn với studentId như khóa ngoại
+                    String insertStudentLearnSql = "INSERT INTO student_learn (student_id, class_id, course_id, student_code) VALUES (?, ?, ?, ?)";
+                    PreparedStatement insertStudentLearnStmt = cnn.prepareStatement(insertStudentLearnSql);
+                    insertStudentLearnStmt.setInt(1, studentId);
+                    insertStudentLearnStmt.setInt(2, studentLearn.getClasses().getId());
+                    insertStudentLearnStmt.setInt(3, studentLearn.getCourse().getId());
+                    insertStudentLearnStmt.setString(4, studentLearn.getStudent_code());
+                    insertStudentLearnStmt.executeUpdate();
+                } else {
+                    System.out.println("Lấy giá trị ID không thành công.");
+                }
+            }
+
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return 0;
     }
 
     @Override
     public int update(Student student) {
-        Connection cnn = JDBCUtil.getConnection();
-        String query = "UPDATE student " +
+        String sql = "UPDATE student " +
                 "SET first_name=?, last_name=?, gender=?, birth=?, phone=?, email=?, address=?, status =? " +
                 "WHERE id = ?";
-        PreparedStatement stm = null;
         try {
-            stm = cnn.prepareStatement(query);
+            stm = cnn.prepareStatement(sql);
 
             stm.setString(1, student.getFirstName());
             stm.setString(2, student.getLastName());
@@ -109,11 +155,9 @@ public class StudentDAO implements IDAO<Student> {
     @Override
     public ArrayList<Student> findAll() {
         ArrayList<Student> findAll = new ArrayList<>();
-        Connection cnn = JDBCUtil.getConnection();
+        String sql = "SELECT * FROM student";
         try {
-            String sql = "SELECT * FROM student";
-            PreparedStatement stm = cnn.prepareStatement(sql);
-
+            stm = cnn.prepareStatement(sql);
             ResultSet resultSet = stm.executeQuery();
             while (resultSet.next()){
                 Student student = new Student();
@@ -129,6 +173,7 @@ public class StudentDAO implements IDAO<Student> {
         } catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return findAll;
@@ -138,10 +183,7 @@ public class StudentDAO implements IDAO<Student> {
     public Student selectById(int id_selected) {
         Student student = new Student();
 
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM student WHERE id = ?";
-        PreparedStatement stm = null;
-
         try {
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id_selected);
@@ -173,5 +215,7 @@ public class StudentDAO implements IDAO<Student> {
     public ArrayList<Student> selectByCondition(String condition) {
         return null;
     }
+
+
 
 }

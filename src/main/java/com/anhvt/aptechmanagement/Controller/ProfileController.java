@@ -1,6 +1,8 @@
 package com.anhvt.aptechmanagement.Controller;
 
 
+import com.anhvt.aptechmanagement.Controller.student.AddStudentController;
+import com.anhvt.aptechmanagement.Controller.student.DetailStudentController;
 import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
@@ -57,15 +59,15 @@ public class ProfileController extends SideBarController implements Initializabl
     @FXML
     private TableView<Student> tblListStudent;
 
-    private boolean isAddStudentWindowOpen = false;
-    private Stage studentStage;
+    private Stage studentDetailStage;
+    private Stage studentAddStage;
 
     ObservableList<Student> listStudent;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listStudent = FXCollections.observableList(StudentDAO.getIntance().findAll());
+        listStudent = FXCollections.observableList(StudentDAO.getInstance().findAll());
 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(celldata -> {
@@ -129,25 +131,25 @@ public class ProfileController extends SideBarController implements Initializabl
 
     @FXML
     void addStudent(ActionEvent event) throws IOException {
-        if (isAddStudentWindowOpen) {
-            return;
-        }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/profile/student/addStudentUI.fxml"));
-            Parent root = loader.load();
+            if(studentAddStage != null && studentAddStage.isShowing()){
+                studentAddStage.toFront();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/profile/student/addStudentUI.fxml"));
+                Parent root = loader.load();
+                studentAddStage = new Stage();
+                studentAddStage.setTitle("Thêm học viên");
+                studentAddStage.setScene(new Scene(root));
 
-            studentStage = new Stage();
-            studentStage.setTitle("Thêm học viên");
-            studentStage.setScene(new Scene(root));
+                studentAddStage.setOnCloseRequest(t -> {
+                    studentAddStage = null;
+                });
 
-            studentStage.setOnCloseRequest(t -> {
-                isAddStudentWindowOpen = false;
-                studentStage = null;
-            });
+                AddStudentController controller = loader.getController();
+                controller.setStage(studentAddStage);
 
-            studentStage.show();
-
-            isAddStudentWindowOpen = true;
+                studentAddStage.showAndWait();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,32 +157,28 @@ public class ProfileController extends SideBarController implements Initializabl
 
     @FXML
     void detailStudent(ActionEvent event) {
-        if (isAddStudentWindowOpen) {
-            return;
-        }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/profile/student/detailStudentUI.fxml"));
-            Parent root = loader.load();
+            if(studentDetailStage != null && studentDetailStage.isShowing()){
+                studentDetailStage.toFront();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/profile/student/detailStudentUI.fxml"));
+                Parent root = loader.load();
+                studentDetailStage = new Stage();
+                studentDetailStage.setTitle("Chi tiết học viên");
+                studentDetailStage.setScene(new Scene(root));
 
-            studentStage = new Stage();
-            studentStage.setTitle("Chi tiết học viên");
-            studentStage.setScene(new Scene(root));
+                studentDetailStage.setOnCloseRequest(t -> {
+                    studentDetailStage = null;
+                });
 
-            studentStage.setOnCloseRequest(t -> {
-                isAddStudentWindowOpen = false;
-                studentStage = null;
-            });
+                DetailStudentController controller = loader.getController();
+                controller.setDetailStudentStage(studentDetailStage);
 
-            studentStage.show();
-
-            isAddStudentWindowOpen = true;
+                studentDetailStage.showAndWait();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }

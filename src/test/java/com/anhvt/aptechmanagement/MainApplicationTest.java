@@ -4,6 +4,9 @@ import com.anhvt.aptechmanagement.DAO.*;
 import com.anhvt.aptechmanagement.Model.*;
 import com.anhvt.aptechmanagement.Utils.GetAddressFromAPI;
 import com.anhvt.aptechmanagement.Utils.Passwordefault;
+import com.anhvt.aptechmanagement.Validation.EmailValidator;
+import com.anhvt.aptechmanagement.Validation.InputTextValidator;
+import com.anhvt.aptechmanagement.Validation.PhoneNumberValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ class MainApplicationTest {
     @Test
      void testDAO(){
 
-        System.out.println(Student_LearnDAO.getInstance().selectByStudentID(6));
+        System.out.println( EmailValidator.isValid("tanh@gmail.com"));
     }
 
 }

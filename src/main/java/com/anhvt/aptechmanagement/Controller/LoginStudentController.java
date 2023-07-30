@@ -40,7 +40,7 @@ public class LoginStudentController {
                     "Email hoặc mật khẩu trống !",
                     "Vui lòng điền đầy đủ");
         } else {
-            Student st = StudentDAO.getIntance().getAccountByEmail(email);
+            Student st = StudentDAO.getInstance().getAccountByEmail(email);
             if(st != null){
                 if(st.getPassword().equals(pass)){
 

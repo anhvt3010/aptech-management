@@ -67,7 +67,7 @@ public class NotificationDAO implements IDAO<Notification> {
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 notification.setId(rs.getInt("id"));
-                notification.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
+                notification.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 notification.setTitle(rs.getString("title"));
                 notification.setContent(rs.getString("content"));
                 notification.setStatus((byte) rs.getInt("status"));
@@ -97,7 +97,7 @@ public class NotificationDAO implements IDAO<Notification> {
                 Notification notification = new Notification();
 
                 notification.setId(rs.getInt("id"));
-                notification.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
+                notification.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 notification.setTitle(rs.getString("title"));
                 notification.setContent(rs.getString("content"));
                 notification.setStatus((byte) rs.getInt("status"));
@@ -123,7 +123,7 @@ public class NotificationDAO implements IDAO<Notification> {
                 Notification notification = new Notification();
 
                 notification.setId(rs.getInt("id"));
-                notification.setStudent(StudentDAO.getIntance().selectById(rs.getInt("student_id")));
+                notification.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 notification.setTitle(rs.getString("title"));
                 notification.setContent(rs.getString("content"));
                 notification.setStatus(rs.getByte("status"));

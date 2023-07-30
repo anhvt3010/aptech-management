@@ -10,17 +10,24 @@ import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import com.anhvt.aptechmanagement.Utils.GetAddressFromAPI;
 import com.anhvt.aptechmanagement.Utils.MergeAddress;
 import com.anhvt.aptechmanagement.Utils.SelectedIDStorage;
+import com.anhvt.aptechmanagement.Validation.EmailValidator;
+import com.anhvt.aptechmanagement.Validation.InputTextValidator;
+import com.anhvt.aptechmanagement.Validation.PhoneNumberValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public class DetailStudentController implements Initializable {
+    private Stage detailStudentStage;
+    @FXML
+    public Button btnQuit;
     @FXML
     public AnchorPane formAddInformation;
     @FXML
@@ -42,9 +49,6 @@ public class DetailStudentController implements Initializable {
 
     @FXML
     private RadioButton btnStatus;
-
-    @FXML
-    private ToggleGroup gender;
 
     @FXML
     private RadioButton genderFemale;
@@ -84,11 +88,8 @@ public class DetailStudentController implements Initializable {
     @FXML
     private TextField txtCourse;
 
-
-
 // su dung trong splitAddress va hien thi ra button
-    Student student = StudentDAO.getIntance().selectById(SelectedIDStorage.getSelectedIDStorage());
-
+    Student student = StudentDAO.getInstance().selectById(SelectedIDStorage.getSelectedIDStorage());
     Student_Learn studentLearn = Student_LearnDAO.getInstance().selectByStudentID(student.getId());
 
 // su dung trong formAddInfor
@@ -103,79 +104,32 @@ public class DetailStudentController implements Initializable {
 // xa huyen tinh duoc chon
     int code_province_selected;
     int code_district_selected;
-    int code_comune_selected;
+    int code_commune_selected;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         this.turn_text_field_OFF();
+        this.showInformationDetail();
+        this.getFormAnchorPane();
 
-        txtFirstName.setText(student.getFirstName());
-        txtLastName.setText(student.getLastName());
-        if(student.getGender()){
-            genderMale.setSelected(true);
-        } else {
-            genderFemale.setSelected(true);
-        }
-        txtPhone.setText(student.getPhone());
-        txtBirth.setValue(student.getBirth());
-        txtEmail.setText(student.getEmail());
-        txtStudentCode.setText(Optional.ofNullable(studentLearn.getStudent_code()).orElseGet(() -> "Chưa có mã HV"));
-
-//        Xử lí Địa Chi
-
-        txtlang.setText(this.splitAddress(student.getAddress()).get(0));
-
-        this.showListProvinces();
-        this.showListDistricts();
-        this.showListWards();
-
-//  ----------------------------------------------------
-
-        btnStatus.setSelected(student.getStatus() == 1);
-
-
-        Student_Learn studentLearn = Student_LearnDAO
-                .getInstance()
-                .selectByStudentID(student.getId());
-        if(studentLearn != null){
-            txtClass.setText(studentLearn.getClasses().getName());
-            txtCourse.setText(studentLearn.getCourse().getName());
-        } else {
-            txtClass.setText("Chưa có lớp học");
-            txtCourse.setText("Chưa tham gia khóa học");
-        }
-
-//--------------- AnchorPane formAddInfor And UPDATE infor ------------------------------
-        formAddInformation.setVisible(false);
-        btnUpdate.setOnAction(event -> {
-            formAddInformation.setVisible(true);
-
-            this.turn_text_field_ON();
-
-            this.showListClasses();
-            this.showListCourses();
-            txtAddStudentCode.setText(txtStudentCode.getText());
-
-        });
+        txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
+        txtLastName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
+        txtPhone.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
+        txtBirth.valueProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
+        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
+        txtAddStudentCode.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
     }
 
     @FXML
     void saveStudent(ActionEvent event) {
-
-        if(this.checkEmpty()){
 // ----- update Student -------
-            StudentDAO.getIntance().update(this.getObjectStudent());
+        StudentDAO.getInstance().update(this.getObjectStudent());
 
 // ----- update Student_Learn -------
-            Student_LearnDAO.getInstance().update(this.getObjectStudent_Learn());
-
-            AlertUtil.showInforEAlert("Thông báo", "Chỉnh sửa học viên thành công","");
-        } else {
-            AlertUtil.showErrorAlert("Thông báo", "Cập nhật không thành công", "Nhập dầy đủ thông tin học viên");
-            this.setPlaceholderStudent();
-        }
+        Student_LearnDAO.getInstance().update(this.getObjectStudent_Learn());
+        AlertUtil.showInforEAlert("Thông báo", "Chỉnh sửa học viên thành công","");
         try {
+            this.detailStudentStage.close();
             Navigator.getInstance().gotoStudent();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -222,11 +176,7 @@ public class DetailStudentController implements Initializable {
         btnListCourse.setValue(studentLearn.getCourse().getName());
     }
 
-
-
-
-
-    public Student getObjectStudent(){
+    private Student getObjectStudent(){
         Student studentUpdate = new Student();
 
         studentUpdate.setId(student.getId());
@@ -244,7 +194,7 @@ public class DetailStudentController implements Initializable {
         return studentUpdate;
     }
 
-    public Student_Learn getObjectStudent_Learn(){
+    private Student_Learn getObjectStudent_Learn(){
         Student_Learn studentLearn = Student_LearnDAO.getInstance().selectByStudentID(student.getId());
 
         studentLearn.setClasses(classSelected);
@@ -253,11 +203,7 @@ public class DetailStudentController implements Initializable {
 
         return studentLearn;
     }
-
-
     void turn_text_field_OFF(){
-        btnSave.setDisable(true);
-
         txtFirstName.setEditable(false);
         txtLastName.setEditable(false);
         genderFemale.setDisable(true);
@@ -272,14 +218,10 @@ public class DetailStudentController implements Initializable {
         btnStatus.setDisable(true);
         txtCourse.setEditable(false);
         txtClass.setEditable(false);
-
         txtStudentCode.setEditable(false);
-
     }
 
     void turn_text_field_ON(){
-        btnSave.setDisable(false);
-
         txtFirstName.setEditable(true);
         txtLastName.setEditable(true);
         genderFemale.setDisable(false);
@@ -291,9 +233,7 @@ public class DetailStudentController implements Initializable {
         huyen.setDisable(false);
         xa.setDisable(false);
         txtlang.setEditable(true);
-
         btnStatus.setDisable(true);
-
         txtCourse.setDisable(true);
         txtClass.setDisable(true);
         txtStudentCode.setDisable(true);
@@ -323,28 +263,6 @@ public class DetailStudentController implements Initializable {
             txtAddStudentCode.setPromptText("Nhập Mã HV...");
         }
 
-    }
-
-    Boolean checkEmpty(){
-        if (txtFirstName.getText().isEmpty()) {
-            return false;
-        }
-        if (txtLastName.getText().isEmpty()) {
-            return false;
-        }
-        if (txtBirth.getValue() == null) {
-            return false;
-        }
-        if (txtPhone.getText().isEmpty()) {
-            return false;
-        }
-        if (txtEmail.getText().isEmpty()) {
-            return false;
-        }
-        if (txtAddStudentCode.getText().isEmpty()) {
-            return false;
-        }
-        return true;
     }
 
     public static String[] splitString(String input, String delimiter) {
@@ -402,8 +320,8 @@ public class DetailStudentController implements Initializable {
             String selectedCommune = xa.getValue();
             for (Map.Entry<Integer, String> entry : communes.entrySet()) {
                 if (entry.getValue().equals(selectedCommune)) {
-                    code_comune_selected = entry.getKey();
-                    System.out.println("code_commune_selected: " + code_comune_selected);
+                    code_commune_selected = entry.getKey();
+                    System.out.println("code_commune_selected: " + code_commune_selected);
                     break;
                 }
             }
@@ -411,7 +329,6 @@ public class DetailStudentController implements Initializable {
     }
 
     public ArrayList<String> splitAddress(String address){
-
         ArrayList<String> addresses = new ArrayList<>();
         String[] result = splitString(student.getAddress(), ", ");
 
@@ -436,4 +353,65 @@ public class DetailStudentController implements Initializable {
         return addresses;
     }
 
+    public void setDetailStudentStage(Stage detailStudentStage) {
+        this.detailStudentStage = detailStudentStage;
+    }
+
+    public void quit(ActionEvent actionEvent) {
+        this.detailStudentStage.close();
+    }
+
+    public void getFormAnchorPane(){
+        formAddInformation.setVisible(false);
+        btnUpdate.setOnAction(event -> {
+            formAddInformation.setVisible(true);
+            this.turn_text_field_ON();
+            this.showListClasses();
+            this.showListCourses();
+            txtAddStudentCode.setText(txtStudentCode.getText());
+        });
+    }
+
+    public void showInformationDetail(){
+        txtFirstName.setText(student.getFirstName());
+        txtLastName.setText(student.getLastName());
+        if(student.getGender()){
+            genderMale.setSelected(true);
+        } else {
+            genderFemale.setSelected(true);
+        }
+        txtPhone.setText(student.getPhone());
+        txtBirth.setValue(student.getBirth());
+        txtEmail.setText(student.getEmail());
+        txtStudentCode.setText(studentLearn.getStudent_code());
+//        Xử lí Địa Chi
+        txtlang.setText(this.splitAddress(student.getAddress()).get(0));
+
+        this.showListProvinces();
+        this.showListDistricts();
+        this.showListWards();
+//  ----------------------------------------------------
+        btnStatus.setSelected(student.getStatus() == 1);
+        Student_Learn studentLearn = Student_LearnDAO
+                .getInstance()
+                .selectByStudentID(student.getId());
+        if(studentLearn != null){
+            txtClass.setText(studentLearn.getClasses().getName());
+            txtCourse.setText(studentLearn.getCourse().getName());
+        } else {
+            txtClass.setText("Chưa có lớp học");
+            txtCourse.setText("Chưa tham gia khóa học");
+        }
+    }
+
+    private void updateSaveButtonStatus() {
+        boolean allFieldsFilled = EmailValidator.isValid(txtEmail.getText()) &&
+                PhoneNumberValidator.isValidPhoneNumber(txtPhone.getText()) &&
+                InputTextValidator.isValidDatePicker(txtBirth) &&
+                InputTextValidator.isValidName(txtFirstName.getText()) &&
+                InputTextValidator.isValidName(txtLastName.getText()) &&
+                InputTextValidator.isValidStudentCode(txtAddStudentCode.getText());
+        btnSave.setDisable(!allFieldsFilled);
+        this.setPlaceholderStudent();
+    }
 }

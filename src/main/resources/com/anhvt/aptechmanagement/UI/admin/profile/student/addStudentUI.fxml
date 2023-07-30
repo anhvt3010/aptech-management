@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,8 +32,11 @@
             <Text layoutX="159.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên" />
             <TextField fx:id="txtLastName" layoutX="187.0" layoutY="21.0" prefHeight="25.0" prefWidth="88.0" />
             <Text layoutX="12.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính" />
-            <RadioButton fx:id="genderMale" layoutX="92.0" layoutY="55.0" mnemonicParsing="false" text="Nam" />
-            <RadioButton fx:id="genderFemale" layoutX="187.0" layoutY="55.0" mnemonicParsing="false" text="Nữ" />
+            <RadioButton fx:id="genderMale" layoutX="92.0" layoutY="55.0" mnemonicParsing="false" text="Nam">
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="genderFemale" layoutX="187.0" layoutY="55.0" mnemonicParsing="false" text="Nữ" toggleGroup="$gender" />
             <Text layoutX="12.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Năm sinh" />
             <DatePicker fx:id="txtBirth" layoutX="71.0" layoutY="82.0" prefHeight="25.0" prefWidth="204.0" />
             <Text layoutX="12.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số ĐT" />
@@ -89,6 +93,6 @@
          </children>
       </AnchorPane>
       <Button fx:id="btnSave" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#saveStudent" prefHeight="25.0" prefWidth="80.0" text="Lưu" />
-      <Button fx:id="btnReset" layoutX="503.0" layoutY="461.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="25.0" prefWidth="68.0" text="Thoát" />
+      <Button fx:id="btnQuit" layoutX="503.0" layoutY="461.0" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="68.0" text="Thoát" />
    </children>
 </AnchorPane>
