@@ -10,8 +10,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ScoreDAO implements IDAO<Score>{
+    private static Connection cnn ;
+    private PreparedStatement stm = null;
 
     public static ScoreDAO getInstance(){
+        cnn = JDBCUtil.getConnection();
         return new ScoreDAO();
     }
     @Override
@@ -46,13 +49,10 @@ public class ScoreDAO implements IDAO<Score>{
 
     public ArrayList<Score> selectByIdStudent(int id) {
         ArrayList<Score> list = new ArrayList<>();
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM score WHERE student_id = ?";
-        PreparedStatement stm = null;
         try{
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, id);
-
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 Score score = new Score();
@@ -67,20 +67,18 @@ public class ScoreDAO implements IDAO<Score>{
         } catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
         return list;
     }
     public ArrayList<Score> selectByIdStudentAndIdSubject(int student_id, int subject_id) {
         ArrayList<Score> list = new ArrayList<>();
-        Connection cnn = JDBCUtil.getConnection();
         String sql = "SELECT * FROM score WHERE student_id = ? AND subject_id = ?";
-        PreparedStatement stm = null;
         try{
             stm = cnn.prepareStatement(sql);
             stm.setInt(1, student_id);
             stm.setInt(2, subject_id);
-
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 Score score = new Score();
@@ -92,14 +90,60 @@ public class ScoreDAO implements IDAO<Score>{
 
                 list.add(score);
             }
-
-
         } catch (Exception e){
             e.printStackTrace();
         } finally {
+            JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
-
         return list;
     }
+
+    public Score selectByIdStudentAndIdSubjectLT(int student_id, int subject_id) {
+        Score score = new Score();
+        String sql = "SELECT * FROM score WHERE student_id = ? AND subject_id = ? AND type = 1";
+        try{
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, student_id);
+            stm.setInt(2, subject_id);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                score.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
+                score.setSubject(SubjectDAO.getIntance().selectById(rs.getInt("subject_id")));
+                score.setScore(rs.getInt("score"));
+                score.setScore_max(rs.getInt("score_max"));
+                score.setType((byte) rs.getInt("type"));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return score;
+    }
+    public Score selectByIdStudentAndIdSubjectTH(int student_id, int subject_id) {
+        Score score = new Score();
+        String sql = "SELECT * FROM score WHERE student_id = ? AND subject_id = ? AND type = 2";
+        try{
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, student_id);
+            stm.setInt(2, subject_id);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                score.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
+                score.setSubject(SubjectDAO.getIntance().selectById(rs.getInt("subject_id")));
+                score.setScore(rs.getInt("score"));
+                score.setScore_max(rs.getInt("score_max"));
+                score.setType((byte) rs.getInt("type"));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return score;
+    }
+
 }

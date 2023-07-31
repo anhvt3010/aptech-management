@@ -175,7 +175,7 @@
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                     <children>
-                                                        <TableView fx:id="tblSubject" layoutX="104.0" layoutY="47.0" prefHeight="474.0" prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <TableView fx:id="tblSubject" layoutX="104.0" layoutY="47.0" prefHeight="431.0" prefWidth="627.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
                                                                 <TableColumn fx:id="tcSubID" minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
                                                                 <TableColumn fx:id="tcSubName" prefWidth="87.59998321533203" text="Tên Môn Học" />
@@ -186,6 +186,8 @@
                                                                 <TableColumn fx:id="tcSubType" prefWidth="58.4000244140625" text="Loại" />
                                                             </columns>
                                                         </TableView>
+                                          <Button fx:id="btnAllSubject" layoutX="15.0" layoutY="443.0" mnemonicParsing="false" onAction="#allSubject" prefHeight="25.0" prefWidth="104.0" text="Tất Cả Môn Học" />
+                                          <Button fx:id="btnBackListCourse" layoutX="512.0" layoutY="442.0" mnemonicParsing="false" onAction="#gotoBackListCourse" prefHeight="25.0" prefWidth="104.0" text="Quay Lại" />
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -213,11 +215,6 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteSubject" prefHeight="25.0" prefWidth="104.0" text="Xóa" GridPane.rowIndex="10">
-                                                   <GridPane.margin>
-                                                      <Insets left="10.0" right="10.0" />
-                                                   </GridPane.margin>
-                                                </Button>
                                                 <TextFlow prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="13" />
                                                 <TextFlow prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="14">
                                                    <children>
@@ -225,25 +222,22 @@
                                                    </children>
                                                 </TextFlow>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* BC: Bắt Buộc" GridPane.rowIndex="15" />
-                                                <Button fx:id="btnAddSubject" mnemonicParsing="false" onAction="#addSubject" prefHeight="25.0" prefWidth="104.0" text="Thêm Môn Học" GridPane.rowIndex="8">
-                                                   <GridPane.margin>
-                                                      <Insets left="3.0" />
-                                                   </GridPane.margin>
-                                                </Button>
                                                 <ChoiceBox fx:id="btnFindByCourse" prefWidth="150.0" GridPane.rowIndex="2" />
                                                 <ChoiceBox fx:id="btnFindBySemester" prefWidth="150.0" GridPane.rowIndex="4" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lọc Theo Khóa Học" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lọc Theo Kì Học" textAlignment="CENTER" GridPane.rowIndex="3" />
-                                                <Button fx:id="btnAllSubject" mnemonicParsing="false" onAction="#allSubject" prefHeight="25.0" prefWidth="104.0" text="Tất Cả Môn Học" GridPane.rowIndex="6">
-                                                   <GridPane.margin>
-                                                      <Insets left="3.0" right="5.0" />
-                                                   </GridPane.margin>
-                                                </Button>
-                                                <Button fx:id="btnBackListCourse" mnemonicParsing="false" onAction="#gotoBackListCourse" prefHeight="25.0" prefWidth="104.0" text="Quay Lại" GridPane.rowIndex="12">
-                                                   <GridPane.margin>
-                                                      <Insets left="5.0" right="7.0" />
-                                                   </GridPane.margin>
-                                                </Button>
+                                                <Button fx:id="btnAddSubject" mnemonicParsing="false" onAction="#addSubject" prefHeight="25.0" prefWidth="104.0" text="Thêm Môn Học" GridPane.rowIndex="9" />
+                                                <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" GridPane.rowIndex="8">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THAO TÁC" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </TextFlow>
+                                                <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="104.0" text="Chỉnh Sửa" GridPane.rowIndex="10" />
+                                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteSubject" prefHeight="25.0" prefWidth="104.0" text="Xóa" GridPane.rowIndex="11" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />

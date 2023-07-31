@@ -37,6 +37,8 @@ public class SubjectController extends SideBarController implements Initializabl
     public Button btnAllSubject;
     @FXML
     public Button btnBackListCourse;
+    @FXML
+    public Button btnUpdate;
 
     @FXML
     private Button btnDelete;
@@ -125,7 +127,7 @@ public class SubjectController extends SideBarController implements Initializabl
     }
 
     @FXML
-    void deleteSubject(ActionEvent event) {
+    void deleteSubject(ActionEvent event) throws IOException {
         Subject sub = Semester_SubjectDAO.getInstance().checkRecordSubject(selectedSubject.getId());
         Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
         if (sub.getId() > 0) {
@@ -168,6 +170,7 @@ public class SubjectController extends SideBarController implements Initializabl
                 }
             });
         }
+        Navigator.getInstance().gotoListSubject();
     }
 
 
@@ -249,5 +252,8 @@ public class SubjectController extends SideBarController implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void update(ActionEvent actionEvent) {
     }
 }

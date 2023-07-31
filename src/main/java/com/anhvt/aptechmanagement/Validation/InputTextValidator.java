@@ -1,5 +1,6 @@
 package com.anhvt.aptechmanagement.Validation;
 
+import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -42,4 +43,22 @@ public class InputTextValidator {
         Matcher matcher = pattern.matcher(studentCode.trim());
         return matcher.matches();
     }
+
+    public static boolean isPositiveInteger(String number, TextField textField) {
+        try {
+            int value = Integer.parseInt(number);
+            if (value > 0 && value < 128) {
+                return true;
+            } else {
+                AlertUtil.showErrorAlert("Lỗi", "Vui lòng nhập số giờ học hợp lệ.","");
+                textField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            AlertUtil.showErrorAlert("Lỗi", "Vui lòng nhập số giờ học hợp lệ.","");
+            textField.setText("");
+            return false;
+        }
+    }
+
 }

@@ -119,7 +119,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Button fx:id="btnSave" layoutX="43.0" layoutY="442.0" mnemonicParsing="false" onAction="#saveStudent" prefHeight="25.0" prefWidth="80.0" text="Lưu " />
-      <Button fx:id="btnUpdate" layoutX="491.0" layoutY="442.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Chỉnh sửa" />
+      <Button fx:id="btnSave" layoutX="14.0" layoutY="442.0" mnemonicParsing="false" onAction="#saveStudent" prefHeight="25.0" prefWidth="80.0" text="Lưu " />
+      <Button fx:id="btnUpdate" layoutX="144.0" layoutY="442.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Chỉnh sửa" />
+      <Button fx:id="btnQuit" layoutX="512.0" layoutY="442.0" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="73.0" text="Thoát" />
    </children>
 </AnchorPane>

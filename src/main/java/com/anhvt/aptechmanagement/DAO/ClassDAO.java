@@ -88,4 +88,33 @@ public class ClassDAO implements IDAO<Classes>{
     public ArrayList<Classes> selectByCondition(String condition) {
         return null;
     }
+
+    public ArrayList<Classes> findClassesByCourseID(int course_id) {
+        ArrayList<Classes> listClasses = new ArrayList<>();
+        String sql = "SELECT * FROM class WHERE course_id = ?";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, course_id);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Classes cl = new Classes();
+
+                cl.setId(rs.getInt("id"));
+                cl.setName(rs.getString("name"));
+                cl.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
+                cl.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
+                cl.setDescription(rs.getString("description"));
+                cl.setLimit(rs.getInt("student_limits"));
+                cl.setType((byte) rs.getInt("type"));
+
+                listClasses.add(cl);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return listClasses;
+    }
 }

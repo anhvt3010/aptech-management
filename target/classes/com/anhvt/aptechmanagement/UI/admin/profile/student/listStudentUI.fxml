@@ -162,10 +162,10 @@
                                             <columns>
                                               <TableColumn fx:id="tcID" minWidth="9.066650390625" prefWidth="29.333251953125" text="STT" />
                                               <TableColumn fx:id="tcName" prefWidth="117.11115646362305" text="Họ &amp; Tên" />
-                                                <TableColumn fx:id="tcCodeStudent" prefWidth="93.3333740234375" text="Mã HV" />
-                                                <TableColumn prefWidth="284.6666564941406" text="Liên hệ">
+                                                <TableColumn fx:id="tcCodeStudent" prefWidth="111.77780151367188" text="Mã HV" />
+                                                <TableColumn prefWidth="257.5555419921875" text="Liên hệ">
                                                    <columns>
-                                                      <TableColumn fx:id="tcEmail" prefWidth="195.0" text="Email" />
+                                                      <TableColumn fx:id="tcEmail" prefWidth="175.0" text="Email" />
                                                       <TableColumn fx:id="tcPhone" prefWidth="100.0" text="SĐT" />
                                                    </columns></TableColumn>
                                                 <TableColumn fx:id="tcStatus" prefWidth="86.66658528645837" text="Trạng Thái" />

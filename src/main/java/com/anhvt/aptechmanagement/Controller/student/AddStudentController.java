@@ -105,7 +105,7 @@ public class AddStudentController implements Initializable {
         this.showListDistrict();
         this.showListCommune();
         this.showListCourse();
-        this.showListClass();
+//        this.showListClass();
 
         txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
         txtLastName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
@@ -233,6 +233,7 @@ public class AddStudentController implements Initializable {
             for (Map.Entry<Integer, String> entry : courseMap.entrySet()) {
                 if (entry.getValue().equals(newValue)) {
                     selectedCourseId = entry.getKey();
+                    this.showListClass();
                     System.out.println("Course id: " + selectedCourseId);
                     break;
                 }
@@ -241,7 +242,10 @@ public class AddStudentController implements Initializable {
     }
 
     private void showListClass(){
-        ArrayList<Classes> classes = ClassDAO.getIntance().findAll();
+        ArrayList<Classes> classes = ClassDAO.getIntance().findClassesByCourseID(selectedCourseId);
+        if(classes.isEmpty()){
+            txtAddClass.setDisable(true);
+        }
         Map<Integer, String> classMap = new HashMap<>();
         for (Classes cls : classes) {
             classMap.put(cls.getId(), cls.getName());

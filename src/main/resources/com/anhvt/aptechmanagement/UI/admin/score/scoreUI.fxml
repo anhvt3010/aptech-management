@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.07274522712310733" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="610.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.ScoreController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #9e5050;">
+         <children>
+            <MenuButton layoutX="863.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cài Đặt">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Đổi mật khẩu" />
+                  <MenuItem mnemonicParsing="false" text="Đăng xuất" />
+               </items>
+            </MenuButton>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <SplitPane dividerPositions="0.0720430107526882" layoutX="336.0" layoutY="74.0" orientation="VERTICAL" prefHeight="560.4" prefWidth="947.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Text layoutX="392.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ ĐIỂM HỌC VIÊN">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="945.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5029698769622402" layoutX="304.0" layoutY="118.0" prefHeight="514.8" prefWidth="945.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tblScoreStudent" layoutX="153.0" layoutY="56.0" prefHeight="512.4" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="tcID" prefWidth="25.999998331069946" text="STT" />
+                                        <TableColumn fx:id="tcCode" prefWidth="90.79999732971191" text="Mã HV" />
+                                          <TableColumn fx:id="tcName" prefWidth="117.59998321533203" text="Họ &amp; Tên" />
+                                          <TableColumn fx:id="tcScore" prefWidth="82.80000305175781" text="Điểm" />
+                                          <TableColumn fx:id="tcPercent" prefWidth="75.199951171875" text="Phần Trăm" />
+                                          <TableColumn fx:id="tcStatus" prefWidth="78.4000244140625" text="Ghi Chú" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.23176470588235296" layoutX="216.0" layoutY="117.0" orientation="VERTICAL" prefHeight="512.4" prefWidth="526.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="524.0">
+                                             <children>
+                                                <Text layoutX="11.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Lớp" />
+                                                <ChoiceBox fx:id="txtClass" layoutX="79.0" layoutY="10.0" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="207.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Kì Học" />
+                                                <ChoiceBox fx:id="txtSemester" layoutX="287.0" layoutY="10.0" prefHeight="25.0" prefWidth="102.0" />
+                                                <Text layoutX="11.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Môn" />
+                                                <ChoiceBox fx:id="txtSubject" layoutX="79.0" layoutY="44.0" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="12.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hình Thức" />
+                                                <ChoiceBox fx:id="txtTypeSubject" layoutX="79.0" layoutY="80.0" onDragDetected="#chooseTypeSubject" prefHeight="25.0" prefWidth="112.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="463.0">
+                                             <children>
+                                                <AnchorPane layoutX="5.0" layoutY="36.0" prefHeight="388.0" prefWidth="454.0" style="-fx-background-color: #888; -fx-background-radius: 10;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="36.0">
+                                                   <children>
+                                                      <Button fx:id="btnQuit" layoutX="398.0" layoutY="315.0" mnemonicParsing="false" onAction="#quit" text="Thoát" />
+                                                   </children></AnchorPane>
+                                                <AnchorPane layoutX="4.0" layoutY="36.0" prefHeight="388.0" prefWidth="306.0" style="-fx-background-color: #9e5050; -fx-background-radius: 10;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="36.0">
+                                                   <children>
+                                                      <Text layoutX="21.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã HV" />
+                                                      <TextField fx:id="txtCode" layoutX="71.0" layoutY="58.0" prefHeight="25.0" prefWidth="210.0" />
+                                                      <Text layoutX="21.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên HV" />
+                                                      <TextField fx:id="txtName" layoutX="71.0" layoutY="101.0" prefHeight="25.0" prefWidth="210.0" />
+                                                      <Text layoutX="21.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điểm" />
+                                                      <TextField layoutX="71.0" layoutY="146.0" prefHeight="25.0" prefWidth="210.0" />
+                                                      <Text layoutX="21.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ghi Chú" />
+                                                      <TextField fx:id="txtStatus" layoutX="71.0" layoutY="188.0" prefHeight="25.0" prefWidth="210.0" />
+                                                      <Button fx:id="btnUpdate" layoutX="231.0" layoutY="314.0" mnemonicParsing="false" onAction="#update" text="Sửa Điểm" />
+                                                      <Button fx:id="btnSave" layoutX="9.0" layoutY="314.0" mnemonicParsing="false" onAction="#save" text="Lưu Lại" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <Text layoutX="175.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông Tin Chi Tiết">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

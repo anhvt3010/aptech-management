@@ -18,7 +18,6 @@ class MainApplicationTest {
     @Test
      void testDAO(){
 
-        System.out.println( EmailValidator.isValid("tanh@gmail.com"));
     }
 
 }

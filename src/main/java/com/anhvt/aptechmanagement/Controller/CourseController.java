@@ -75,13 +75,9 @@ public class CourseController extends SideBarController implements Initializable
     private TableColumn<Subject, String> tcSubType;
     ObservableList<CourseProperty> courses;
 
-
-
     CourseProperty selectedCourse = null;
     Semester selectedSemester = null;
     Subject selectedSubject = null;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
