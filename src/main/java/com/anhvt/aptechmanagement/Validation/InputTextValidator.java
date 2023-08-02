@@ -61,4 +61,13 @@ public class InputTextValidator {
         }
     }
 
+    public static boolean isValidScore(String scoreText) {
+        try {
+            int scoreValue = Integer.parseInt(scoreText);
+            return scoreValue >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

@@ -55,4 +55,16 @@ public class Score {
     public void setScore_max(int score_max) {
         this.score_max = score_max;
     }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id=" + id +
+                ", student=" + student +
+                ", subject=" + subject +
+                ", score=" + score +
+                ", score_max=" + score_max +
+                ", type=" + type +
+                '}';
+    }
 }

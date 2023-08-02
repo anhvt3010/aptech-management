@@ -11,6 +11,7 @@ module com.anhvt.aptechmanagement {
     requires jbcrypt;
     requires java.desktop;
     requires javafx.web;
+    requires org.apache.logging.log4j;
 
     opens com.anhvt.aptechmanagement to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller.student to javafx.fxml;

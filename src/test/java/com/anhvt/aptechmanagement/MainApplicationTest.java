@@ -17,7 +17,7 @@ import java.util.ListIterator;
 class MainApplicationTest {
     @Test
      void testDAO(){
-
+        System.out.println(ScoreDAO.getInstance().isScoreExists(1,1,1));
     }
 
 }

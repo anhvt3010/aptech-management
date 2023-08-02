@@ -42,39 +42,51 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView fx:id="tblScoreStudent" layoutX="153.0" layoutY="56.0" prefHeight="512.4" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tblScoreStudent" editable="true" layoutX="153.0" layoutY="56.0" prefHeight="512.4" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
                                         <TableColumn fx:id="tcID" prefWidth="25.999998331069946" text="STT" />
-                                        <TableColumn fx:id="tcCode" prefWidth="90.79999732971191" text="Mã HV" />
-                                          <TableColumn fx:id="tcName" prefWidth="117.59998321533203" text="Họ &amp; Tên" />
-                                          <TableColumn fx:id="tcScore" prefWidth="82.80000305175781" text="Điểm" />
-                                          <TableColumn fx:id="tcPercent" prefWidth="75.199951171875" text="Phần Trăm" />
-                                          <TableColumn fx:id="tcStatus" prefWidth="78.4000244140625" text="Ghi Chú" />
+                                        <TableColumn fx:id="tcCode" prefWidth="78.44439888000488" text="Mã HV" />
+                                          <TableColumn fx:id="tcName" prefWidth="128.88895416259766" text="Họ &amp; Tên" />
+                                          <TableColumn fx:id="tcScore" prefWidth="51.11106872558594" text="Điểm" />
+                                          <TableColumn fx:id="tcPercent" prefWidth="73.77783203125" text="Phần Trăm" />
+                                          <TableColumn fx:id="tcStatus" prefWidth="110.0" text="Ghi Chú" />
                                       </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <SplitPane dividerPositions="0.23176470588235296" layoutX="216.0" layoutY="117.0" orientation="VERTICAL" prefHeight="512.4" prefWidth="526.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <SplitPane dividerPositions="0.3859764089121887" layoutX="216.0" layoutY="117.0" orientation="VERTICAL" prefHeight="512.4" prefWidth="526.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="524.0">
                                              <children>
-                                                <Text layoutX="11.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Lớp" />
-                                                <ChoiceBox fx:id="txtClass" layoutX="79.0" layoutY="10.0" prefHeight="25.0" prefWidth="112.0" />
-                                                <Text layoutX="207.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Kì Học" />
-                                                <ChoiceBox fx:id="txtSemester" layoutX="287.0" layoutY="10.0" prefHeight="25.0" prefWidth="102.0" />
-                                                <Text layoutX="11.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Môn" />
-                                                <ChoiceBox fx:id="txtSubject" layoutX="79.0" layoutY="44.0" prefHeight="25.0" prefWidth="112.0" />
-                                                <Text layoutX="12.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hình Thức" />
-                                                <ChoiceBox fx:id="txtTypeSubject" layoutX="79.0" layoutY="80.0" onDragDetected="#chooseTypeSubject" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="11.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Môn" />
+                                                <ChoiceBox fx:id="txtSubject" layoutX="92.0" layoutY="115.0" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="12.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hình Thức" />
+                                                <ChoiceBox fx:id="txtTypeSubject" layoutX="92.0" layoutY="150.0" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="11.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn Kì Học" />
+                                                <ChoiceBox fx:id="txtSemester" layoutX="91.0" layoutY="81.0" prefHeight="25.0" prefWidth="112.0" />
+                                                <Text layoutX="260.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điểm Tối Đa" />
+                                                <ChoiceBox fx:id="txtMaxScore" layoutX="339.0" layoutY="81.0" prefHeight="25.0" prefWidth="105.0" />
+                                                <Button fx:id="btnAddFromExcel" layoutX="260.0" layoutY="149.0" mnemonicParsing="false" onAction="#addFromExcel" prefHeight="25.0" prefWidth="185.0" text="Thêm Từ Excel" />
+                                                <Text layoutX="12.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chương Trình Học :">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="txtNameCourse" layoutX="150.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <TextField fx:id="txtSearch" layoutX="14.0" layoutY="11.0" prefHeight="25.0" prefWidth="210.0" promptText="Tìm kiếm " />
                                              </children>
                                           </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="463.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="463.0">
                                              <children>
                                                 <AnchorPane layoutX="5.0" layoutY="36.0" prefHeight="388.0" prefWidth="454.0" style="-fx-background-color: #888; -fx-background-radius: 10;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="36.0">
                                                    <children>
-                                                      <Button fx:id="btnQuit" layoutX="398.0" layoutY="315.0" mnemonicParsing="false" onAction="#quit" text="Thoát" />
+                                                      <Button fx:id="btnQuit" layoutX="398.0" layoutY="234.0" mnemonicParsing="false" onAction="#quit" text="Thoát" />
                                                    </children></AnchorPane>
                                                 <AnchorPane layoutX="4.0" layoutY="36.0" prefHeight="388.0" prefWidth="306.0" style="-fx-background-color: #9e5050; -fx-background-radius: 10;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="36.0">
                                                    <children>
@@ -83,11 +95,9 @@
                                                       <Text layoutX="21.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên HV" />
                                                       <TextField fx:id="txtName" layoutX="71.0" layoutY="101.0" prefHeight="25.0" prefWidth="210.0" />
                                                       <Text layoutX="21.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điểm" />
-                                                      <TextField layoutX="71.0" layoutY="146.0" prefHeight="25.0" prefWidth="210.0" />
-                                                      <Text layoutX="21.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ghi Chú" />
-                                                      <TextField fx:id="txtStatus" layoutX="71.0" layoutY="188.0" prefHeight="25.0" prefWidth="210.0" />
-                                                      <Button fx:id="btnUpdate" layoutX="231.0" layoutY="314.0" mnemonicParsing="false" onAction="#update" text="Sửa Điểm" />
-                                                      <Button fx:id="btnSave" layoutX="9.0" layoutY="314.0" mnemonicParsing="false" onAction="#save" text="Lưu Lại" />
+                                                      <TextField fx:id="txtScore" layoutX="71.0" layoutY="146.0" prefHeight="25.0" prefWidth="210.0" />
+                                                      <Button fx:id="btnUpdate" layoutX="231.0" layoutY="234.0" mnemonicParsing="false" onAction="#update" text="Sửa Điểm" />
+                                                      <Button fx:id="btnSave" layoutX="9.0" layoutY="234.0" mnemonicParsing="false" onAction="#save" text="Lưu Lại" />
                                                    </children>
                                                 </AnchorPane>
                                                 <Text layoutX="175.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông Tin Chi Tiết">

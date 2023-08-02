@@ -2,16 +2,18 @@ package com.anhvt.aptechmanagement.Controller;
 
 import com.anhvt.aptechmanagement.DAO.*;
 import com.anhvt.aptechmanagement.Model.*;
+import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import com.anhvt.aptechmanagement.Utils.SelectedClassStorage;
+import com.anhvt.aptechmanagement.Validation.InputTextValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -20,12 +22,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class ScoreController implements Initializable {
+    private static final Logger logger = LogManager.getLogger(ScoreController.class);
     @FXML
     public Button btnQuit;
     @FXML
     public ChoiceBox<String> txtTypeSubject;
+    @FXML
+    public TextField txtScore;
+    @FXML
+    public ChoiceBox<String> txtMaxScore;
+    @FXML
+    public Button btnAddFromExcel;
+    @FXML
+    public Text txtNameCourse;
+    @FXML
+    public TextField txtSearch;
     @FXML
     private Button btnSave;
 
@@ -33,23 +49,21 @@ public class ScoreController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private TableView<Score> tblScoreStudent;
+    private TableView<Student> tblScoreStudent;
     @FXML
-    private TableColumn<Score, String> tcCode;
+    private TableColumn<Student, String> tcCode;
     @FXML
-    private TableColumn<Score, Integer> tcID;
+    private TableColumn<Student, Integer> tcID;
     @FXML
-    private TableColumn<Score, String> tcName;
+    private TableColumn<Student, String> tcName;
     @FXML
     private TableColumn<Score, Integer> tcPercent;
-    @FXML
-    private TableColumn<Score, Integer> tcScore;
 
     @FXML
-    private TableColumn<Score, String> tcStatus;
+    private TableColumn<Score, String> tcScore;
 
     @FXML
-    private ChoiceBox<String> txtClass;
+    private TableColumn<Student, String> tcStatus;
 
     @FXML
     private TextField txtCode;
@@ -61,18 +75,17 @@ public class ScoreController implements Initializable {
     private ChoiceBox<String> txtSemester;
 
     @FXML
-    private TextField txtStatus;
-
-    @FXML
     private ChoiceBox<String> txtSubject;
 
     private Stage scoreStage;
     private Classes selectedClass;
     private Semester selectedSemester;
-    private Subject selectedSubject;
+    private Student selectedStudent;
+    private int scoreMax;
+    Subject selectedSubject = null;
     private int selectedTypeSubject;
 
-    private ObservableList<Score> scores;
+    ObservableList<Student> students;
 
     private final ArrayList<Student> listStudentByClass = Student_LearnDAO.getInstance()
             .selectAllStudentsByClass(SelectedClassStorage.getSelectedClass());
@@ -82,34 +95,92 @@ public class ScoreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtNameCourse.setText(SelectedClassStorage.getSelectedClass().getCourse().getName());
+        tblScoreStudent.setDisable(true);
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(true);
+        this.textOFF();
         this.showListSemester();
-        this.showListSubject();
-        this.showTypeSubject();
+        this.showScoreMax();
 
-        scores = FXCollections.observableArrayList();
-
-//        this.showTableScore();
-
-    }
-
-    public void showTableScore(){
-        if(selectedTypeSubject == 1){
-            for(Student student : listStudentByClass){
-                scores.add(ScoreDAO.getInstance().selectByIdStudentAndIdSubjectLT(student.getId(), selectedSubject.getId()));
-            }
-        } else {
-            for(Student student : listStudentByClass){
-                scores.add(ScoreDAO.getInstance().selectByIdStudentAndIdSubjectTH(student.getId(), selectedSubject.getId()));
-            }
-        }
-        tblScoreStudent.setItems(scores);
+        students = FXCollections.observableList(listStudentByClass);
+        tblScoreStudent.setItems(students);
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcCode.setCellValueFactory(cellData -> {
-            String code = Student_LearnDAO.getInstance().selectById(cellData.getValue().getId()).getStudent_code();
+            String code = Student_LearnDAO.getInstance()
+                    .selectByStudentID(cellData.getValue().getId()).getStudent_code();
             return new SimpleStringProperty(code);
         });
+        tcName.setCellValueFactory(cellData -> {
+            String name;
+            name = cellData.getValue().getFirstName() + " " + cellData.getValue().getLastName();
+            return new SimpleStringProperty(name);
+        });
+
+        tblScoreStudent.setRowFactory(tv -> {
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && !row.isEmpty()) {
+                    selectedStudent = row.getItem();
+                    System.out.println(selectedStudent.getEmail());
+                    handle_selectedClass(selectedStudent);
+                    handleTcScore();
+                    btnUpdate.setDisable(false);
+                }
+            });
+            return row;
+        });
+
+        FilteredList<Student> filteredStudents = new FilteredList<>(students, p -> true);
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredStudents.setPredicate(student -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return student.getFirstName().toLowerCase().contains(lowerCaseFilter) ||
+                        student.getLastName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        tblScoreStudent.setItems(filteredStudents);
+
+        txtScore.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (InputTextValidator.isValidScore(newValue)) {
+                enableBtnSave();
+            } else {
+                btnSave.setDisable(true);
+            }
+        });
+    }
+
+    private void handle_selectedClass(Student selectedStudent) {
+        txtScore.clear();
+        txtCode.setText(Student_LearnDAO.getInstance().selectByStudentID(selectedStudent.getId()).getStudent_code());
+
+        txtName.setText(selectedStudent.getFirstName() + " " + selectedStudent.getLastName());
+
+        if(handleTcScore().getId() == 0){
+            txtScore.setPromptText("Chưa có điểm");
+        } else {
+            txtScore.setText(String.valueOf(handleTcScore().getScore()));
+        }
 
     }
+
+    public Score handleTcScore(){
+        Score selectedScore;
+        if(selectedTypeSubject == 1){
+            selectedScore = ScoreDAO.getInstance()
+                    .selectByIdStudentAndIdSubjectLT(selectedStudent.getId(), selectedSubject.getId());
+        } else {
+            selectedScore = ScoreDAO.getInstance()
+                    .selectByIdStudentAndIdSubjectTH(selectedStudent.getId(), selectedSubject.getId());
+        }
+
+        return selectedScore;
+    }
+
 
     public void showListSemester(){
         txtSemester.setOnAction(event -> {
@@ -137,19 +208,18 @@ public class ScoreController implements Initializable {
             int selectedIndex = txtSubject.getSelectionModel().getSelectedIndex();
             if (selectedIndex >= 0 && selectedIndex < listSubjectBySemester.size()) {
                 selectedSubject = listSubjectBySemester.get(selectedIndex);
+                this.showTypeSubject();
                 System.out.println("Chọn subject name: " + selectedSubject.getName());
+
             }
         });
 
         ArrayList<String> listSubjectNames = new ArrayList<>();
         for (Subject subject : listSubjectBySemester) {
-            listSubjectNames.add(subject.getName());
+            listSubjectNames.add(subject.getCode());
         }
         txtSubject.getItems().clear();
         txtSubject.getItems().addAll(listSubjectNames);
-    }
-    @FXML
-    public void chooseTypeSubject(MouseEvent mouseEvent) {
 
     }
 
@@ -162,11 +232,25 @@ public class ScoreController implements Initializable {
         ObservableList<String> types = FXCollections.observableArrayList("Lý Thuyết", "Thực Hành", "Đồ Án");
         txtTypeSubject.setItems(types);
 
-        txtTypeSubject.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        txtTypeSubject.setOnAction(event -> {
             for (Map.Entry<Integer, String> entry : map.entrySet()) {
-                if (entry.getValue().equals(newValue)) {
+                if (entry.getValue().equals(txtTypeSubject.getValue())) {
                     selectedTypeSubject = entry.getKey();
+                    tblScoreStudent.setDisable(false);
                     System.out.println("type subject id: " + selectedTypeSubject);
+                    break;
+                }
+            }
+        });
+    }
+    public void showScoreMax(){
+        ObservableList<String> max = FXCollections.observableArrayList("20", "100");
+        txtMaxScore.setItems(max);
+        txtMaxScore.setOnAction(event -> {
+            for (String s : max) {
+                if (s.equals(txtMaxScore.getValue())) {
+                    scoreMax = Integer.parseInt(s);
+                    System.out.println("score max: " + scoreMax);
                     break;
                 }
             }
@@ -174,14 +258,54 @@ public class ScoreController implements Initializable {
     }
 
 
+
     @FXML
     void save(ActionEvent event) {
+        if(txtScore.getText().isEmpty()){
+            ScoreDAO.getInstance().insert(this.getObjectScore());
+            AlertUtil.showInforEAlert("Thông báo", "Thêm điểm thành công", "");
+        } else {
+            ScoreDAO.getInstance().update(this.getObjectScore());
+            AlertUtil.showInforEAlert("Thông báo", "Cập nhât điểm thành công", "");
 
+        }
+    }
+
+    public Score getObjectScore(){
+        Score score = new Score();
+
+        score.setStudent(selectedStudent);
+        score.setSubject(selectedSubject);
+        if (!txtScore.getText().isEmpty()) {
+            try {
+                int scoreValue = Integer.parseInt(txtScore.getText());
+                score.setScore(scoreValue);
+            } catch (NumberFormatException e) {
+                // Xử lý nếu người dùng nhập không phải là số
+                System.out.println("Không phải số nguyên");
+            }
+        }
+        score.setScore_max(scoreMax);
+        score.setType((byte) selectedTypeSubject);
+
+        return score;
     }
     @FXML
     void update(ActionEvent event) {
-
+        this.textON();
     }
+
+    public void textOFF(){
+        txtCode.setDisable(true);
+        txtName.setDisable(true);
+        txtScore.setDisable(true);
+    }
+    public void textON(){
+        txtCode.setDisable(true);
+        txtName.setDisable(true);
+        txtScore.setDisable(false);
+    }
+
     public void quit(ActionEvent actionEvent) {
         this.scoreStage.close();
     }
@@ -195,5 +319,14 @@ public class ScoreController implements Initializable {
 
     public Classes getSelectedClass() {
         return selectedClass;
+    }
+    private void enableBtnSave() {
+        boolean isTxtMaxScoreEmpty = txtMaxScore.getValue() == null || txtMaxScore.getValue().isEmpty();
+        boolean isTxtScoreEmpty = txtScore.getText().isEmpty();
+
+        btnSave.setDisable(isTxtMaxScoreEmpty || isTxtScoreEmpty);
+    }
+    @FXML
+    public void addFromExcel(ActionEvent actionEvent) {
     }
 }
