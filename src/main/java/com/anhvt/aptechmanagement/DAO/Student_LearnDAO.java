@@ -120,8 +120,30 @@ public class Student_LearnDAO implements IDAO<Student_Learn>{
             JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
-
         return students;
+    }
+
+    public Student_Learn selectByStudentCode(String studentCode) {
+        Student_Learn studentLearn = new Student_Learn();
+        String sql = "SELECT * FROM student_learn WHERE student_code = ?";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, studentCode);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                studentLearn.setId(rs.getInt("id"));
+                studentLearn.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
+                studentLearn.setClasses(ClassDAO.getIntance().selectById(rs.getInt("class_id")));
+                studentLearn.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
+                studentLearn.setStudent_code(rs.getString("student_code"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return studentLearn;
     }
 
 }

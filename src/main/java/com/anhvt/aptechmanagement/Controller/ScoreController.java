@@ -3,6 +3,7 @@ package com.anhvt.aptechmanagement.Controller;
 import com.anhvt.aptechmanagement.DAO.*;
 import com.anhvt.aptechmanagement.Model.*;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
+import com.anhvt.aptechmanagement.Utils.ExcelReader;
 import com.anhvt.aptechmanagement.Utils.SelectedClassStorage;
 import com.anhvt.aptechmanagement.Validation.InputTextValidator;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,13 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,6 +44,10 @@ public class ScoreController implements Initializable {
     public Text txtNameCourse;
     @FXML
     public TextField txtSearch;
+    @FXML
+    public Text txtNameClass;
+    @FXML
+    public Text txtNameFile;
     @FXML
     private Button btnSave;
 
@@ -78,7 +84,6 @@ public class ScoreController implements Initializable {
     private ChoiceBox<String> txtSubject;
 
     private Stage scoreStage;
-    private Classes selectedClass;
     private Semester selectedSemester;
     private Student selectedStudent;
     private int scoreMax;
@@ -92,11 +97,14 @@ public class ScoreController implements Initializable {
     private final ArrayList<Semester> listSemesterByCourse = SemesterDAO.getInstance()
             .selectByCourseId(SelectedClassStorage.getSelectedClass().getCourse().getId());
     private ArrayList<Subject> listSubjectBySemester = new ArrayList<>();
+    private ArrayList<ObjectFromExcelScore> scores = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtNameCourse.setText(SelectedClassStorage.getSelectedClass().getCourse().getName());
+        txtNameClass.setText(SelectedClassStorage.getSelectedClass().getName());
         tblScoreStudent.setDisable(true);
+        btnAddFromExcel.setDisable(true);
         btnSave.setDisable(true);
         btnUpdate.setDisable(true);
         this.textOFF();
@@ -116,21 +124,23 @@ public class ScoreController implements Initializable {
             name = cellData.getValue().getFirstName() + " " + cellData.getValue().getLastName();
             return new SimpleStringProperty(name);
         });
-
+// sự kiện chọn row để lấy đối tượng
         tblScoreStudent.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
                     selectedStudent = row.getItem();
                     System.out.println(selectedStudent.getEmail());
+//                    hiển thị thông tin chi tiết student
                     handle_selectedClass(selectedStudent);
                     handleTcScore();
+                    this.textOFF();
                     btnUpdate.setDisable(false);
                 }
             });
             return row;
         });
-
+// tính năng search
         FilteredList<Student> filteredStudents = new FilteredList<>(students, p -> true);
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredStudents.setPredicate(student -> {
@@ -144,7 +154,7 @@ public class ScoreController implements Initializable {
         });
 
         tblScoreStudent.setItems(filteredStudents);
-
+//    nhập điểm để bật nút Save
         txtScore.textProperty().addListener((observable, oldValue, newValue) -> {
             if (InputTextValidator.isValidScore(newValue)) {
                 enableBtnSave();
@@ -237,6 +247,7 @@ public class ScoreController implements Initializable {
                 if (entry.getValue().equals(txtTypeSubject.getValue())) {
                     selectedTypeSubject = entry.getKey();
                     tblScoreStudent.setDisable(false);
+                    btnAddFromExcel.setDisable(false);
                     System.out.println("type subject id: " + selectedTypeSubject);
                     break;
                 }
@@ -246,6 +257,8 @@ public class ScoreController implements Initializable {
     public void showScoreMax(){
         ObservableList<String> max = FXCollections.observableArrayList("20", "100");
         txtMaxScore.setItems(max);
+        txtMaxScore.setValue("20");
+        scoreMax = 20;
         txtMaxScore.setOnAction(event -> {
             for (String s : max) {
                 if (s.equals(txtMaxScore.getValue())) {
@@ -257,11 +270,9 @@ public class ScoreController implements Initializable {
         });
     }
 
-
-
     @FXML
     void save(ActionEvent event) {
-        if(txtScore.getText().isEmpty()){
+        if(!ScoreDAO.getInstance().isScoreExists(this.getObjectScore())){
             ScoreDAO.getInstance().insert(this.getObjectScore());
             AlertUtil.showInforEAlert("Thông báo", "Thêm điểm thành công", "");
         } else {
@@ -273,21 +284,11 @@ public class ScoreController implements Initializable {
 
     public Score getObjectScore(){
         Score score = new Score();
-
         score.setStudent(selectedStudent);
         score.setSubject(selectedSubject);
-        if (!txtScore.getText().isEmpty()) {
-            try {
-                int scoreValue = Integer.parseInt(txtScore.getText());
-                score.setScore(scoreValue);
-            } catch (NumberFormatException e) {
-                // Xử lý nếu người dùng nhập không phải là số
-                System.out.println("Không phải số nguyên");
-            }
-        }
+        score.setScore(Integer.parseInt(txtScore.getText()));
         score.setScore_max(scoreMax);
         score.setType((byte) selectedTypeSubject);
-
         return score;
     }
     @FXML
@@ -312,14 +313,6 @@ public class ScoreController implements Initializable {
     public void setScoreStage(Stage scoreStage) {
         this.scoreStage = scoreStage;
     }
-
-    public void setSelectedClass(Classes classes) {
-        this.selectedClass = classes;
-    }
-
-    public Classes getSelectedClass() {
-        return selectedClass;
-    }
     private void enableBtnSave() {
         boolean isTxtMaxScoreEmpty = txtMaxScore.getValue() == null || txtMaxScore.getValue().isEmpty();
         boolean isTxtScoreEmpty = txtScore.getText().isEmpty();
@@ -328,5 +321,64 @@ public class ScoreController implements Initializable {
     }
     @FXML
     public void addFromExcel(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+        File selectedFile = fileChooser.showOpenDialog(scoreStage);
+        txtNameFile.setText(selectedFile.getName());
+
+        int indexOfUnderscore  = selectedFile.getName().indexOf("_");
+        if (indexOfUnderscore != -1) {
+            String className = selectedFile.getName().substring(0, indexOfUnderscore);
+            if(className.equalsIgnoreCase(SelectedClassStorage.getSelectedClass().getName())){
+                this.checkInputFileNull(selectedFile);
+                this.addListScore();
+                AlertUtil.showInforEAlert("Thông báo", "Thêm Danh sách điểm thành công", "");
+            } else {
+                AlertUtil.showErrorAlert("Lỗi", "Lớp được chọn không đúng !", "");
+            }
+        } else {
+            AlertUtil.showErrorAlert("Lỗi", "Lớp được chọn không đúng !", "");
+        }
+    }
+
+    public void checkInputFileNull(File selectedFile){
+        if (selectedFile != null) {
+            if (selectedFile.getName().toLowerCase().endsWith(".xlsx")) {
+                try {
+//                    lấy ra danh sách đối tượng có mã HV và điểm
+                    scores = ExcelReader.readExcel(selectedFile.getAbsolutePath());
+                    for(ObjectFromExcelScore obj : scores){
+                        System.out.println(obj.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("File không hợp lệ");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn phải chọn một tệp Excel (.xlsx). Vui lòng chọn lại.");
+                alert.showAndWait();
+            }
+        }
+    }
+    public void addListScore(){
+        //        lấy ra danh sách student_learn để lấy danh sách student_id theo mã HV
+        ArrayList<Score> listAddScore = new ArrayList<>();
+
+        for(ObjectFromExcelScore obj : scores){
+            // lấy ra đối tượng từ objecj có mã hs
+            Student_Learn studentLearn = Student_LearnDAO.getInstance().selectByStudentCode(obj.getCodeStudent());
+            System.out.println(studentLearn.toString());
+            Score score = new Score();
+            score.setScore(obj.getScore());
+            score.setScore_max(scoreMax);
+            score.setStudent(StudentDAO.getInstance().selectById(studentLearn.getStudent().getId()));
+            score.setSubject(selectedSubject);
+            score.setType((byte) selectedTypeSubject);
+
+            ScoreDAO.getInstance().insert(score);
+
+        }
     }
 }

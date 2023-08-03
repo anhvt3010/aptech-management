@@ -182,14 +182,17 @@ public class ScoreDAO implements IDAO<Score>{
         return score;
     }
     public Score selectByIdStudentAndIdSubjectTH(int student_id, int subject_id) {
+        Connection con = JDBCUtil.getConnection();
+        PreparedStatement pstm = null;
         Score score = new Score();
         String sql = "SELECT * FROM score WHERE student_id = ? AND subject_id = ? AND type = 2";
         try{
-            stm = cnn.prepareStatement(sql);
-            stm.setInt(1, student_id);
-            stm.setInt(2, subject_id);
-            ResultSet rs = stm.executeQuery();
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, student_id);
+            pstm.setInt(2, subject_id);
+            ResultSet rs = pstm.executeQuery();
             while(rs.next()){
+                score.setId(rs.getInt("id"));
                 score.setStudent(StudentDAO.getInstance().selectById(rs.getInt("student_id")));
                 score.setSubject(SubjectDAO.getIntance().selectById(rs.getInt("subject_id")));
                 score.setScore(rs.getInt("score"));
@@ -199,19 +202,19 @@ public class ScoreDAO implements IDAO<Score>{
         } catch (Exception e){
             e.printStackTrace();
         } finally {
-            JDBCUtil.closePreparedStatement(stm);
-            JDBCUtil.closeConnection(cnn);
+            JDBCUtil.closePreparedStatement(pstm);
+            JDBCUtil.closeConnection(con);
         }
         return score;
     }
 
-    public boolean isScoreExists(int studentId, int subjectId, int type) {
+    public boolean isScoreExists(Score score) {
         String sql = "SELECT COUNT(*) FROM score WHERE student_id = ? AND subject_id = ? AND type = ?";
         try {
             stm = cnn.prepareStatement(sql);
-            stm.setInt(1, studentId);
-            stm.setInt(2, subjectId);
-            stm.setInt(3, type);
+            stm.setInt(1, score.getStudent().getId());
+            stm.setInt(2, score.getSubject().getId());
+            stm.setInt(3, score.getType());
             try (ResultSet resultSet = stm.executeQuery()) {
                 if (resultSet.next()) {
                     int count = resultSet.getInt(1);
