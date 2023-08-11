@@ -199,7 +199,7 @@
                                           <TextField fx:id="txtStudentBirth" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtStudentEmail" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <TextField fx:id="txtStudentPhone" editable="false" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <TextArea fx:id="txtStudentAddress" editable="false" prefHeight="68.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <TextArea fx:id="txtStudentAddress" editable="false" prefHeight="68.0" prefWidth="238.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                        </children>
                                        <padding>
                                           <Insets bottom="30.0" left="10.0" top="30.0" />

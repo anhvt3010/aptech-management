@@ -124,7 +124,7 @@ public class ScoreStudentSem4Controller  extends SideBarController implements In
     }
     @FXML
     void showKi1(ActionEvent event) throws IOException {
-//        Navigator.getInstance().gotoScoreSem1();
+        Navigator.getInstance().gotoScoreSem1();
     }
 
     @FXML

@@ -1,20 +1,40 @@
 package com.anhvt.aptechmanagement.Controller;
 
+import com.anhvt.aptechmanagement.DAO.ClassDAO;
+import com.anhvt.aptechmanagement.DAO.CourseDAO;
+import com.anhvt.aptechmanagement.DAO.LecturerDAO;
+import com.anhvt.aptechmanagement.DAO.StudentDAO;
+import com.anhvt.aptechmanagement.Model.Classes;
+import com.anhvt.aptechmanagement.Model.Course;
+import com.anhvt.aptechmanagement.Model.Staff;
+import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HomeAdminController implements Initializable {
-
+    @FXML
+    public Text txtNumStudent;
+    @FXML
+    public Text txtNumLecture;
+    @FXML
+    public Text txtNumCourse;
+    @FXML
+    public Text txtNumClass;
+    @FXML
+    public PieChart chart;
     @FXML
     private Button btnStudent;
 
@@ -31,6 +51,12 @@ public class HomeAdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        txtNumStudent.setText(this.getAllStudent().size() + " +");
+        txtNumLecture.setText(this.getAllLecture().size() + " +");
+        txtNumCourse.setText(this.getAllCourse().size() + " +");
+        txtNumClass.setText(this.getAllClass().size() + " +");
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         XYChart.Data<String, Number> jan = new XYChart.Data<>("Jan", 100);
         XYChart.Data<String, Number> feb = new XYChart.Data<>("Feb", 200);
@@ -62,6 +88,17 @@ public class HomeAdminController implements Initializable {
         barChart.setTitle("Thu nhập hàng tháng");
 
         barChart.getData().add(barchart);
-
+    }
+    public ArrayList<Student> getAllStudent(){
+        return StudentDAO.getInstance().findAll();
+    }
+    public ArrayList<Staff> getAllLecture(){
+        return LecturerDAO.getIntance().findAll();
+    }
+    public ArrayList<Course> getAllCourse(){
+        return CourseDAO.getIntance().findAllCourse();
+    }
+    public ArrayList<Classes> getAllClass(){
+        return ClassDAO.getIntance().findAll();
     }
 }

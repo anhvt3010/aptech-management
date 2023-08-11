@@ -1,5 +1,7 @@
 package com.anhvt.aptechmanagement.Controller;
 
+import com.anhvt.aptechmanagement.Controller.student.AddStudentController;
+import com.anhvt.aptechmanagement.DAO.FormDAO;
 import com.anhvt.aptechmanagement.DAO.NotificationDAO;
 import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
@@ -11,15 +13,27 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class NotificationController extends SideBarController implements Initializable {
     @FXML
     public Button btnUpdate;
+    @FXML
+    public ChoiceBox<String> choiceSubject;
+    @FXML
+    public ChoiceBox<String> choiceCourse;
+    @FXML
+    public ChoiceBox<String> choiceClass;
     @FXML
     private Button btnAdd;
     @FXML
@@ -50,6 +64,8 @@ public class NotificationController extends SideBarController implements Initial
 
     @FXML
     private TableColumn<NotificationProperty, String> tcTitle;
+
+    private Stage addNotificationStage;
 
     ObservableList<NotificationProperty> notificationProperties;
 
@@ -88,12 +104,48 @@ public class NotificationController extends SideBarController implements Initial
 
     @FXML
     void add(ActionEvent event) {
+        try {
+            if(addNotificationStage != null && addNotificationStage.isShowing()){
+                addNotificationStage.toFront();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/notification/addNotificationUI.fxml"));
+                Parent root = loader.load();
+                addNotificationStage = new Stage();
+                addNotificationStage.setTitle("Thêm Thông Báo");
+                addNotificationStage.setScene(new Scene(root));
 
+                addNotificationStage.setOnCloseRequest(t -> {
+                    addNotificationStage = null;
+                });
+
+                AddNotificationController controller = loader.getController();
+                controller.setAddNotificationStage(addNotificationStage);
+
+                addNotificationStage.showAndWait();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void remove(ActionEvent event) {
+        if (selectedNotification != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận xóa");
+            alert.setHeaderText("Bạn có chắc chắn muốn xóa?");
 
+            ButtonType confirmButton = new ButtonType("Đồng ý", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelButton = new ButtonType("Hủy", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == confirmButton) {
+                NotificationDAO.getInstance().removeByID(selectedNotification.getId());
+                notificationProperties.setAll(NotificationDAO.getInstance().findAllProperty());
+            }
+        }
     }
 
     @FXML

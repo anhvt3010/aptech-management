@@ -24,12 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-
 public class ScoreController implements Initializable {
-    private static final Logger logger = LogManager.getLogger(ScoreController.class);
+
     @FXML
     public Button btnQuit;
     @FXML
@@ -62,14 +58,7 @@ public class ScoreController implements Initializable {
     private TableColumn<Student, Integer> tcID;
     @FXML
     private TableColumn<Student, String> tcName;
-    @FXML
-    private TableColumn<Score, Integer> tcPercent;
 
-    @FXML
-    private TableColumn<Score, String> tcScore;
-
-    @FXML
-    private TableColumn<Student, String> tcStatus;
 
     @FXML
     private TextField txtCode;

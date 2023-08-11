@@ -1,7 +1,6 @@
 package com.anhvt.aptechmanagement.DAO;
 
 import com.anhvt.aptechmanagement.Model.Classes;
-import com.anhvt.aptechmanagement.Model.Student_Learn;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
@@ -117,4 +116,32 @@ public class ClassDAO implements IDAO<Classes>{
         }
         return listClasses;
     }
+
+    public Classes getClassWithLastestCreatedTime() {
+        Classes cls = null;
+        String sql = "SELECT * FROM class ORDER BY created DESC LIMIT 1";
+
+        try {
+            stm = cnn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                cls = new Classes();
+                cls.setId(rs.getInt("id"));
+                cls.setName(rs.getString("name"));
+                cls.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
+                cls.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
+                cls.setDescription(rs.getString("description"));
+                cls.setLimit(rs.getInt("student_limits"));
+                cls.setType((byte) rs.getInt("type"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return cls;
+    }
+
+
 }

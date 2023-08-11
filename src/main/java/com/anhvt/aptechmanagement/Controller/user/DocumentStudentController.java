@@ -1,78 +1,46 @@
 package com.anhvt.aptechmanagement.Controller.user;
 
 import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.DAO.FormDAO;
+import com.anhvt.aptechmanagement.DAO.NotificationDAO;
+import com.anhvt.aptechmanagement.Model.Form;
+import com.anhvt.aptechmanagement.Model.Notification;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DocumentStudentController extends SideBarController implements Initializable {
     @FXML
-    private Hyperlink linkBaoLuu;
+    private TableView<Form> tblForm;
 
     @FXML
-    private Hyperlink linkChuyenLop;
+    private TableColumn<Form, Hyperlink> tcContent;
 
     @FXML
-    private Hyperlink linkHoanThi;
+    private TableColumn<Form, String> tcTitle;
 
-    @FXML
-    private Hyperlink linkHocDuThinh;
-
-    @FXML
-    private Hyperlink linkHocLai;
-
-    @FXML
-    private Hyperlink linkHocSongSong;
-
-    @FXML
-    private Hyperlink linkNghiHoc;
-
-    @FXML
-    private Hyperlink linkPhucKhao;
-
-    @FXML
-    private Hyperlink linkThiLai;
-
+    private ObservableList<Form> forms;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        linkThiLai.setOnAction(e -> {
-            this.showForm("https://forms.gle/oyRL8NPMvC1hSESU6");
-        });
+        forms = FXCollections.observableList(FormDAO.getInstance().findAll());
 
-        linkHoanThi.setOnAction(e -> {
-            this.showForm("https://forms.gle/SCYCjFqhgq9iYDsX7");
-        });
-
-        linkBaoLuu.setOnAction(e -> {
-            this.showForm("https://forms.gle/Y5ZwKh6LZNnd7mb5A");
-        });
-
-        linkChuyenLop.setOnAction(e -> {
-            this.showForm("https://forms.gle/8v5RxCqe8Qvh1Eqh7");
-        });
-
-        linkHocDuThinh.setOnAction(e -> {
-            this.showForm("https://forms.gle/h78P6o4VYAnNXMw67");
-        });
-
-        linkHocLai.setOnAction(e -> {
-            this.showForm("https://forms.gle/eYenchwaCeqEqnxN9");
-        });
-
-        linkHocSongSong.setOnAction(e -> {
-            this.showForm("https://forms.gle/EMHcegzuCuBDe5216");
-        });
-
-        linkNghiHoc.setOnAction(e -> {
-            this.showForm("https://forms.gle/rYRjPa7Un9p7gZqU6");
-        });
-
-        linkPhucKhao.setOnAction(e -> {
-            this.showForm("https://forms.gle/beG25JQDfCKkyjCG6");
+        tblForm.setItems(forms);
+        tcTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tcContent.setCellValueFactory(cellData -> {
+            String link = cellData.getValue().getLink();
+            Hyperlink hyperlink = new Hyperlink(link);
+            hyperlink.setOnAction(event -> showForm(link));
+            return new SimpleObjectProperty<>(hyperlink);
         });
 
     }

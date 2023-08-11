@@ -1,8 +1,6 @@
 package com.anhvt.aptechmanagement.DAO;
 
-import com.anhvt.aptechmanagement.Model.Classes;
 import com.anhvt.aptechmanagement.Model.Notification;
-import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Property.NotificationProperty;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
@@ -23,7 +21,24 @@ public class NotificationDAO implements IDAO<Notification> {
 
     @Override
     public int insert(Notification notification) {
-        return 0;
+        String sql = "INSERT INTO notification (title, content, status, student_id) VALUES (?, ?, ?, ?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, notification.getTitle());
+            stm.setString(2, notification.getContent());
+            stm.setInt(3, notification.getStatus());
+            stm.setInt(4, notification.getStudent().getId());
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return 1;
     }
 
     @Override
@@ -50,6 +65,23 @@ public class NotificationDAO implements IDAO<Notification> {
     @Override
     public int remove(Notification notification) {
         return 0;
+    }
+
+    public int removeByID(int notification_id) {
+        int result = 0;
+        String sql = "DELETE FROM notification WHERE id = ?";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, notification_id);
+
+            result = stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return result;
     }
 
     @Override
