@@ -5,19 +5,26 @@ import com.anhvt.aptechmanagement.DAO.SemesterDAO;
 import com.anhvt.aptechmanagement.DAO.Semester_SubjectDAO;
 import com.anhvt.aptechmanagement.DAO.SubjectDAO;
 import com.anhvt.aptechmanagement.Model.Course;
+import com.anhvt.aptechmanagement.Model.Schedule;
 import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Property.CourseProperty;
+import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,20 +33,26 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CourseController extends SideBarController implements Initializable {
-    int selected_id;
     @FXML
-    public Button btnSave;
+    public AnchorPane formAdd;  @FXML
+    public TextField txtAddName;    @FXML
+    public RadioButton btnAddStatus;    @FXML
+    public Button btnSaveAdd;
+
+    @FXML
+    public AnchorPane formUpdate;   @FXML
+    public TextField txtUpdateName;    @FXML
+    public RadioButton btnUpdateStatus;    @FXML
+    public Button btnDetailSubject;
+    @FXML
+    public Button btnAddCourse;    @FXML
+    public Button btnAddSemester;    @FXML
+    public Button btnAddSubject;    @FXML
+    public Button btnDelete;
+    @FXML
+    public Button btnSaveUpdate;
     @FXML
     public Button btnUpdate;
-
-    @FXML
-    private TextField txtName;
-
-    @FXML
-    private TextField txtNum;
-
-    @FXML
-    private RadioButton btnStatus;
 
     @FXML
     private Button btnListSubject;
@@ -73,11 +86,14 @@ public class CourseController extends SideBarController implements Initializable
     private TableColumn<Subject, Integer> tcSubNum;
     @FXML
     private TableColumn<Subject, String> tcSubType;
-    ObservableList<CourseProperty> courses;
 
+    private Stage stageCourse;
+    ObservableList<CourseProperty> courses;
     CourseProperty selectedCourse = null;
     Semester selectedSemester = null;
     Subject selectedSubject = null;
+
+    int selected_id;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -162,44 +178,85 @@ public class CourseController extends SideBarController implements Initializable
         this.setDisableButton();
         System.out.println("Selected course: " + course.getName());
         selected_id = course.getId();
-        txtName.setText(course.getName());
-        btnStatus.setSelected(!course.getStatus().equals("Khóa"));
+        txtUpdateName.setText(course.getName());
+        btnUpdateStatus.setSelected(!course.getStatus().equals("Khóa"));
 
     }
 
-
-
+    public void setEnableButton(){
+        txtUpdateName.setDisable(false);
+        btnUpdateStatus.setDisable(false);
+    }
+    public void setDisableButton(){
+        txtUpdateName.setDisable(true);
+        btnUpdateStatus.setDisable(true);
+    }
     @FXML
-    public void saveCourse(ActionEvent actionEvent) {
+    void gotoListSubject(ActionEvent event) throws IOException {
+        Navigator.getInstance().gotoListSubject();
+    }
+    @FXML
+    public void saveAdd(ActionEvent actionEvent) {
+        Course course = new Course();
+        course.setName(txtAddName.getText());
+        course.setStatus((byte) (btnAddStatus.isSelected()?1:0));
+
+        System.out.println(course);
+        CourseDAO.getIntance().insertCourse(course);
+        courses.setAll(CourseDAO.getIntance().findAll());
+        AlertUtil.showInforEAlert("Thông Báo", "Thêm Khóa học thành công", "");
+    }
+    @FXML
+    public void saveUpdate(ActionEvent actionEvent) {
         Course course = new Course();
         course.setId(selected_id);
-        course.setName(txtName.getText());
-        course.setStatus((byte) (btnStatus.isSelected() ?1:0));
+        course.setName(txtUpdateName.getText());
+        course.setStatus((byte) (btnUpdateStatus.isSelected() ?1:0));
 
         CourseProperty courseProperty = new CourseProperty(course);
 
         CourseDAO.getIntance().update(courseProperty);
 
         courses.setAll(CourseDAO.getIntance().findAll());
-
+        AlertUtil.showInforEAlert("Thông Báo", "Sửa khóa học thành công", "");
     }
     @FXML
-    public void updateCourse(ActionEvent actionEvent) {
-        this.setEnableButton();
-    }
-
-
-    public void setEnableButton(){
-        txtName.setDisable(false);
-        btnStatus.setDisable(false);
-    }
-    public void setDisableButton(){
-        txtName.setDisable(true);
-        btnStatus.setDisable(true);
+    public void update(ActionEvent actionEvent) {
+        if(selectedCourse != null){
+            this.setEnableButton();
+            formUpdate.setVisible(true);
+        }
     }
     @FXML
-    void gotoListSubject(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoListSubject();
+    public void delete(ActionEvent actionEvent) {
     }
+    @FXML
+    public void enable_formAdd(ActionEvent actionEvent) {
+        formUpdate.setVisible(false);
+        formAdd.setVisible(true);
 
+        try {
+            if (stageCourse != null && stageCourse.isShowing()) {
+                stageCourse.toFront();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/course/addCourseUI.fxml"));
+                Parent root = loader.load();
+
+                stageCourse = new Stage();
+                stageCourse.setTitle("Thêm Khóa học");
+                stageCourse.setScene(new Scene(root));
+
+                stageCourse.setOnCloseRequest(t -> {
+                    stageCourse = null;
+                });
+
+                AddCourseController controller = loader.getController();
+                controller.setStageAddCourse(stageCourse);
+
+                stageCourse.showAndWait();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

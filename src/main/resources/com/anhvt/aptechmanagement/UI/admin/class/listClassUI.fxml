@@ -176,7 +176,7 @@
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <SplitPane dividerPositions="0.5403439153439152" layoutX="65.0" layoutY="111.0" orientation="VERTICAL" prefHeight="506.6666666666667" prefWidth="355.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <SplitPane dividerPositions="0.7129629629629628" layoutX="65.0" layoutY="111.0" orientation="VERTICAL" prefHeight="506.6666666666667" prefWidth="355.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
@@ -200,14 +200,18 @@
                                                         <rowConstraints>
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
                                                             <Button fx:id="btnInputScore" mnemonicParsing="false" onAction="#gotoInputScore" prefHeight="25.0" prefWidth="148.0" text="Nhập điểm">
                                                                <GridPane.margin>
-                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                  <Insets left="15.0" right="15.0" />
+                                                               </GridPane.margin>
+                                                            </Button>
+                                                            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="138.0" text="Thêm Mới" GridPane.columnIndex="1">
+                                                               <GridPane.margin>
+                                                                  <Insets left="15.0" right="15.0" />
                                                                </GridPane.margin>
                                                             </Button>
                                                          </children>
@@ -245,19 +249,19 @@
                                                          </font>
                                                       </Text>
                                                       <Text layoutX="9.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khóa Học" />
-                                                      <ChoiceBox layoutX="68.0" layoutY="44.0" prefHeight="25.0" prefWidth="124.0" />
-                                                      <Text layoutX="200.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản Lý" />
-                                                      <ChoiceBox layoutX="251.0" layoutY="44.0" prefHeight="25.0" prefWidth="156.0" />
+                                                      <ChoiceBox fx:id="choiceCourse" layoutX="68.0" layoutY="44.0" prefHeight="25.0" prefWidth="99.0" />
+                                                      <Text layoutX="176.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản Lý" />
+                                                      <ChoiceBox fx:id="choiceSRO" layoutX="225.0" layoutY="44.0" prefHeight="25.0" prefWidth="182.0" />
                                                       <Text layoutX="9.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên Lớp" />
                                                       <Text layoutX="265.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số Lượng" />
-                                                      <TextField layoutX="69.0" layoutY="80.0" prefHeight="25.0" prefWidth="183.0" />
-                                                      <TextField layoutX="323.0" layoutY="78.0" prefHeight="25.0" prefWidth="84.0" />
+                                                      <TextField fx:id="txtName" layoutX="69.0" layoutY="80.0" prefHeight="25.0" prefWidth="183.0" />
+                                                      <TextField fx:id="txtNum" layoutX="323.0" layoutY="78.0" prefHeight="25.0" prefWidth="84.0" />
                                                       <Text layoutX="11.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi Tiết" />
-                                                      <TextArea layoutX="70.0" layoutY="117.0" prefHeight="98.0" prefWidth="184.0" wrapText="true" />
+                                                      <TextArea fx:id="txtDescription" layoutX="70.0" layoutY="117.0" prefHeight="98.0" prefWidth="184.0" wrapText="true" />
                                                       <Text layoutX="266.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kiểu Lớp" />
-                                                      <ChoiceBox layoutX="324.0" layoutY="119.0" prefHeight="25.0" prefWidth="83.0" />
-                                                      <Button layoutX="325.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Chỉnh Sửa" />
-                                                      <Button layoutX="10.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Lưu Lại" />
+                                                      <ChoiceBox fx:id="choiceType" layoutX="324.0" layoutY="119.0" prefHeight="25.0" prefWidth="83.0" />
+                                                      <Button fx:id="btnUpdate" layoutX="325.0" layoutY="230.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="82.0" text="Chỉnh Sửa" />
+                                                      <Button fx:id="btnSave" layoutX="10.0" layoutY="230.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="60.0" text="Lưu Lại" />
                                                    </children></AnchorPane>
                                             </items>
                                           </SplitPane>

@@ -72,7 +72,7 @@ public class HomeAdminController implements Initializable {
         aaa.getData().addAll(a, b, c, d);
         series.getData().addAll(jan, apr, feb, mar);
 
-        chartNumber.setTitle("Thu nhập hàng tháng");
+        chartNumber.setTitle("Học viên mới");
 
         chartNumber.getData().add(series);
         chartNumber.getData().add(aaa);
@@ -85,7 +85,7 @@ public class HomeAdminController implements Initializable {
 
         barchart.getData().addAll(aa, bb, cc, dd);
 
-        barChart.setTitle("Thu nhập hàng tháng");
+        barChart.setTitle("Học Viên Đạt Chỉ Tiêu");
 
         barChart.getData().add(barchart);
     }

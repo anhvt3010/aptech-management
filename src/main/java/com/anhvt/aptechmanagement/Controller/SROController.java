@@ -51,11 +51,11 @@ public class SROController extends SideBarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listSRO = FXCollections.observableList(SroDAO.getIntance().findAll());
+        listSRO = FXCollections.observableList(SroDAO.getInstance().findAll());
 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tcName.setCellValueFactory(celldata -> {
-            String name = celldata.getValue().getFirst_name() + " " + celldata.getValue().getLast_name();
+        tcName.setCellValueFactory(cellData -> {
+            String name = cellData.getValue().getFirst_name() + " " + cellData.getValue().getLast_name();
             return new SimpleStringProperty(name);
         });
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));

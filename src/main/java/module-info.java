@@ -14,6 +14,7 @@ module com.anhvt.aptechmanagement {
     requires org.apache.logging.log4j;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+    requires fontawesomefx;
 
     opens com.anhvt.aptechmanagement to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller.student to javafx.fxml;

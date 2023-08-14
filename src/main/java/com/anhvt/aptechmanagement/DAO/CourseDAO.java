@@ -7,7 +7,6 @@ import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CourseDAO implements IDAO<CourseProperty>{
@@ -19,7 +18,36 @@ public class CourseDAO implements IDAO<CourseProperty>{
     }
     @Override
     public int insert(CourseProperty course) {
+        String sql = "INSERT INTO course(name, status) VALUES (?,?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, course.getName());
+            stm.setString(2, course.getStatus());
+
+            stm.executeUpdate();
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
+    }
+
+    public void insertCourse(Course course) {
+        String sql = "INSERT INTO courses(name, status) VALUES (?,?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, course.getName());
+            stm.setInt(2, course.getStatus());
+
+            stm.executeUpdate();
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
     }
 
     @Override

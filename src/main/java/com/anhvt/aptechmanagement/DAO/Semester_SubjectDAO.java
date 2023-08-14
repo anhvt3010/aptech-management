@@ -89,5 +89,20 @@ public class Semester_SubjectDAO {
         }
         return 1;
     }
+
+    public int insertSubjectToSemester(int semester_id, int subject_id){
+        String sql = "INSERT INTO semester_subject(semester_id, subject_id) VALUES (?,?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, semester_id);
+            stm.setInt(2, subject_id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return 1;
+    }
 }
 

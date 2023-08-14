@@ -1,5 +1,7 @@
 package com.anhvt.aptechmanagement.Model;
 
+import java.time.LocalDate;
+
 public class Classes {
     private int id;
     private Course course;
@@ -7,24 +9,17 @@ public class Classes {
     private String name;
     private String description;
     private int limit;
+    private LocalDate created;
     private Byte type;
 
-    public Classes(int id, Course course, String name, String description, int limit, Byte type) {
-        this.id = id;
-        this.course = course;
-        this.name = name;
-        this.description = description;
-        this.limit = limit;
-        this.type = type;
-    }
-
-    public Classes(int id, Course course, Staff staff, String name, String description, int limit, Byte type) {
+    public Classes(int id, Course course, Staff staff, String name, String description, int limit, LocalDate created, Byte type) {
         this.id = id;
         this.course = course;
         this.staff = staff;
         this.name = name;
         this.description = description;
         this.limit = limit;
+        this.created = created;
         this.type = type;
     }
 
@@ -62,6 +57,14 @@ public class Classes {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
     }
 
     public Byte getType() {

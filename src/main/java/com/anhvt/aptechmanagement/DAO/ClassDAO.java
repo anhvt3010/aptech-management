@@ -4,6 +4,7 @@ import com.anhvt.aptechmanagement.Model.Classes;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,11 +18,48 @@ public class ClassDAO implements IDAO<Classes>{
     }
     @Override
     public int insert(Classes classes) {
+        String sql = "INSERT INTO class(sro_id, course_id, name, description, student_limits, created, type) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, classes.getStaff().getId());
+            stm.setInt(2, classes.getCourse().getId());
+            stm.setString(3, classes.getName());
+            stm.setString(4, classes.getDescription());
+            stm.setInt(5, classes.getLimit());
+            stm.setDate(6, Date.valueOf(classes.getCreated()));
+            stm.setInt(7, classes.getType());
+
+            stm.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
     }
 
     @Override
     public int update(Classes classes) {
+        String sql = "UPDATE class SET sro_id=?, course_id=?, name=?, description=?, student_limits=?, type=? WHERE id=?";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, classes.getStaff().getId());
+            stm.setInt(2, classes.getCourse().getId());
+            stm.setString(3, classes.getName());
+            stm.setString(4, classes.getDescription());
+            stm.setInt(5, classes.getLimit());
+            stm.setInt(6, classes.getType());
+            stm.setInt(7, classes.getId());
+
+            stm.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
         return 0;
     }
 
@@ -43,7 +81,7 @@ public class ClassDAO implements IDAO<Classes>{
                 cl.setId(rs.getInt("id"));
                 cl.setName(rs.getString("name"));
                 cl.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
-                cl.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
+                cl.setStaff(SroDAO.getInstance().selectById(rs.getInt("Sro_id")));
                 cl.setDescription(rs.getString("description"));
                 cl.setLimit(rs.getInt("student_limits"));
                 cl.setType((byte) rs.getInt("type"));
@@ -101,7 +139,7 @@ public class ClassDAO implements IDAO<Classes>{
                 cl.setId(rs.getInt("id"));
                 cl.setName(rs.getString("name"));
                 cl.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
-                cl.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
+                cl.setStaff(SroDAO.getInstance().selectById(rs.getInt("Sro_id")));
                 cl.setDescription(rs.getString("description"));
                 cl.setLimit(rs.getInt("student_limits"));
                 cl.setType((byte) rs.getInt("type"));
@@ -129,7 +167,7 @@ public class ClassDAO implements IDAO<Classes>{
                 cls.setId(rs.getInt("id"));
                 cls.setName(rs.getString("name"));
                 cls.setCourse(CourseDAO.getIntance().selectByIdCourse(rs.getInt("course_id")));
-                cls.setStaff(SroDAO.getIntance().selectById(rs.getInt("Sro_id")));
+                cls.setStaff(SroDAO.getInstance().selectById(rs.getInt("Sro_id")));
                 cls.setDescription(rs.getString("description"));
                 cls.setLimit(rs.getInt("student_limits"));
                 cls.setType((byte) rs.getInt("type"));

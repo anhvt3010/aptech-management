@@ -1,0 +1,10 @@
+/* Định dạng cho button */
+.button-green {
+    -fx-background-color: #00FF00; /* Mã màu xanh lá */
+    -fx-text-fill: white; /* Màu chữ trắng */
+}
+
+/* Định dạng cho các button có class "button-green" */
+.button-green:focused {
+    -fx-background-color: #009900; /* Mã màu xanh lá sáng hơn khi được nhấn vào */
+}

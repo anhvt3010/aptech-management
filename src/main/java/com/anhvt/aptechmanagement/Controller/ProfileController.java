@@ -3,8 +3,12 @@ package com.anhvt.aptechmanagement.Controller;
 
 import com.anhvt.aptechmanagement.Controller.student.AddStudentController;
 import com.anhvt.aptechmanagement.Controller.student.DetailStudentController;
+import com.anhvt.aptechmanagement.DAO.ClassDAO;
+import com.anhvt.aptechmanagement.DAO.CourseDAO;
 import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
+import com.anhvt.aptechmanagement.Model.Classes;
+import com.anhvt.aptechmanagement.Model.Course;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
@@ -25,6 +29,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ProfileController extends SideBarController implements Initializable {
@@ -32,6 +39,8 @@ public class ProfileController extends SideBarController implements Initializabl
     public MenuItem btnListSRO;
     @FXML
     public MenuItem btnListLecturer;
+    @FXML
+    public ChoiceBox<String> choiceClass;
 
     @FXML
     private Button btnAddStudent;
@@ -61,6 +70,8 @@ public class ProfileController extends SideBarController implements Initializabl
 
     private Stage studentDetailStage;
     private Stage studentAddStage;
+
+    Classes selectedClass;
 
     ObservableList<Student> listStudent;
 
@@ -115,6 +126,7 @@ public class ProfileController extends SideBarController implements Initializabl
             return row;
         });
 
+        this.showListCass();
 
     }
 
@@ -179,6 +191,25 @@ public class ProfileController extends SideBarController implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showListCass(){
+        ArrayList<Classes> classes = ClassDAO.getIntance().findAll();
+        ArrayList<String> listClass = new ArrayList<>();
+
+        for (Classes cls : classes) {
+            listClass.add(cls.getName());
+        }
+
+        choiceClass.setOnAction(event -> {
+            int selectedIndex = choiceClass.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0 && selectedIndex < classes.size()) {
+                selectedClass = classes.get(selectedIndex);
+                listStudent.setAll(Student_LearnDAO.getInstance().selectAllStudentsByClass(selectedClass));
+                System.out.println("Chọn class name: " + classes.get(selectedIndex).getName());
+            }
+        });
+        choiceClass.getItems().addAll(listClass);
     }
 
 }

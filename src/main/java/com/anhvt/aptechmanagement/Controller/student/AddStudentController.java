@@ -105,7 +105,7 @@ public class AddStudentController implements Initializable {
         this.showListDistrict();
         this.showListCommune();
         this.showListCourse();
-//        this.showListClass();
+        this.showListClass();
 
         txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());
         txtLastName.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonStatus());

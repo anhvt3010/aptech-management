@@ -12,7 +12,7 @@ public class SroDAO implements IDAO<Staff>{
     private static Connection cnn = null;
     PreparedStatement stm = null;
 
-    public static SroDAO getIntance(){
+    public static SroDAO getInstance(){
         cnn = JDBCUtil.getConnection();
         return new SroDAO();
     }
@@ -44,6 +44,7 @@ public class SroDAO implements IDAO<Staff>{
                 staff.setId(rs.getInt("id"));
                 staff.setFirst_name(rs.getString("first_name"));
                 staff.setLast_name(rs.getString("last_name"));
+                staff.setCode(rs.getString("code"));
                 staff.setEmail(rs.getString("email"));
                 staff.setPhone(rs.getString("phone"));
                 staff.setStatus((byte) rs.getInt("status"));
@@ -71,6 +72,7 @@ public class SroDAO implements IDAO<Staff>{
                 staff.setId(rs.getInt("id"));
                 staff.setFirst_name(rs.getString("first_name"));
                 staff.setLast_name(rs.getString("last_name"));
+                staff.setCode(rs.getString("code"));
                 staff.setEmail(rs.getString("email"));
                 staff.setPhone(rs.getString("phone"));
                 staff.setStatus((byte) rs.getInt("status"));
@@ -89,4 +91,6 @@ public class SroDAO implements IDAO<Staff>{
     public ArrayList<Staff> selectByCondition(String condition) {
         return null;
     }
+
+
 }

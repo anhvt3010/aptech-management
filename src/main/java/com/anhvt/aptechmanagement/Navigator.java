@@ -92,6 +92,8 @@ public class Navigator {
         }
     }
 
+
+
     public void gotoSelect() throws IOException {
         gotoScene("Bảng chọn", SELECT);
     }

@@ -7,6 +7,7 @@ public class Staff {
     private Role role;
     private String first_name;
     private String last_name;
+    private String code;
     private String email;
     private String phone;
     private String username;
@@ -46,6 +47,14 @@ public class Staff {
 
  public void setLast_name(String last_name) {
   this.last_name = last_name;
+ }
+
+ public String getCode() {
+  return code;
+ }
+
+ public void setCode(String code) {
+  this.code = code;
  }
 
  public String getEmail() {
