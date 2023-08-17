@@ -1,11 +1,13 @@
 package com.anhvt.aptechmanagement.DAO;
 
+import com.anhvt.aptechmanagement.Model.Semester_Subject;
 import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Semester_SubjectDAO {
@@ -103,6 +105,22 @@ public class Semester_SubjectDAO {
             JDBCUtil.closeConnection(cnn);
         }
         return 1;
+    }
+
+    public void insert(Semester_Subject  semesterSubject){
+        String sql = "INSERT INTO semester_subject(semester_id, subject_id) VALUES (?,?)";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setInt(1, semesterSubject.getSemester().getId());
+            stm.setInt(2, semesterSubject.getSubject().getId());
+
+            stm.executeUpdate();
+        } catch (Exception e ) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
     }
 }
 

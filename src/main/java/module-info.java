@@ -17,7 +17,7 @@ module com.anhvt.aptechmanagement {
     requires fontawesomefx;
 
     opens com.anhvt.aptechmanagement to javafx.fxml;
-    opens com.anhvt.aptechmanagement.Controller.student to javafx.fxml;
+    opens com.anhvt.aptechmanagement.Controller.admin.student to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller.user to javafx.fxml;
 
 //    ****
@@ -26,8 +26,25 @@ module com.anhvt.aptechmanagement {
 
     exports com.anhvt.aptechmanagement;
     exports com.anhvt.aptechmanagement.Controller;
-    exports com.anhvt.aptechmanagement.Controller.student to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller.user.ScoreController to javafx.fxml;
     opens com.anhvt.aptechmanagement.Controller.user.ScheduleController to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.classes;
+    opens com.anhvt.aptechmanagement.Controller.admin.classes to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.course;
+    opens com.anhvt.aptechmanagement.Controller.admin.course to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.exam;
+    opens com.anhvt.aptechmanagement.Controller.admin.exam to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.notification;
+    opens com.anhvt.aptechmanagement.Controller.admin.notification to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.score;
+    opens com.anhvt.aptechmanagement.Controller.admin.score to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.semester;
+    opens com.anhvt.aptechmanagement.Controller.admin.semester to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.subject;
+    opens com.anhvt.aptechmanagement.Controller.admin.subject to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin;
+    opens com.anhvt.aptechmanagement.Controller.admin to javafx.fxml;
+    exports com.anhvt.aptechmanagement.Controller.admin.student;
+    exports com.anhvt.aptechmanagement.Controller.user;
 }

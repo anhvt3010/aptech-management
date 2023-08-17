@@ -26,8 +26,8 @@ public class Navigator {
         navigator.stage = stage;
     }
 
-    public void TESTVIEW() throws IOException {
-        gotoScene("Test", "hello-view.fxml");
+    public void gotoTestSideBar() throws IOException {
+        gotoScene("Test", "UIv2/sidebar.fxml");
     }
 
  // ------- URL Side bar Admin ---------------

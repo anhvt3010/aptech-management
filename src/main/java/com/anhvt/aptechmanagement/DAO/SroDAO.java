@@ -1,11 +1,13 @@
 package com.anhvt.aptechmanagement.DAO;
 
 import com.anhvt.aptechmanagement.Model.Staff;
+import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SroDAO implements IDAO<Staff>{
@@ -92,5 +94,33 @@ public class SroDAO implements IDAO<Staff>{
         return null;
     }
 
+
+    public Staff getAccountByEmail(String email){
+        Staff staff = null;
+        String sql = "SELECT * FROM staff WHERE email = ? AND role_id = 1";
+        try {
+            stm = cnn.prepareStatement(sql);
+            stm.setString(1, email);
+            ResultSet resultSet = stm.executeQuery();
+            if(resultSet.next()){
+                staff = new Staff();
+                staff.setId(resultSet.getInt("id"));
+                staff.setEmail(email);
+                staff.setFirst_name(resultSet.getString("first_name"));
+                staff.setLast_name(resultSet.getString("last_name"));
+                staff.setCode(resultSet.getString("code"));
+                staff.setPhone(resultSet.getString("phone"));
+                staff.setPassword(resultSet.getString("password"));
+                staff.setBirth(resultSet.getDate("birth").toLocalDate());
+                staff.setStatus(resultSet.getByte("status"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+        return staff;
+    }
 
 }

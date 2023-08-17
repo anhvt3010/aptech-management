@@ -8,6 +8,7 @@ import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SemesterDAO implements IDAO<Semester>{
@@ -23,19 +24,24 @@ public class SemesterDAO implements IDAO<Semester>{
     @Override
     public int insert(Semester semester) {
         String sql = "INSERT INTO semester(course_id, name) VALUES (?, ?)";
+        int generatedId = -1;
         try {
-            stm = cnn.prepareStatement(sql);
+            stm = cnn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             stm.setInt(1, semester.getCourse().getId());
             stm.setString(2, semester.getName());
 
             stm.executeUpdate();
+            ResultSet generatedKeys = stm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                generatedId = generatedKeys.getInt(1);
+            }
         } catch (Exception e){
             e.printStackTrace();
         } finally {
             JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
-        return 1;
+        return generatedId;
     }
 
     @Override

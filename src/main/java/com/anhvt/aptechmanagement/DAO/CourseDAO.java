@@ -7,6 +7,7 @@ import com.anhvt.aptechmanagement.Utils.JDBCUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CourseDAO implements IDAO<CourseProperty>{
@@ -18,7 +19,7 @@ public class CourseDAO implements IDAO<CourseProperty>{
     }
     @Override
     public int insert(CourseProperty course) {
-        String sql = "INSERT INTO course(name, status) VALUES (?,?)";
+        String sql = "INSERT INTO courses(name, status) VALUES (?,?)";
         try {
             stm = cnn.prepareStatement(sql);
             stm.setString(1, course.getName());
@@ -35,11 +36,12 @@ public class CourseDAO implements IDAO<CourseProperty>{
     }
 
     public void insertCourse(Course course) {
-        String sql = "INSERT INTO courses(name, status) VALUES (?,?)";
+        String sql = "INSERT INTO courses(name, semester, status) VALUES (?,?,?)";
         try {
             stm = cnn.prepareStatement(sql);
             stm.setString(1, course.getName());
-            stm.setInt(2, course.getStatus());
+            stm.setInt(2, course.getSemester());
+            stm.setInt(3, course.getStatus());
 
             stm.executeUpdate();
         } catch(Exception e) {
@@ -48,6 +50,31 @@ public class CourseDAO implements IDAO<CourseProperty>{
             JDBCUtil.closePreparedStatement(stm);
             JDBCUtil.closeConnection(cnn);
         }
+    }
+
+    public int insertCourseAndGetId(Course course) {
+        String sql = "INSERT INTO courses(name, semester, status) VALUES (?,?,?)";
+        int generatedId = -1; // Default value if no ID is generated
+        try {
+            stm = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, course.getName());
+            stm.setInt(2, course.getSemester());
+            stm.setInt(3, course.getStatus());
+
+            stm.executeUpdate();
+
+            ResultSet generatedKeys = stm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                generatedId = generatedKeys.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCUtil.closePreparedStatement(stm);
+            JDBCUtil.closeConnection(cnn);
+        }
+
+        return generatedId;
     }
 
     @Override

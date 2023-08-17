@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.user.ScoreController.ScoreStudentSem3Controller">
+    <children>
+        <SplitPane dividerPositions="0.24086452762923352" layoutX="326.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="180.0" prefHeight="549.0" prefWidth="206.0" style="-fx-background-color: #143760;">
+                    <children>
+                        <SplitPane dividerPositions="0.0944220430107527" layoutX="32.0" layoutY="73.0" orientation="VERTICAL" prefHeight="597.6" prefWidth="206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane maxHeight="50.0" minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #9e5050;">
+                                    <children>
+                                        <Text fx:id="txtHelloStudent" layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Xin chào ">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="100.0" minWidth="160.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #6E8199;">
+                                    <children>
+                                        <ImageView fitHeight="83.0" fitWidth="79.0" layoutX="63.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../images/icon-student.png" />
+                                            </image>
+                                        </ImageView>
+                                        <GridPane layoutX="1.0" layoutY="128.0" prefHeight="337.0" prefWidth="204.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="128.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button fx:id="btnUserStudent" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserStudent" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: white;" text="Hồ Sơ Cá Nhân">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/cv.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserSchedule" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserSchedule" prefHeight="40.0" prefWidth="202.0" text="Thời Khóa Biểu" GridPane.rowIndex="2">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/calendar.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserTest" prefHeight="40.0" prefWidth="202.0" text="Lịch Thi" GridPane.rowIndex="3">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/test.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserDocument" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserDocument" prefHeight="40.0" prefWidth="202.0" text="Đơn Từ" GridPane.rowIndex="4">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/google-docs.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserNotification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#gotoUserNotification" prefHeight="40.0" prefWidth="202.0" text="Thông Báo" GridPane.rowIndex="5">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/notification.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="btnUserScore" alignment="BASELINE_LEFT" cancelButton="true" mnemonicParsing="false" onAction="#gotoUserScore" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #143760;" text="Điểm Thi" textFill="WHITE" GridPane.rowIndex="1">
+                                                    <graphic>
+                                                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../images/icon/student-grades.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <SplitPane dividerPositions="0.21370967741935487" layoutX="135.0" layoutY="75.0" orientation="VERTICAL" prefHeight="597.6" prefWidth="685.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane maxHeight="50.0" minHeight="50.0" minWidth="0.0" prefHeight="50.0" prefWidth="683.0" style="-fx-background-color: #9e5050;">
+                                    <children>
+                                        <MenuButton layoutX="595.0" layoutY="10.0" maxWidth="79.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Cài Đặt" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="12.0">
+                                            <items>
+                                                <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#gotoChangePassword" text="Đổi mật khẩu" />
+                                                <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#gotoLogout" text="Đăng xuất" />
+                                            </items>
+                                        </MenuButton>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <TableView fx:id="tblScore" layoutX="12.0" layoutY="97.0" prefHeight="425.0" prefWidth="535.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="97.0">
+                                            <columns>
+                                                <TableColumn fx:id="tcSubject" prefWidth="79.99994373321533" text="Môn học" />
+                                                <TableColumn fx:id="tcType" prefWidth="87.59996795654297" text="Hình thức" />
+                                                <TableColumn fx:id="tcScore" prefWidth="62.4000244140625" text="Điểm" />
+                                                <TableColumn fx:id="tcMaxScore" prefWidth="84.79994201660156" text="Điểm tối đa" />
+                                                <TableColumn fx:id="tcPercent" prefWidth="114.00006103515625" text="Phần trăm" />
+                                                <TableColumn fx:id="tcStatus" prefWidth="104.80001831054688" text="Ghi chú" />
+                                            </columns>
+                                        </TableView>
+                                        <Text layoutX="284.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BẢNG ĐIỂM THI">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tỷ lệ điểm : ">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Text>
+                                        <GridPane layoutX="14.0" layoutY="481.0" prefHeight="30.0" prefWidth="457.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                        <Text fx:id="txtOverall" layoutX="83.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <GridPane layoutX="566.0" layoutY="175.0" prefHeight="254.0" prefWidth="105.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="566.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="175.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button fx:id="btnKi1" mnemonicParsing="false" onAction="#showKi1" prefHeight="25.0" prefWidth="120.0" text="Kì 1">
+                                                    <GridPane.margin>
+                                                        <Insets left="20.0" right="20.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="btnKi2" mnemonicParsing="false" onAction="#showKi2" prefHeight="25.0" prefWidth="105.0" text="Kì 2" GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets left="20.0" right="20.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #143760;" text="Kì 3" textFill="WHITE" GridPane.rowIndex="2">
+                                                    <GridPane.margin>
+                                                        <Insets left="20.0" right="20.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="btnKi4" mnemonicParsing="false" onAction="#showKi4" prefHeight="25.0" prefWidth="118.0" text="Kì 4" GridPane.rowIndex="3">
+                                                    <GridPane.margin>
+                                                        <Insets left="20.0" right="20.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                            </children>
+                                        </GridPane>
+                                    </children></AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
