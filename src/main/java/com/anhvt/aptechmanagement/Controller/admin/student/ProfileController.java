@@ -1,9 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.admin.student;
 
-
-import com.anhvt.aptechmanagement.Controller.SideBarController;
-import com.anhvt.aptechmanagement.Controller.admin.student.AddStudentController;
-import com.anhvt.aptechmanagement.Controller.admin.student.DetailStudentController;
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.DAO.ClassDAO;
 import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
@@ -11,9 +8,11 @@ import com.anhvt.aptechmanagement.Model.Classes;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Utils.SelectedIDStorage;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,13 +28,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProfileController extends SideBarController implements Initializable {
+public class ProfileController extends SidebarAdminController implements Initializable {
     @FXML
     public MenuItem btnListSRO;
     @FXML
     public MenuItem btnListLecturer;
     @FXML
     public ChoiceBox<String> choiceClass;
+    @FXML
+    public TextField search;
 
     @FXML
     private Button btnAddStudent;
@@ -68,12 +69,12 @@ public class ProfileController extends SideBarController implements Initializabl
 
     Classes selectedClass;
 
-    ObservableList<Student> listStudent;
+    ObservableList<Student> students;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listStudent = FXCollections.observableList(StudentDAO.getInstance().findAll());
+        students = FXCollections.observableList(StudentDAO.getInstance().findAll());
 
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcName.setCellValueFactory(celldata -> {
@@ -104,7 +105,7 @@ public class ProfileController extends SideBarController implements Initializabl
             return new SimpleStringProperty(statusText);
         });
 
-        tblListStudent.setItems(listStudent);
+        tblListStudent.setItems(students);
 
         btnDetailStudent.setDisable(true);
 
@@ -120,6 +121,20 @@ public class ProfileController extends SideBarController implements Initializabl
 
             return row;
         });
+
+        FilteredList<Student> filteredStudents = new FilteredList<>(students, p -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredStudents.setPredicate(student -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase().trim();
+                return student.getFirstName().toLowerCase().contains(lowerCaseFilter) ||
+                        student.getLastName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+        tblListStudent.setItems(filteredStudents);
+
 
         this.showListCass();
 
@@ -154,6 +169,7 @@ public class ProfileController extends SideBarController implements Initializabl
 
                 AddStudentController controller = loader.getController();
                 controller.setStage(studentAddStage);
+                WindowManager.addStage(studentAddStage);
 
                 studentAddStage.showAndWait();
             }
@@ -180,6 +196,7 @@ public class ProfileController extends SideBarController implements Initializabl
 
                 DetailStudentController controller = loader.getController();
                 controller.setDetailStudentStage(studentDetailStage);
+                WindowManager.addStage(studentAddStage);
 
                 studentDetailStage.showAndWait();
             }
@@ -200,7 +217,7 @@ public class ProfileController extends SideBarController implements Initializabl
             int selectedIndex = choiceClass.getSelectionModel().getSelectedIndex();
             if (selectedIndex >= 0 && selectedIndex < classes.size()) {
                 selectedClass = classes.get(selectedIndex);
-                listStudent.setAll(Student_LearnDAO.getInstance().selectAllStudentsByClass(selectedClass));
+                students.setAll(Student_LearnDAO.getInstance().selectAllStudentsByClass(selectedClass));
                 System.out.println("Chọn class name: " + classes.get(selectedIndex).getName());
             }
         });

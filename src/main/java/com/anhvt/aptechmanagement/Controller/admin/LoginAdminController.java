@@ -7,6 +7,7 @@ import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import com.anhvt.aptechmanagement.Utils.PasswordEncoder;
+import com.anhvt.aptechmanagement.Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class LoginAdminController {
             Staff st = SroDAO.getInstance().getAccountByEmail(email);
             if(st != null){
                 if(PasswordEncoder.verifyPassword(pass,st.getPassword())){
+                    Session.setAttribute(st);
                     Navigator.getInstance().gotoAdminHome();
                 } else {
                     AlertUtil.showErrorAlert("Đăng nhập thất bại",

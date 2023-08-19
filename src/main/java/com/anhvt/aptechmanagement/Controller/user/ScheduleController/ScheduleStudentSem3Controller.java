@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.user.ScheduleController;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.user.SidebarUserController;
 import com.anhvt.aptechmanagement.DAO.ScheduleDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
 import com.anhvt.aptechmanagement.Model.Schedule;
@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 
 
@@ -22,7 +21,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ScheduleStudentSem3Controller extends SideBarController implements Initializable {
+public class ScheduleStudentSem3Controller extends SidebarUserController implements Initializable {
 
     @FXML
     private Button btnScheduleSem1;

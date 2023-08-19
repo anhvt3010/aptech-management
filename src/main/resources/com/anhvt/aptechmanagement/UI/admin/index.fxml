@@ -154,7 +154,7 @@
                   </LineChart>
                </children>
             </GridPane>
-            <AnchorPane prefHeight="510.0" prefWidth="184.0" style="-fx-background-color: white;">
+            <AnchorPane prefHeight="510.0" prefWidth="184.0" style="-fx-background-color: #143760;">
                <children>
                   <Button fx:id="btnStudent" alignment="BASELINE_LEFT" layoutX="13.0" layoutY="39.0" mnemonicParsing="false" onAction="#showStudent" prefHeight="38.0" prefWidth="156.0" text="Hồ Sơ Cá Nhân">
                      <graphic>

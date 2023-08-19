@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.admin.subject;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.DAO.CourseDAO;
 import com.anhvt.aptechmanagement.DAO.SemesterDAO;
 import com.anhvt.aptechmanagement.DAO.Semester_SubjectDAO;
@@ -9,6 +9,7 @@ import com.anhvt.aptechmanagement.Model.Course;
 import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Navigator;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SubjectController extends SideBarController implements Initializable {
+public class SubjectController extends SidebarAdminController implements Initializable {
     @FXML
     public ChoiceBox<String> btnFindByCourse;
     @FXML
@@ -247,6 +248,7 @@ public class SubjectController extends SideBarController implements Initializabl
 
                 AddSubjectController controller = loader.getController();
                 controller.setStage(subjectStage); // Đặt đối tượng Stage vào controller
+                WindowManager.addStage(subjectStage);
 
                 subjectStage.showAndWait();
             }
@@ -256,5 +258,32 @@ public class SubjectController extends SideBarController implements Initializabl
     }
     @FXML
     public void update(ActionEvent actionEvent) {
+        try {
+            if (subjectStage != null && subjectStage.isShowing()) {
+                // Nếu cửa sổ môn học đã tồn tại, đưa cửa sổ hiện tại lên phía trước
+                subjectStage.toFront();
+            } else {
+                // Nếu cửa sổ môn học chưa tồn tại, tạo mới cửa sổ và hiển thị
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/anhvt/aptechmanagement/UI/admin/subject/updateSubjectUI.fxml"));
+                Parent root = loader.load();
+
+                subjectStage = new Stage();
+                subjectStage.setTitle("Thêm môn học");
+                subjectStage.setScene(new Scene(root));
+
+                subjectStage.setOnCloseRequest(t -> {
+                    subjectStage = null;
+                });
+
+                UpdateSubjectController controller = loader.getController();
+                controller.setSelectedSubject(this.selectedSubject);
+                controller.setSubjectStage(subjectStage);
+                WindowManager.addStage(subjectStage);
+
+                subjectStage.showAndWait();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

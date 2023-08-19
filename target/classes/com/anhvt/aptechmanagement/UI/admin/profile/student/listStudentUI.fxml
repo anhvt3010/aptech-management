@@ -25,8 +25,8 @@
             <children>
                 <MenuButton layoutX="860.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cài Đặt">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Đổi mật khẩu" />
-                        <MenuItem mnemonicParsing="false" text="Đăng xuất" />
+                        <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#gotoChangePassword" text="Đổi mật khẩu" />
+                        <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#gotoLogout" text="Đăng xuất" />
                     </items>
                 </MenuButton>
             </children>
@@ -149,7 +149,7 @@
                     <items>
                       <AnchorPane minHeight="31.0" minWidth="0.0" prefHeight="31.0" prefWidth="753.0">
                            <children>
-                              <TextField layoutX="472.0" layoutY="6.0" prefHeight="25.0" prefWidth="200.0" />
+                              <TextField fx:id="search" layoutX="472.0" layoutY="6.0" prefHeight="25.0" prefWidth="200.0" />
                               <Button layoutX="671.0" layoutY="6.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" />
                            </children>
                         </AnchorPane>

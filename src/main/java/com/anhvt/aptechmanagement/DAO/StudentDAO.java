@@ -32,7 +32,13 @@ public class StudentDAO implements IDAO<Student> {
                 student.setPhone(resultSet.getString("phone"));
                 student.setPassword(resultSet.getString("password"));
                 student.setGender(resultSet.getBoolean("gender"));
-                student.setBirth(resultSet.getDate("birth").toLocalDate());
+                Date birthDate = resultSet.getDate("birth");
+                if (birthDate != null) {
+                    student.setBirth(birthDate.toLocalDate());
+                } else {
+                    birthDate = Date.valueOf(LocalDate.now());
+                    student.setBirth(birthDate.toLocalDate());
+                }
                 student.setAddress(resultSet.getString("address"));
 
             }

@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.admin.exam;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.DAO.ClassDAO;
 import com.anhvt.aptechmanagement.DAO.ExamDAO;
 import com.anhvt.aptechmanagement.DAO.SemesterDAO;
@@ -11,6 +11,7 @@ import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Property.ExamProperty;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import com.anhvt.aptechmanagement.Validation.Validation;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ExamController extends SideBarController implements Initializable {
+public class ExamController extends SidebarAdminController implements Initializable {
     private Stage examStage;
     @FXML
     public Button addExam;
@@ -163,6 +164,7 @@ public class ExamController extends SideBarController implements Initializable {
 
                 AddExamController controller = loader.getController();
                 controller.setStage(examStage); // Đặt đối tượng Stage vào controller
+                WindowManager.addStage(examStage);
 
                 examStage.showAndWait();
             }

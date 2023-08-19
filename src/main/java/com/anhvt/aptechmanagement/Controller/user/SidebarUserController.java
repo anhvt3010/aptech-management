@@ -1,48 +1,21 @@
-package com.anhvt.aptechmanagement.Controller;
+package com.anhvt.aptechmanagement.Controller.user;
 
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class SideBarController {
-
+public class SidebarUserController {
     @FXML
     private MenuItem btnChangePassword;
     @FXML
     private MenuItem btnLogout;
 
-    @FXML
-    private Text txtHelloAdmin;
-
-
-    //  ------------ Button Admin -----------------
-    @FXML
-    private Button btnClass;
-    @FXML
-    private Button btnCourse;
-    @FXML
-    private Button btnDocument;
-    @FXML
-    private Button btnSchedule;
-    @FXML
-    private Button btnStudent;
-    @FXML
-    private Button btnNotification;
-    @FXML
-    private Button btnTest;
-
-
-    //  ------------ Button User -----------------
     @FXML
     private Button btnUserScore;
     @FXML
@@ -56,10 +29,8 @@ public class SideBarController {
     @FXML
     private Button btnUserTest;
 
-
     @FXML
     public Text txtHelloStudent;
-
 
     @FXML
     void gotoLogout(ActionEvent event) throws IOException {
@@ -70,45 +41,6 @@ public class SideBarController {
     void gotoChangePassword(ActionEvent event) {
 
     }
-
-    //  ------------ Action Admin -----------------
-
-    @FXML
-    void gotoClass(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoClass();
-    }
-
-    @FXML
-    void gotoCourse(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoCourse();
-    }
-
-    @FXML
-    void gotoDocument(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoDocument();
-    }
-
-    @FXML
-    void gotoSchedule(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoSchedule();
-    }
-
-    @FXML
-    void gotoStudent(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoStudent();
-    }
-
-    @FXML
-    void gotoTest(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoTest();
-    }
-    @FXML
-    void gotoNotification(ActionEvent event) throws IOException {
-        Navigator.getInstance().gotoNotificationAdmin();
-    }
-
-    //  ------------ Action User -----------------
-
     @FXML
     void gotoUserScore(ActionEvent event) throws IOException {
         Navigator.getInstance().gotoScore();

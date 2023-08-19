@@ -1,8 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.admin;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.LecturerDAO;
-import com.anhvt.aptechmanagement.DAO.StudentDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Navigator;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LecturerController extends SideBarController implements Initializable {
+public class LecturerController extends SidebarAdminController implements Initializable {
     @FXML
     private Button btnAddLecturer;
 

@@ -1,9 +1,10 @@
 package com.anhvt.aptechmanagement.Controller.admin.notification;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.DAO.NotificationDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
 import com.anhvt.aptechmanagement.Property.NotificationProperty;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +21,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class NotificationController extends SideBarController implements Initializable {
+public class NotificationController extends SidebarAdminController implements Initializable {
     @FXML
     public Button btnUpdate;
     @FXML
@@ -115,6 +116,7 @@ public class NotificationController extends SideBarController implements Initial
 
                 AddNotificationController controller = loader.getController();
                 controller.setAddNotificationStage(addNotificationStage);
+                WindowManager.addStage(addNotificationStage);
 
                 addNotificationStage.showAndWait();
             }

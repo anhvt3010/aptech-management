@@ -1,6 +1,5 @@
 package com.anhvt.aptechmanagement.Controller.admin;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.SroDAO;
 import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Navigator;
@@ -19,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SROController extends SideBarController implements Initializable {
+public class SROController extends SidebarAdminController implements Initializable {
 
 
     @FXML

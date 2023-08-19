@@ -1,6 +1,5 @@
 package com.anhvt.aptechmanagement.Controller.user;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.ExamDAO;
 import com.anhvt.aptechmanagement.DAO.Student_LearnDAO;
 import com.anhvt.aptechmanagement.Model.Exam;
@@ -22,7 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ExamStudentController extends SideBarController implements Initializable {
+public class ExamStudentController extends SidebarUserController implements Initializable {
 
     @FXML
     private Hyperlink linkHoanThi;

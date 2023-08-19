@@ -1,7 +1,7 @@
 package com.anhvt.aptechmanagement.Controller.admin.classes;
 
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.Controller.admin.score.ScoreController;
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.*;
 import com.anhvt.aptechmanagement.Model.Classes;
 import com.anhvt.aptechmanagement.Model.Course;
@@ -9,6 +9,7 @@ import com.anhvt.aptechmanagement.Model.Staff;
 import com.anhvt.aptechmanagement.Model.Student;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
 import com.anhvt.aptechmanagement.Utils.SelectedClassStorage;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import com.anhvt.aptechmanagement.Validation.InputTextValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ClassController extends SideBarController implements Initializable {
+public class ClassController extends SidebarAdminController implements Initializable {
     @FXML
     public Button btnInputScore;
     @FXML
@@ -185,6 +186,7 @@ public class ClassController extends SideBarController implements Initializable 
 
                 ScoreController controller = loader.getController();
                 controller.setScoreStage(scoreStage);
+                WindowManager.addStage(scoreStage);
 
                 scoreStage.showAndWait();
             }
@@ -329,13 +331,13 @@ public class ClassController extends SideBarController implements Initializable 
                 scoreStage = new Stage();
                 scoreStage.setTitle("Thêm môn học");
                 scoreStage.setScene(new Scene(root));
-
                 scoreStage.setOnCloseRequest(t -> {
                     scoreStage = null;
                 });
 
                 AddClassController controller = loader.getController();
                 controller.setStageClass(scoreStage);
+                WindowManager.addStage(scoreStage);
 
                 scoreStage.showAndWait();
             }

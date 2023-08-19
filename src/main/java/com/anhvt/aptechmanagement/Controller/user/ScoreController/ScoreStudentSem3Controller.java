@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.user.ScoreController;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.user.SidebarUserController;
 import com.anhvt.aptechmanagement.DAO.ScoreDAO;
 import com.anhvt.aptechmanagement.DAO.Semester_SubjectDAO;
 import com.anhvt.aptechmanagement.Model.Score;
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ScoreStudentSem3Controller  extends SideBarController implements Initializable {
+public class ScoreStudentSem3Controller  extends SidebarUserController implements Initializable {
     @FXML
     private Button btnKi1;
 

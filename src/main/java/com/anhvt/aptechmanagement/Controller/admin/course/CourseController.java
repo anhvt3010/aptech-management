@@ -1,6 +1,6 @@
 package com.anhvt.aptechmanagement.Controller.admin.course;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
+import com.anhvt.aptechmanagement.Controller.admin.SidebarAdminController;
 import com.anhvt.aptechmanagement.DAO.CourseDAO;
 import com.anhvt.aptechmanagement.DAO.SemesterDAO;
 import com.anhvt.aptechmanagement.DAO.Semester_SubjectDAO;
@@ -11,6 +11,7 @@ import com.anhvt.aptechmanagement.Model.Subject;
 import com.anhvt.aptechmanagement.Navigator;
 import com.anhvt.aptechmanagement.Property.CourseProperty;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
+import com.anhvt.aptechmanagement.Utils.WindowManager;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CourseController extends SideBarController implements Initializable {
+public class CourseController extends SidebarAdminController implements Initializable {
     @FXML
     public AnchorPane formAdd;  @FXML
     public TextField txtAddName;    @FXML
@@ -53,6 +54,18 @@ public class CourseController extends SideBarController implements Initializable
     public Button btnSaveUpdate;
     @FXML
     public Button btnUpdate;
+    @FXML
+    public TextField txtNameSubject;
+    @FXML
+    public TextField txtCodeSubject;
+    @FXML
+    public TextField txtNumSubject;
+    @FXML
+    public TextArea txtDescriptionSubject;
+    @FXML
+    public TextField txtFormatSubject;
+    @FXML
+    public TextField txtTypeSubject;
 
     @FXML
     private Button btnListSubject;
@@ -119,11 +132,39 @@ public class CourseController extends SideBarController implements Initializable
                     selectedCourse = row.getItem();
                     handle_selectedCourse(selectedCourse);
                     this.getSemesterByRowCourse();
+                    tblSubject.getItems().clear();
                 }
             });
 
             return row;
         });
+
+        tblSubject.setRowFactory(tv -> {
+            TableRow<Subject> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && !row.isEmpty()) {
+                    selectedSubject = row.getItem();
+                    handle_selectedSubject(selectedSubject);
+                }
+            });
+            return row;
+        });
+
+    }
+
+    private void handle_selectedSubject(Subject selectedSubject) {
+        txtNameSubject.setText(selectedSubject.getName());
+        txtCodeSubject.setText(selectedSubject.getCode());
+        txtNumSubject.setText(String.valueOf(selectedSubject.getNumber_of_sessions()));
+        txtDescriptionSubject.setText(selectedSubject.getDescription());
+        if(selectedSubject.getType()==0){
+            txtFormatSubject.setText("LT");
+        } else if(selectedSubject.getType()==1){
+            txtFormatSubject.setText("LT/TH");
+        } else {
+            txtFormatSubject.setText("Project");
+        }
+        txtTypeSubject.setText(selectedSubject.getType()==0?"Không Bắt Buộc":"Bắt Buộc");
 
     }
 
@@ -253,6 +294,7 @@ public class CourseController extends SideBarController implements Initializable
 
                 AddCourseController controller = loader.getController();
                 controller.setStageAddCourse(stageCourse);
+                WindowManager.addStage(stageCourse);
 
                 stageCourse.showAndWait();
             }

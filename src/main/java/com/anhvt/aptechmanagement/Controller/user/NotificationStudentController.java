@@ -1,6 +1,5 @@
 package com.anhvt.aptechmanagement.Controller.user;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.NotificationDAO;
 import com.anhvt.aptechmanagement.Model.Notification;
 import com.anhvt.aptechmanagement.Utils.Session;
@@ -17,7 +16,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NotificationStudentController extends SideBarController implements Initializable {
+public class NotificationStudentController extends SidebarUserController implements Initializable {
     @FXML
     private Hyperlink linkHocLai;
 

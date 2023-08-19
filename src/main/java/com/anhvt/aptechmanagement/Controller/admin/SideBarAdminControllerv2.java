@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SideBarAdminController {
+public class SideBarAdminControllerv2 {
     @FXML
     public AnchorPane content;
     @FXML

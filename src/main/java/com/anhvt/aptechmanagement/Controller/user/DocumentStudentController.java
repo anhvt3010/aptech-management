@@ -1,10 +1,7 @@
 package com.anhvt.aptechmanagement.Controller.user;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.FormDAO;
-import com.anhvt.aptechmanagement.DAO.NotificationDAO;
 import com.anhvt.aptechmanagement.Model.Form;
-import com.anhvt.aptechmanagement.Model.Notification;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DocumentStudentController extends SideBarController implements Initializable {
+public class DocumentStudentController extends SidebarUserController implements Initializable {
     @FXML
     private TableView<Form> tblForm;
 

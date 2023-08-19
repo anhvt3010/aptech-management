@@ -1,19 +1,13 @@
 package com.anhvt.aptechmanagement.Controller.admin;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.ClassDAO;
-import com.anhvt.aptechmanagement.DAO.CourseDAO;
 import com.anhvt.aptechmanagement.DAO.ScheduleDAO;
 import com.anhvt.aptechmanagement.DAO.SemesterDAO;
 import com.anhvt.aptechmanagement.Model.Classes;
-import com.anhvt.aptechmanagement.Model.Course;
 import com.anhvt.aptechmanagement.Model.Schedule;
 import com.anhvt.aptechmanagement.Model.Semester;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
-import com.anhvt.aptechmanagement.Utils.SelectedClassStorage;
-import com.anhvt.aptechmanagement.Validation.EmailValidator;
 import com.anhvt.aptechmanagement.Validation.InputTextValidator;
-import com.anhvt.aptechmanagement.Validation.PhoneNumberValidator;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,24 +19,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class ScheduleController extends SideBarController implements Initializable {
+public class ScheduleController extends SidebarAdminController implements Initializable {
 
     @FXML
     public Button btnSaveAdd;

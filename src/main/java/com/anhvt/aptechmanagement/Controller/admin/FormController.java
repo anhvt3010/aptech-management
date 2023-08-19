@@ -1,14 +1,9 @@
 package com.anhvt.aptechmanagement.Controller.admin;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.FormDAO;
 import com.anhvt.aptechmanagement.Model.Form;
-import com.anhvt.aptechmanagement.Model.Student;
-import com.anhvt.aptechmanagement.Property.ExamProperty;
 import com.anhvt.aptechmanagement.Property.FormProperty;
 import com.anhvt.aptechmanagement.Utils.AlertUtil;
-import com.anhvt.aptechmanagement.Utils.SearchUtils;
-import com.anhvt.aptechmanagement.Validation.InputTextValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,13 +17,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class FormController extends SideBarController implements Initializable {
+public class FormController extends SidebarAdminController implements Initializable {
     @FXML
     public TextField txtSearch;
     @FXML

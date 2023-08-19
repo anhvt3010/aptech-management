@@ -24,8 +24,8 @@
             <children>
                 <MenuButton layoutX="860.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cài Đặt">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Đổi mật khẩu" />
-                        <MenuItem mnemonicParsing="false" text="Đăng xuất" />
+                        <MenuItem fx:id="btnChangePassword" mnemonicParsing="false" onAction="#gotoChangePassword" text="Đổi mật khẩu" />
+                        <MenuItem fx:id="btnLogout" mnemonicParsing="false" onAction="#gotoLogout" text="Đăng xuất" />
                     </items>
                 </MenuButton>
             </children>
@@ -148,25 +148,8 @@
                     <items>
                       <AnchorPane minHeight="31.0" minWidth="0.0" prefHeight="31.0" prefWidth="753.0">
                            <children>
-                              <GridPane layoutX="-3.0" layoutY="-8.0" prefHeight="38.0" prefWidth="752.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.66665649414062" minWidth="10.0" prefWidth="134.66665649414062" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.33334350585938" minWidth="10.0" prefWidth="81.33334350585938" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.33331298828125" minWidth="10.0" prefWidth="101.99996948242188" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.66668701171875" minWidth="10.0" prefWidth="94.00003051757812" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.33331298828125" minWidth="10.0" prefWidth="238.66668701171875" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.33331298828125" minWidth="10.0" prefWidth="81.33331298828125" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="229.0" GridPane.columnIndex="6" />
-                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" GridPane.columnIndex="7" />
-                                 </children>
-                              </GridPane>
+                              <Button layoutX="671.0" layoutY="6.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Tìm kiếm" />
+                              <TextField layoutX="471.0" layoutY="6.0" prefHeight="25.0" prefWidth="200.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="754.0">

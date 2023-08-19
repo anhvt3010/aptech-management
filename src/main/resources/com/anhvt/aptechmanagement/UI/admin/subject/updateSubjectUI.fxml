@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="356.0" style="-fx-background-color: #9e5050;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.admin.subject.AddSubjectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="356.0" style="-fx-background-color: #9e5050;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.admin.subject.UpdateSubjectController">
     <children>
         <Text fill="WHITE" layoutX="106.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHỈNH SỬA MÔN HỌC">
             <font>
@@ -32,7 +32,8 @@
                 <CheckBox fx:id="txtType" layoutX="98.0" layoutY="368.0" mnemonicParsing="false" />
             </children>
         </AnchorPane>
-        <Button fx:id="btnSave" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#saveSubject" text="Tạo Mới" />
-        <Button fx:id="btnQuit" layoutX="295.0" layoutY="461.0" mnemonicParsing="false" onAction="#quit" text="Thoát" />
+        <Button fx:id="btnSave" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="70.0" text="Lưu" />
+        <Button fx:id="btnUpdate" layoutX="106.0" layoutY="461.0" mnemonicParsing="false" onAction="#update" text="Chỉnh Sửa" />
+      <Button fx:id="btnQuit" layoutX="284.0" layoutY="461.0" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="56.0" text="Thoát" />
     </children>
 </AnchorPane>

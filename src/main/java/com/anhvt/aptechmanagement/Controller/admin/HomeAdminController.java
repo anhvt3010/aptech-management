@@ -1,6 +1,5 @@
 package com.anhvt.aptechmanagement.Controller.admin;
 
-import com.anhvt.aptechmanagement.Controller.SideBarController;
 import com.anhvt.aptechmanagement.DAO.ClassDAO;
 import com.anhvt.aptechmanagement.DAO.CourseDAO;
 import com.anhvt.aptechmanagement.DAO.LecturerDAO;
@@ -25,7 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class HomeAdminController extends SideBarController implements Initializable {
+public class HomeAdminController extends SidebarAdminController implements Initializable {
     @FXML
     public Text txtNumStudent;
     @FXML
