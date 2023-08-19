@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="356.0" style="-fx-background-color: #9e5050;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhvt.aptechmanagement.Controller.admin.subject.UpdateSubjectController">
+    <children>
+        <Text fill="WHITE" layoutX="106.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHỈNH SỬA MÔN HỌC">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <AnchorPane layoutX="6.0" layoutY="38.0" prefHeight="408.0" prefWidth="288.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="38.0">
+            <children>
+                <Text layoutX="9.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên môn học" />
+                <TextField fx:id="txtName" layoutX="89.0" layoutY="21.0" prefHeight="25.0" prefWidth="248.0" />
+                <Text layoutX="10.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã môn học" />
+                <TextField fx:id="txtCode" layoutX="89.0" layoutY="57.0" prefHeight="25.0" prefWidth="248.0" />
+                <Text layoutX="12.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi tiết " />
+                <Text layoutX="11.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số giờ học" />
+                <TextField fx:id="txtNumber" layoutX="89.0" layoutY="94.0" prefHeight="25.0" prefWidth="248.0" />
+                <TextArea fx:id="txtDescription" layoutX="10.0" layoutY="152.0" prefHeight="168.0" prefWidth="327.0" wrapText="true" />
+                <Text layoutX="13.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loại Bài Thi" />
+                <ChoiceBox fx:id="txtFormat" layoutX="98.0" layoutY="333.0" prefHeight="25.0" prefWidth="239.0" />
+                <Text layoutX="13.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bắt Buộc" />
+                <CheckBox fx:id="txtType" layoutX="98.0" layoutY="368.0" mnemonicParsing="false" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="btnSave" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="70.0" text="Lưu" />
+        <Button fx:id="btnUpdate" layoutX="106.0" layoutY="461.0" mnemonicParsing="false" onAction="#update" text="Chỉnh Sửa" />
+      <Button fx:id="btnQuit" layoutX="284.0" layoutY="461.0" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="56.0" text="Thoát" />
+    </children>
+</AnchorPane>

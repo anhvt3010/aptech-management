@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="aptech-management">
+    <output-path>$PROJECT_DIR$/out/artifacts/aptech_management</output-path>
+    <root id="root">
+      <element id="archive" name="aptech_management.jar">
+        <element id="module-output" name="aptech-management" />
+      </element>
+    </root>
+  </artifact>
+</component>
